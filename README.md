@@ -3,6 +3,7 @@
 ## Description
 
 "Find Aid" app is designed as a part of the thesis work for Moldova State University.
+This app will _not_ be fully functional, but will represent a _proof of concept_.
 The _main problem_ that this app is intended to solve is to lessen number of people who die as a consequence of **lack of first aid** in the streets.
 The way the app works:
   1. A person sees a person that needs help.
