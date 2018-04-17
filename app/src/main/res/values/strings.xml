@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FindAid</string>
+    <string name="map_str">Map</string>
+    <string name="help_str">Help</string>
+    <string name="settings_str">Settings</string>
+
+
+
+    <string name="dummy_str">\?DummyString\?</string>
 </resources>
