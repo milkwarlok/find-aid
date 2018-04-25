@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import md.luciddream.findaid.activities.reference.ReferenceActivity;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onReferenceClick(View view){
-        Intent intent = new Intent(view.getContext(), ReferenceActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(view.getContext(), ReferenceActivity.class);
+//        startActivity(intent);
     }
 }
