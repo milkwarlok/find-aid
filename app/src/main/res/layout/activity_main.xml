@@ -6,32 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <LinearLayout
-        android:layout_width="155dp"
-        android:layout_height="181dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
-        android:onClick="onReferenceClick"
+        android:id="@+id/ReferenceLinearLayout"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/reference_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="monospace"
-            android:text="@string/reference_str"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="serif" />
+            android:gravity="center_horizontal"
+            android:text="@string/reference_str" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/reference_imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/plus_sign" />
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/reference_str"
+            app:srcCompat="@drawable/reference" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CallerLinearLayout"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/caller_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/caller" />
+
+        <ImageView
+            android:id="@+id/caller_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/reference_str"
+            app:srcCompat="@drawable/caller" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

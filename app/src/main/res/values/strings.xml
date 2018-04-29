@@ -6,4 +6,6 @@
     <string name="reference_str">Справочник</string>
 
     <string name="dummy_str">\?DummyString\?</string>
+    <string name="reference">Справочник</string>
+    <string name="caller">Вызов</string>
 </resources>
