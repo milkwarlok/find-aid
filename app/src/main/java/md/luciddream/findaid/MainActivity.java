@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import md.luciddream.findaid.activities.CallerActivity;
+import md.luciddream.findaid.activities.ReferenceActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,16 +17,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onMapClick(View view){
-        Toast.makeText(view.getContext(), "HI", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onHelpClick(View view){
-
+    public void onCallerClick(View view){
+        Intent intent = new Intent(view.getContext(), CallerActivity.class);
+        startActivity(intent);
     }
 
     public void onReferenceClick(View view){
-//        Intent intent = new Intent(view.getContext(), ReferenceActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(view.getContext(), ReferenceActivity.class);
+        startActivity(intent);
     }
 }
+

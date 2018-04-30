@@ -14,8 +14,27 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.CallerActivity"
+            android:label="@string/caller_str"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="md.luciddream.findaid.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ReferenceActivity"
+            android:label="@string/reference_str"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="md.luciddream.findaid.MainActivity" />
         </activity>
     </application>
 

@@ -4,8 +4,11 @@
     <string name="help_str">Нужна помощь!</string>
     <string name="settings_str">Настройки</string>
     <string name="reference_str">Справочник</string>
+    <string name="caller_str">Вызов</string>
 
     <string name="dummy_str">\?DummyString\?</string>
     <string name="reference">Справочник</string>
     <string name="caller">Вызов</string>
+    <string name="title_activity_caller">CallerActivity</string>
+    <string name="title_activity_reference">ReferenceActivity</string>
 </resources>

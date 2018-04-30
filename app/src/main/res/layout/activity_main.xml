@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/reference_str"
+            android:onClick="onReferenceClick"
             app:srcCompat="@drawable/reference" />
     </LinearLayout>
 
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/reference_str"
+            android:onClick="onCallerClick"
             app:srcCompat="@drawable/caller" />
     </LinearLayout>
 
