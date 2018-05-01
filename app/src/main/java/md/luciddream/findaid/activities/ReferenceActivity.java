@@ -76,6 +76,11 @@ public class ReferenceActivity extends AppCompatActivity {
         thread.start();
 
         textView.setText(b?"Not inserted":"Inserted");
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
