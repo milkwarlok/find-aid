@@ -45,6 +45,11 @@ public class ReferenceActivity extends AppCompatActivity {
 
 
     public void onInsertClick(View view){
+
+        //todo: добавить все таблицы
+        //todo: связать все таблицы
+        //important: используется Android Room SQLite library
+        //important: DB-interactions MUST be performed as BACKGROUND tasks.
         LocationDao locationDao = db.locationDao();
         Location location = new Location();
         Thread thread = new Thread(){
