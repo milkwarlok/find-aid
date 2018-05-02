@@ -3,59 +3,59 @@ package md.luciddream.findaid.data.model.join;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import md.luciddream.findaid.data.model.Location;
+import md.luciddream.findaid.data.model.Organ;
 import md.luciddream.findaid.data.model.Trauma;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "Trauma_Location",
+@Entity(tableName = "Trauma_Organ",
         primaryKeys = {
-                "l_id",
-                "t_id"
+                "o_id",
+                "t_od"
         },
         foreignKeys = {
-                @ForeignKey(entity = Location.class,
-                parentColumns = "l_id",
-                childColumns = "l_id",
+                @ForeignKey(entity = Organ.class,
+                parentColumns = "o_id",
+                childColumns = "o_id",
                 onUpdate = CASCADE,
                 onDelete = CASCADE),
-
                 @ForeignKey(entity = Trauma.class,
                 parentColumns = "t_id",
                 childColumns = "t_id",
                 onUpdate = CASCADE,
                 onDelete = CASCADE)
         })
-public class TraumaLocation {
+public class TraumaOrgan {
     @NonNull
-    private Integer l_id;
+    private Integer o_id;
     @NonNull
     private Integer t_id;
 
-    public TraumaLocation() {
+    public TraumaOrgan() {
     }
 
     @Ignore
-    public TraumaLocation(Integer l_id, Integer t_id) {
-        this.l_id = l_id;
+    public TraumaOrgan(@NonNull Integer o_id, @NonNull Integer t_id) {
+        this.o_id = o_id;
         this.t_id = t_id;
     }
 
-    public Integer getL_id() {
-        return l_id;
+    @NonNull
+    public Integer getO_id() {
+        return o_id;
     }
 
-    public void setL_id(Integer l_id) {
-        this.l_id = l_id;
+    public void setO_id(@NonNull Integer o_id) {
+        this.o_id = o_id;
     }
 
+    @NonNull
     public Integer getT_id() {
         return t_id;
     }
 
-    public void setT_id(Integer t_id) {
+    public void setT_id(@NonNull Integer t_id) {
         this.t_id = t_id;
     }
 }

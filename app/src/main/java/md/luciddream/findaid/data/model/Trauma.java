@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.IntRange;
 
@@ -19,6 +20,7 @@ public class Trauma {
     public Trauma() {
     }
 
+    @Ignore
     public Trauma(Integer t_id, String name, Integer relevance) {
         this.t_id = t_id;
         this.name = name;

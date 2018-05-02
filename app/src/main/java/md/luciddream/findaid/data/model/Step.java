@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -13,7 +14,7 @@ public class Step {
 
     public Step() {
     }
-
+    @Ignore
     public Step(Integer sp_id, String name) {
         this.sp_id = sp_id;
         this.name = name;

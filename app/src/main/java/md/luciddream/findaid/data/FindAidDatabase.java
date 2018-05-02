@@ -7,6 +7,8 @@ import md.luciddream.findaid.data.dao.join.TraumaLocationDao;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.TraumaLocation;
 
+
+//todo: PROVIDE SCHEMA MIGRATION
 @Database(entities = {Location.class, Organ.class, Season.class, Step.class, Symptom.class, Trauma.class,
         TraumaLocation.class},
         version = 1)

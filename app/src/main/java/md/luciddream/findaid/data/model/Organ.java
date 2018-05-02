@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -14,6 +15,7 @@ public class Organ {
     public Organ() {
     }
 
+    @Ignore
     public Organ(Integer o_id, String name) {
         this.o_id = o_id;
         this.name = name;

@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -14,6 +15,7 @@ public class Season {
     public Season() {
     }
 
+    @Ignore
     public Season(Integer sn_id, String name) {
         this.sn_id = sn_id;
         this.name = name;

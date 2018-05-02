@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -14,6 +15,7 @@ public class Symptom {
     public Symptom() {
     }
 
+    @Ignore
     public Symptom(Integer sm_id, String name) {
         this.sm_id = sm_id;
         this.name = name;

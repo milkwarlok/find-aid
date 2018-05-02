@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
@@ -13,7 +14,7 @@ public class Location {
 
     public Location() {
     }
-
+    @Ignore
     public Location(Integer l_id, String name) {
         this.l_id = l_id;
         this.name = name;
