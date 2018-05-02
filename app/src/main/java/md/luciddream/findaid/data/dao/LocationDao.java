@@ -9,7 +9,7 @@ import md.luciddream.findaid.data.model.Location;
 import java.util.List;
 
 @Dao
-public interface LocationDao {
+public interface LocationDao extends Insertable<Location>, Deletable<Location> {
     @Query("SELECT * FROM Location")
     List<Location> findAll();
 
@@ -18,10 +18,4 @@ public interface LocationDao {
 
     @Query("SELECT * FROM Location WHERE Location.name = :name")
     List<Location> findByName(String name);
-
-    @Insert
-    void insertAll(Location... locations);
-
-    @Delete
-    void delete(Location location);
 }

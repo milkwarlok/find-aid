@@ -57,7 +57,7 @@ public class ReferenceActivity extends AppCompatActivity {
                 Location location = new Location();
                 location.setL_id(null);
                 location.setName("Mountains");
-                locationDao.insertAll(location);
+                locationDao.insert(location);
             }
         };
         thread.start();
