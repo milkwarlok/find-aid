@@ -172,8 +172,7 @@ public class TraumaStepReadWriteTest {
     }
 
     @Test
-    public void write_TraumaStep_AndWriteOrdinallyInList_ByTraumaId(){
-        //fixme: trauma - step
+    public void write_TraumaStep_AndReadOrdinallyInList_ByTraumaId(){
         Step firstStep  = new Step(null, "1. This step importance will be 9");
         Step secondStep = new Step(null, "2. This step importance will be 0");
         Step thirdStep  = new Step(null, "3. This step importance will be 2");
@@ -204,7 +203,7 @@ public class TraumaStepReadWriteTest {
     }
 
     @Test
-    public void write_TraumaStep_AndWriteOrdinallyInList_ByTraumaName(){
+    public void write_TraumaStep_AndReadOrdinallyInList_ByTraumaName(){
         //fixme: trauma - step
         Step firstStep  = new Step(null, "1. This step importance will be 8");
         Step secondStep = new Step(null, "2. This step importance will be 1");

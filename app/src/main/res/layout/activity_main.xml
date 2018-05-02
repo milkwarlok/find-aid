@@ -8,29 +8,29 @@
 
 
     <LinearLayout
-        android:id="@+id/ReferenceLinearLayout"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="32dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            android:id="@+id/ReferenceLinearLayout"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="32dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/reference_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/reference_str" />
+                android:id="@+id/reference_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/reference_str"/>
 
         <ImageView
-            android:id="@+id/reference_imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/reference_str"
-            android:onClick="onReferenceClick"
-            app:srcCompat="@drawable/reference" />
+                android:id="@+id/reference_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/reference_str"
+                android:onClick="onReferenceClick"
+                app:srcCompat="@drawable/reference"/>
     </LinearLayout>
 
     <LinearLayout
