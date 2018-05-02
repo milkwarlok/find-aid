@@ -12,6 +12,7 @@ public class Trauma {
     private Integer t_id;
     @ColumnInfo(name = "name")
     private String name;
+
     //fixme: Thought @IntRange, still can create Trauma-object with relevance > 10.
     @IntRange(from = 0, to = 10)
     @ColumnInfo(name = "relevance")
@@ -42,7 +43,6 @@ public class Trauma {
     public void setName(String name) {
         this.name = name;
     }
-
     public Integer getRelevance() {
         return relevance;
     }
@@ -50,4 +50,5 @@ public class Trauma {
     public void setRelevance(Integer relevance) {
         this.relevance = relevance;
     }
+
 }

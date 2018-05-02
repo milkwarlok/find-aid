@@ -1,55 +1,54 @@
 package md.luciddream.findaid.data.model.join;
 
+
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import md.luciddream.findaid.data.model.Location;
+import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "Trauma_Location",
+@Entity(tableName = "Trauma_Symptom",
         primaryKeys = {
-                "l_id",
+                "sm_id",
                 "t_id"
         },
         foreignKeys = {
-                @ForeignKey(entity = Location.class,
-                        parentColumns = "l_id",
-                        childColumns = "l_id",
+                @ForeignKey(entity = Symptom.class,
+                        parentColumns = "sm_id",
+                        childColumns = "sm_id",
                         onUpdate = CASCADE,
                         onDelete = CASCADE),
-
                 @ForeignKey(entity = Trauma.class,
                         parentColumns = "t_id",
                         childColumns = "t_id",
                         onUpdate = CASCADE,
                         onDelete = CASCADE)
         })
-public class TraumaLocation {
+public class TraumaSymptom {
     @NonNull
-    private Integer l_id;
+    private Integer sm_id;
     @NonNull
     private Integer t_id;
 
-    public TraumaLocation() {
+    public TraumaSymptom() {
     }
 
     @Ignore
-    public TraumaLocation(@NonNull Integer l_id, @NonNull Integer t_id) {
-        this.l_id = l_id;
+    public TraumaSymptom(@NonNull Integer sm_id, @NonNull Integer t_id) {
+        this.sm_id = sm_id;
         this.t_id = t_id;
     }
 
     @NonNull
-    public Integer getL_id() {
-        return l_id;
+    public Integer getSm_id() {
+        return sm_id;
     }
 
-    public void setL_id(@NonNull Integer l_id) {
-        this.l_id = l_id;
+    public void setSm_id(@NonNull Integer sm_id) {
+        this.sm_id = sm_id;
     }
 
     @NonNull

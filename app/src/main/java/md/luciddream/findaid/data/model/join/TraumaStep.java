@@ -1,55 +1,66 @@
 package md.luciddream.findaid.data.model.join;
 
+
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import md.luciddream.findaid.data.model.Location;
+import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Trauma;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "Trauma_Location",
+@Entity(tableName = "Trauma_Step",
         primaryKeys = {
-                "l_id",
+                "sp_id",
                 "t_id"
         },
         foreignKeys = {
-                @ForeignKey(entity = Location.class,
-                        parentColumns = "l_id",
-                        childColumns = "l_id",
+                @ForeignKey(entity = Step.class,
+                        parentColumns = "sp_id",
+                        childColumns = "sp_id",
                         onUpdate = CASCADE,
                         onDelete = CASCADE),
-
                 @ForeignKey(entity = Trauma.class,
                         parentColumns = "t_id",
                         childColumns = "t_id",
                         onUpdate = CASCADE,
                         onDelete = CASCADE)
         })
-public class TraumaLocation {
+public class TraumaStep {
     @NonNull
-    private Integer l_id;
+    private Integer sp_id;
     @NonNull
     private Integer t_id;
+    @ColumnInfo(name = "ord_num")
+    private Integer ord_num;
 
-    public TraumaLocation() {
+
+    public TraumaStep() {
     }
 
     @Ignore
-    public TraumaLocation(@NonNull Integer l_id, @NonNull Integer t_id) {
-        this.l_id = l_id;
+    public TraumaStep(@NonNull Integer sp_id, @NonNull Integer t_id) {
+        this.sp_id = sp_id;
         this.t_id = t_id;
+        this.ord_num = 0;
+    }
+
+    @Ignore
+    public TraumaStep(@NonNull Integer sp_id, @NonNull Integer t_id, Integer ord_num) {
+        this.sp_id = sp_id;
+        this.t_id = t_id;
+        this.ord_num = ord_num;
     }
 
     @NonNull
-    public Integer getL_id() {
-        return l_id;
+    public Integer getSp_id() {
+        return sp_id;
     }
 
-    public void setL_id(@NonNull Integer l_id) {
-        this.l_id = l_id;
+    public void setSp_id(@NonNull Integer sp_id) {
+        this.sp_id = sp_id;
     }
 
     @NonNull
@@ -59,5 +70,13 @@ public class TraumaLocation {
 
     public void setT_id(@NonNull Integer t_id) {
         this.t_id = t_id;
+    }
+
+    public Integer getOrd_num() {
+        return ord_num;
+    }
+
+    public void setOrd_num(Integer ord_num) {
+        this.ord_num = ord_num;
     }
 }
