@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import md.luciddream.findaid.TestUtil;
 import md.luciddream.findaid.data.dao.OrganDao;
 import md.luciddream.findaid.data.model.Organ;
 import org.junit.After;
@@ -35,11 +36,9 @@ public class OrganReadWriteTest {
     }
     @Test
     public void writeOrganAndReadInList(){
-        Organ organ = new Organ();
-        organ.setO_id(1);
-        organ.setName("Skin");
+        Organ organ = TestUtil.createOrgan();
         mOrganDao.insert(organ);
-        List<Organ> organSkin = mOrganDao.findByName("Skin");
+        List<Organ> organSkin = mOrganDao.findByName(TestUtil.TEST_ORGAN);
         assertNotNull(organSkin);
         assertTrue(!organSkin.isEmpty());
         assertTrue(organSkin.get(0).getName().equals(organ.getName()));
@@ -47,12 +46,10 @@ public class OrganReadWriteTest {
 
     @Test
     public void deleteOrgan(){
-        Organ organ = new Organ();
-        organ.setO_id(1);
-        organ.setName("Skin");
+        Organ organ = TestUtil.createOrgan();
         mOrganDao.insert(organ);
         mOrganDao.delete(organ);
-        List<Organ> skinOrgan = mOrganDao.findByName("Skin");
+        List<Organ> skinOrgan = mOrganDao.findByName(TestUtil.TEST_ORGAN);
         assertNotNull(skinOrgan);
         assertTrue(skinOrgan.isEmpty());
     }

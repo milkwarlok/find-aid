@@ -11,6 +11,14 @@ public class Season {
     @ColumnInfo(name = "name")
     private String name;
 
+    public Season() {
+    }
+
+    public Season(Integer sn_id, String name) {
+        this.sn_id = sn_id;
+        this.name = name;
+    }
+
     public Integer getSn_id() {
         return sn_id;
     }

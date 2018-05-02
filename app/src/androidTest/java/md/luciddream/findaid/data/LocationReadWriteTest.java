@@ -2,6 +2,7 @@ package md.luciddream.findaid.data;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import md.luciddream.findaid.TestUtil;
 import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.model.Location;
 import org.junit.After;
@@ -35,23 +36,19 @@ public class LocationReadWriteTest {
 
     @Test
     public void writeLocationAndReadInList(){
-        Location location = new Location();
-        location.setL_id(1);
-        location.setName("Seashore");
+        Location location = TestUtil.createLocation();
         mLocationDao.insert(location);
-        List<Location> seashoreLocation = mLocationDao.findByName("Seashore");
+        List<Location> seashoreLocation = mLocationDao.findByName(TestUtil.TEST_LOCATION);
         assertNotNull(seashoreLocation);
         assertTrue(location.getName().equals(seashoreLocation.get(0).getName()));
     }
 
     @Test
     public void deleteLocation(){
-        Location location = new Location();
-        location.setL_id(1);
-        location.setName("Seashore");
+        Location location = TestUtil.createLocation();
         mLocationDao.insert(location);
         mLocationDao.delete(location);
-        List<Location> seashoreLocation = mLocationDao.findByName("Seashore");
+        List<Location> seashoreLocation = mLocationDao.findByName(TestUtil.TEST_LOCATION);
         assertNotNull(seashoreLocation);
         assertTrue(seashoreLocation.isEmpty());
     }

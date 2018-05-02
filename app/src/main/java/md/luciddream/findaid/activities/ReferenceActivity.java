@@ -50,6 +50,7 @@ public class ReferenceActivity extends AppCompatActivity {
         //todo: связать все таблицы
         //important: используется Android Room SQLite library
         //important: DB-interactions MUST be performed as BACKGROUND tasks.
+        //todo: Создание таблицы должно происходить по Singleton'у. Т.к. процесс инициализации тяжеловесный(см. документацию)
         Thread thread = new Thread(){
             @Override
             public void run() {

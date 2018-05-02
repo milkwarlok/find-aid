@@ -11,6 +11,14 @@ public class Organ {
     @ColumnInfo(name = "name")
     private String name;
 
+    public Organ() {
+    }
+
+    public Organ(Integer o_id, String name) {
+        this.o_id = o_id;
+        this.name = name;
+    }
+
     public Integer getO_id() {
         return o_id;
     }

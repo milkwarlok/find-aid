@@ -11,6 +11,14 @@ public class Step {
     @ColumnInfo(name = "name")
     private String name;
 
+    public Step() {
+    }
+
+    public Step(Integer sp_id, String name) {
+        this.sp_id = sp_id;
+        this.name = name;
+    }
+
     public Integer getSp_id() {
         return sp_id;
     }

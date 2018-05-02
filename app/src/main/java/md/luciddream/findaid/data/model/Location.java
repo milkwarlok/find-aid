@@ -11,6 +11,14 @@ public class Location {
     @ColumnInfo(name = "name")
     private String name;
 
+    public Location() {
+    }
+
+    public Location(Integer l_id, String name) {
+        this.l_id = l_id;
+        this.name = name;
+    }
+
     public Integer getL_id() {
         return l_id;
     }

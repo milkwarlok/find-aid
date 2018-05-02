@@ -11,6 +11,14 @@ public class Symptom {
     @ColumnInfo(name = "name")
     private String name;
 
+    public Symptom() {
+    }
+
+    public Symptom(Integer sm_id, String name) {
+        this.sm_id = sm_id;
+        this.name = name;
+    }
+
     public Integer getSm_id() {
         return sm_id;
     }
