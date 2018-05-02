@@ -12,7 +12,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = "Trauma_Organ",
         primaryKeys = {
                 "o_id",
-                "t_od"
+                "t_id"
         },
         foreignKeys = {
                 @ForeignKey(entity = Organ.class,

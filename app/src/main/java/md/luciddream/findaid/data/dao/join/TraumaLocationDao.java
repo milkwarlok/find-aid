@@ -35,7 +35,5 @@ public interface TraumaLocationDao extends Insertable<TraumaLocation>, Deletable
     @Query("SELECT * FROM Trauma_Location")
     List<TraumaLocation> findAll();
 
-
-
 }
 
