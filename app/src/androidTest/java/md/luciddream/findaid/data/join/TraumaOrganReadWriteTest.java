@@ -51,7 +51,6 @@ public class TraumaOrganReadWriteTest {
         TraumaOrgan item = new TraumaOrgan();
         item.setO_id(5);
         item.setT_id(5);
-        mDao.insert();
         mDao.insert(item);
     }
 

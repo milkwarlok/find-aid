@@ -5,14 +5,16 @@ import android.arch.persistence.room.RoomDatabase;
 import md.luciddream.findaid.data.dao.*;
 import md.luciddream.findaid.data.dao.join.TraumaLocationDao;
 import md.luciddream.findaid.data.dao.join.TraumaOrganDao;
+import md.luciddream.findaid.data.dao.join.TraumaSeasonDao;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.TraumaLocation;
 import md.luciddream.findaid.data.model.join.TraumaOrgan;
+import md.luciddream.findaid.data.model.join.TraumaSeason;
 
 
 //todo: PROVIDE SCHEMA MIGRATION
 @Database(entities = {Location.class, Organ.class, Season.class, Step.class, Symptom.class, Trauma.class,
-        TraumaLocation.class, TraumaOrgan.class},
+        TraumaLocation.class, TraumaOrgan.class, TraumaSeason.class},
         version = 1)
 public abstract class FindAidDatabase extends RoomDatabase {
     public abstract LocationDao locationDao();
@@ -24,5 +26,6 @@ public abstract class FindAidDatabase extends RoomDatabase {
 
     public abstract TraumaLocationDao traumaLocationDao();
     public abstract TraumaOrganDao traumaOrganDao();
+    public abstract TraumaSeasonDao traumaSeasonDao();
 
 }

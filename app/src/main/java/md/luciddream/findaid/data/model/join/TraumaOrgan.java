@@ -16,15 +16,15 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         },
         foreignKeys = {
                 @ForeignKey(entity = Organ.class,
-                parentColumns = "o_id",
-                childColumns = "o_id",
-                onUpdate = CASCADE,
-                onDelete = CASCADE),
+                        parentColumns = "o_id",
+                        childColumns = "o_id",
+                        onUpdate = CASCADE,
+                        onDelete = CASCADE),
                 @ForeignKey(entity = Trauma.class,
-                parentColumns = "t_id",
-                childColumns = "t_id",
-                onUpdate = CASCADE,
-                onDelete = CASCADE)
+                        parentColumns = "t_id",
+                        childColumns = "t_id",
+                        onUpdate = CASCADE,
+                        onDelete = CASCADE)
         })
 public class TraumaOrgan {
     @NonNull
