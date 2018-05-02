@@ -50,11 +50,11 @@ public class ReferenceActivity extends AppCompatActivity {
         //todo: связать все таблицы
         //important: используется Android Room SQLite library
         //important: DB-interactions MUST be performed as BACKGROUND tasks.
-        LocationDao locationDao = db.locationDao();
-        Location location = new Location();
         Thread thread = new Thread(){
             @Override
             public void run() {
+                LocationDao locationDao = db.locationDao();
+                Location location = new Location();
                 location.setL_id(null);
                 location.setName("Mountains");
                 locationDao.insertAll(location);
@@ -74,6 +74,7 @@ public class ReferenceActivity extends AppCompatActivity {
             @Override
             public void run() {
                 final List<Location> all;
+                LocationDao locationDao = db.locationDao();
                 all = locationDao.findAll();
                 b = all.isEmpty();
             }

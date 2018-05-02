@@ -16,6 +16,9 @@ public interface LocationDao {
     @Query("SELECT * FROM Location WHERE Location.l_id in (:id)")
     List<Location> findByIds(int[] id);
 
+    @Query("SELECT * FROM Location WHERE Location.name = :name")
+    List<Location> findByName(String name);
+
     @Insert
     void insertAll(Location... locations);
 

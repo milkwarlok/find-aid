@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="findAid.db" uuid="70d5a118-056b-4cbf-ae0c-fe627486c20f">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/src/main/java/md/luciddream/findaid/data/findAid.db</jdbc-url>
-      <driver-properties>
-        <property name="enable_load_extension" value="true" />
-      </driver-properties>
-    </data-source>
-    <data-source source="LOCAL" name="FindAid" uuid="da7fdf57-01b1-4f5b-9af7-d67b6d67f22f">
+    <data-source source="LOCAL" name="findAid" uuid="1108e8fd-e3d8-4934-97b2-82258dc46640">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\admin\.IntelliJIdea2018.1\system\android\databases\EMULATOR_Nexus_5X_API_19\md.luciddream.findaid\internal\database-name</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/sqlite-jdbc-3.20.1.1.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/xerial-sqlite-license.txt</url>
-        </library>
-      </libraries>
+      <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2018.1/android/databases/EMULATOR_Nexus_5X_API_19/md.luciddream.findaid/internal/database-name</jdbc-url>
     </data-source>
   </component>
 </project>
