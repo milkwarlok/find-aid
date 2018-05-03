@@ -94,7 +94,6 @@ public class TraumaSeasonReadWriteTest {
         assertTrue(traumasBySeasonId.get(0).getT_id() == 1);//with exact values
         assertTrue(traumasBySeasonId.get(1).getT_id() == 2);
     }
-
     @Test
     public void write_TraumaSeason_AndReadBySeasonName(){
         Season firstSeason = new Season(null, TEST_ORGAN);
@@ -119,7 +118,6 @@ public class TraumaSeasonReadWriteTest {
         assertFalse(traumasBySeasonId.isEmpty());
         assertTrue(traumasBySeasonId.size() == 1);// found exactly one
     }
-    //
     @Test
     public void write_TraumaSeason_AndReadByTraumaId(){
         Season firstSeason = new Season(null, TEST_ORGAN);

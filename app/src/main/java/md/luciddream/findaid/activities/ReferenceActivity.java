@@ -15,6 +15,10 @@ import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.model.Location;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ReferenceActivity extends AppCompatActivity {
 
@@ -44,50 +48,35 @@ public class ReferenceActivity extends AppCompatActivity {
     }
 
 
-    public void onInsertClick(View view){
-
-        //todo: добавить все таблицы
-        //todo: связать все таблицы
-        //important: используется Android Room SQLite library
-        //important: DB-interactions MUST be performed as BACKGROUND tasks.
-        //todo: Создание таблицы должно происходить по Singleton'у. Т.к. процесс инициализации тяжеловесный(см. документацию)
-        Thread thread = new Thread(){
+    public void onShowClick(View view) {
+        TextView textView = findViewById(R.id.refence_select_label);
+        Callable<List<Location>> task = new Callable<List<Location>>(){
             @Override
-            public void run() {
+            public List<Location> call() throws Exception {
                 LocationDao locationDao = db.locationDao();
-                Location location = new Location();
-                location.setL_id(null);
-                location.setName("Mountains");
-                locationDao.insert(location);
+                List<Location> all = locationDao.findAll();
+                return all;
             }
         };
-        thread.start();
+
+        ExecutorService executor = Executors.newFixedThreadPool(1);
         try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
+            Future<List<Location>> all = executor.submit(task);
+            executor.shutdown();
+            List<Location> locations = all.get();
+            if(locations == null)
+                textView.setText("It is null");
+            if(locations.size() == 0)
+                textView.setText("It is empty");
+            for(Location location: locations){
+                textView.append(location.getName() + "\n");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        TextView textView = (TextView) findViewById(R.id.reference_insert_label);
 
 
-        thread = new Thread(){
-            @Override
-            public void run() {
-                final List<Location> all;
-                LocationDao locationDao = db.locationDao();
-                all = locationDao.findAll();
-                b = all.isEmpty();
-            }
-        };
-        thread.start();
-
-        textView.setText(b?"Not inserted":"Inserted");
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }

@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="findAid" uuid="1108e8fd-e3d8-4934-97b2-82258dc46640">
+    <data-source source="LOCAL" name="Android SQLite" uuid="d1f8642c-7b17-4354-adc4-198f188b1cb7">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2018.1/android/databases/EMULATOR_Nexus_5X_API_19/md.luciddream.findaid/internal/database-name</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="findAid.db" uuid="75958d74-1753-4474-ac78-a3b66e439cce">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/src/main/java/md/luciddream/findaid/data/findAid.db</jdbc-url>
-      <driver-properties>
-        <property name="enable_load_extension" value="true" />
-      </driver-properties>
     </data-source>
   </component>
 </project>
