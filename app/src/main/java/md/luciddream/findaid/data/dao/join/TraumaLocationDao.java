@@ -17,7 +17,6 @@ public interface TraumaLocationDao extends Insertable<TraumaLocation>, Deletable
             "SELECT Trauma_Location.t_id FROM Trauma_Location WHERE Trauma_Location.l_id = :locationId)")
     List<Trauma> getTraumasByLocationId(int locationId);
 
-
     @Query("SELECT * FROM Trauma WHERE Trauma.t_id in (" +
             "SELECT Trauma_Location.t_id FROM Trauma_Location WHERE Trauma_Location.l_id in (" +
             "SELECT Location.l_id FROM Location WHERE Location.name = :locationName))")
