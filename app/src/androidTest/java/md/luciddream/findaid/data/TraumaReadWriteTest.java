@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -54,6 +55,21 @@ public class TraumaReadWriteTest {
         List<Trauma> items = mTraumaDao.findByName(TestUtil.TEST_TRAUMA);
         assertNotNull(items);
         assertTrue(items.isEmpty());
+    }
+
+    @Test
+    public void findFirstMostRelevantTraumas(){
+        Trauma item1 = new Trauma(null, "name1", 5);
+        Trauma item2 = new Trauma(null, "name2", 9);
+        Trauma item3 = new Trauma(null, "name3", 3);
+        Trauma item4 = new Trauma(null, "name4", 10);
+        mTraumaDao.insert(item1, item2, item3, item4);
+        List<Trauma> all = mTraumaDao.findFirstMostRelevant(4);
+        assertNotNull(all);
+        assertTrue(all.size() == 4);
+        for(int i = 0; i < all.size() - 1; i++){
+            assertTrue(all.get(i).getRelevance() - all.get(i+1).getRelevance() > 0);
+        }
     }
 }
 

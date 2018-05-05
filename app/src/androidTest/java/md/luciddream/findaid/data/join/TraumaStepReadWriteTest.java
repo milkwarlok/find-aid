@@ -194,17 +194,16 @@ public class TraumaStepReadWriteTest {
         for(Step step : orderedStepByTraumaId){
             Log.w("TraumaStepReadWriteTest.java:write_TraumaStep_AndWriteOrdinallyInList_ByTraumaId.test", step.getName());
         }
-        //fixme: somehow it should check that test is correct without printing...
-//        for(int i = 0; i < orderedStepByTraumaId.size(); i++){
-//            assertTrue(orderedStepByTraumaId.get(i).getName().charAt(orderedStepByTraumaId.size() - 1) -
-//                    orderedStepByTraumaId.get(i + 1).getName().charAt(orderedStepByTraumaId.size() - 1) <= 0);
-//        }
+        int stepNameLength = firstStep.getName().length();
+        assertTrue(orderedStepByTraumaId.get(0).getName().charAt(stepNameLength - 1) == '0');
+        assertTrue(orderedStepByTraumaId.get(1).getName().charAt(stepNameLength - 1) == '2');
+        assertTrue(orderedStepByTraumaId.get(2).getName().charAt(stepNameLength - 1) == '5');
+        assertTrue(orderedStepByTraumaId.get(3).getName().charAt(stepNameLength - 1) == '9');
 
     }
 
     @Test
     public void write_TraumaStep_AndReadOrdinallyInList_ByTraumaName(){
-        //fixme: trauma - step
         Step firstStep  = new Step(null, "1. This step importance will be 8");
         Step secondStep = new Step(null, "2. This step importance will be 1");
         Step thirdStep  = new Step(null, "3. This step importance will be 3");
@@ -227,11 +226,10 @@ public class TraumaStepReadWriteTest {
         for(Step step : orderedStepByTraumaId){
             Log.w("TraumaStepReadWriteTest.java:write_TraumaStep_AndWriteOrdinallyInList_ByTraumaName.test", step.getName());
         }
-        //fixme: somehow it should check that test is correct without printing...
-//        for(int i = 0; i < orderedStepByTraumaId.size(); i++){
-//            assertTrue(orderedStepByTraumaId.get(i).getName().charAt(orderedStepByTraumaId.size() - 1) -
-//                    orderedStepByTraumaId.get(i + 1).getName().charAt(orderedStepByTraumaId.size() - 1) <= 0);
-//        }
-
+        int stepNameLength = firstStep.getName().length();
+        assertTrue(orderedStepByTraumaId.get(0).getName().charAt(stepNameLength - 1) == '1');
+        assertTrue(orderedStepByTraumaId.get(1).getName().charAt(stepNameLength - 1) == '3');
+        assertTrue(orderedStepByTraumaId.get(2).getName().charAt(stepNameLength - 1) == '6');
+        assertTrue(orderedStepByTraumaId.get(3).getName().charAt(stepNameLength - 1) == '8');
     }
 }
