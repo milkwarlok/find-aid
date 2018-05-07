@@ -41,8 +41,9 @@ public class ReferenceActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-         db = Room.databaseBuilder(getApplicationContext(),
-                FindAidDatabase.class, "database-name").build();
+         db = Room.databaseBuilder(getApplicationContext(), FindAidDatabase.class, "database-name")
+
+                 .build();
     }
 
 
