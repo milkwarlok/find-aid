@@ -4,7 +4,6 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import md.luciddream.findaid.data.dao.*;
@@ -20,7 +19,7 @@ import java.util.concurrent.Executors;
         TraumaLocation.class, TraumaOrgan.class, TraumaSeason.class,TraumaStep.class, TraumaSymptom.class},
         version = 1)
 
-public abstract class FindAidDatabase extends RoomDatabase {
+public abstract class  FindAidDatabase extends RoomDatabase {
     public abstract LocationDao locationDao();
     public abstract OrganDao organDao();
     public abstract SeasonDao seasonDao();
@@ -53,7 +52,13 @@ public abstract class FindAidDatabase extends RoomDatabase {
                         Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
                             @Override
                             public void run() {
-                                getInstance(context).locationDao().insert();
+                                ExampleData exampleData = new ExampleData();
+                                FindAidDatabase database = getInstance(context);
+                                database.locationDao().insert(exampleData.getLocations());
+                                database.organDao().insert(exampleData.getOrgans());
+                                database.seasonDao().insert(exampleData.getSeasons());
+                                database.stepDao().insert(exampleData.getSteps());
+                                database.traumaDao().insert(exampleData.getTraumas());
                             }
                         });
                     }
@@ -66,10 +71,10 @@ public abstract class FindAidDatabase extends RoomDatabase {
 //    public static final Migration INSERT_BASIC_DATA = new Migration(1, 2) {
 //        @Override
 //        public void migrate(@NonNull SupportSQLiteDatabase database) {
-//            database.execSQL("insert into location values(null, \"Mountains\"");
-//            database.execSQL("insert into location values(null, \"Seashore");
-//            database.execSQL("insert into location values(null, \"Sea");
-//            database.execSQL("insert into location values(null, \"Urban");
+//            database.execSQL("insert into locations values(null, \"Mountains\"");
+//            database.execSQL("insert into locations values(null, \"Seashore");
+//            database.execSQL("insert into locations values(null, \"Sea");
+//            database.execSQL("insert into locations values(null, \"Urban");
 //            database.execSQL("insert into organ values(null, \"skin\"");
 //            database.execSQL("insert into organ values(null, \"head\"");
 //            database.execSQL("insert into organ values(null, \"heart\"");

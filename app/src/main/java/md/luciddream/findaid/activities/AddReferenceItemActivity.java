@@ -44,8 +44,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.item_location_spinner);
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Spinner spinner = (Spinner) findViewById(R.id.item_location_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
@@ -59,19 +59,16 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
 
         //Creating the ArrayAdapter instance having the country list
-        LocationHelper locationHelper = new LocationHelper(Executors.newSingleThreadExecutor(),
-                Room.databaseBuilder(getApplicationContext(), FindAidDatabase.class, "database-name")
-//                        .addMigrations(FindAidDatabase.INSERT_BASIC_DATA)
-                        .build());
+        LocationHelper locationHelper = new LocationHelper(Executors.newSingleThreadExecutor(), FindAidDatabase.getInstance(getApplicationContext()));
         List<Location> all = locationHelper.findAll();
         String[] arr = new String[all.size()];
         for(int i = 0; i < arr.length; i++){
-            arr[i] = all.get(0).getName();
+            arr[i] = all.get(i).getName();
         }
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
+        spinner.setAdapter(arrayAdapter);
     }
 
     public void onSaveClick(View view){
