@@ -41,4 +41,5 @@ public interface TraumaStepDao extends Insertable<TraumaStep>, Deletable<TraumaS
 
     @Query("SELECT * FROM Trauma_Step")
     List<TraumaStep> findAll();
+
 }

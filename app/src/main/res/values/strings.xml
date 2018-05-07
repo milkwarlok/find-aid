@@ -11,4 +11,13 @@
     <string name="caller">Вызов</string>
     <string name="title_activity_caller">CallerActivity</string>
     <string name="title_activity_reference">ReferenceActivity</string>
+    <string name="title_activity_add_reference_item">Добавить описание</string>
+    <string name="add_item_name_str">Название</string>
+    <string name="location_str">Местность</string>
+    <string name="organ_str">Орган</string>
+    <string name="season_str">Время года</string>
+    <string name="symptom_str">Симптопы</string>
+    <string name="step_str">Шаги</string>
+    <string name="enter_step_str">Введите шаг</string>
+    <string name="save_str">Сохранить</string>
 </resources>
