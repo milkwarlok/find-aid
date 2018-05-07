@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Android SQLite" uuid="06fbae92-4758-4321-871d-dae2679e06dc">
+    <data-source source="LOCAL" name="findAId" uuid="d0ec2102-81d3-4acf-aad4-feb9d26ee1a4">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2018.1/android/databases/EMULATOR_Nexus_5X_API_19/md.luciddream.findaid/internal/database-name</jdbc-url>

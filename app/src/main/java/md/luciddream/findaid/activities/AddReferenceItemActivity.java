@@ -7,16 +7,16 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.dao.OrganDao;
 import md.luciddream.findaid.data.dao.SeasonDao;
 import md.luciddream.findaid.data.dao.SymptomDao;
+import md.luciddream.findaid.data.helper.LocationHelper;
 import md.luciddream.findaid.data.model.Location;
 import md.luciddream.findaid.data.model.Organ;
 import md.luciddream.findaid.data.model.Season;
@@ -42,15 +42,38 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        Spinner spinner = (Spinner) findViewById(R.id.item_location_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "Nothing was selected" ,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //Creating the ArrayAdapter instance having the country list
+        LocationHelper locationHelper = new LocationHelper(Executors.newSingleThreadExecutor(), FindAidDatabase.getInstance(getApplicationContext()));
+        List<Location> all = locationHelper.findAll();
+        String[] arr = new String[all.size()];
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = all.get(i).getName();
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinner.setAdapter(arrayAdapter);
     }
 
     public void onSaveClick(View view){
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
+
     }
-
-
-
-
-
 
 }
