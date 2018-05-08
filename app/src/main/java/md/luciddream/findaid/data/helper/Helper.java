@@ -4,14 +4,14 @@ import md.luciddream.findaid.data.model.Location;
 
 import java.util.List;
 //todo: write helper classes for join-daos
-public interface Helper<T> {
-    List<T> findAll();
+public interface Helper<E> {
+    List<E> findAll();
 
-    List<T> findByIds(int[] id);
+    List<E> findByIds(int[] id);
 
-    List<T> findByName(String name);
+    List<E> findByName(String name);
 
-    void insert(T... items);
+    void insert(E... items);
 
-    void delete(T item);
+    void delete(E item);
 }
