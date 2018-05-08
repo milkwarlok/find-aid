@@ -11,6 +11,7 @@ import md.luciddream.findaid.data.dao.join.*;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
 
+import javax.inject.Inject;
 import java.util.concurrent.Executors;
 
 
