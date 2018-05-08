@@ -32,16 +32,16 @@
             <TextView
                     android:id="@+id/item_location_textview"
                     android:text="@string/location_str"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     />
             <Spinner
                     android:id="@+id/item_location_spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    ></Spinner>
+                    />
         </LinearLayout>
 
         <LinearLayout
@@ -51,16 +51,16 @@
             <TextView
                     android:id="@+id/item_organ_textview"
                     android:text="@string/organ_str"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     />
             <Spinner
                     android:id="@+id/item_organ_spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    ></Spinner>
+                    />
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -69,16 +69,16 @@
             <TextView
                     android:id="@+id/item_season_textview"
                     android:text="@string/season_str"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     />
             <Spinner
                     android:id="@+id/item_season_spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    ></Spinner>
+                    />
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -87,16 +87,16 @@
             <TextView
                     android:id="@+id/item_symptom_textview"
                     android:text="@string/symptom_str"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     />
             <Spinner
                     android:id="@+id/item_symptom_spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    ></Spinner>
+                    />
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -105,16 +105,16 @@
             <TextView
                     android:id="@+id/item_step_textview"
                     android:text="@string/step_str"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     />
             <EditText
                     android:id="@+id/item_step_edittext"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/enter_step_str"></EditText>
+                    android:hint="@string/enter_step_str"/>
         </LinearLayout>
     <Button
             android:layout_width="wrap_content"
