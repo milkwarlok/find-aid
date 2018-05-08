@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public class LocationHelper implements Helper<Location>{
+    //todo: remake with LiveData<T>
     private ExecutorService executor;
     private FindAidDatabase mDb;
 
