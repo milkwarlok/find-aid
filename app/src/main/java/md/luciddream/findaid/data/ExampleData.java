@@ -15,17 +15,17 @@ public class ExampleData {
                 new Location(null, "Sea"),
                 new Location(null, "Urban")};
 
-        organs = new Organ[]{new Organ(null, "skin"),
-                new Organ(null, "head"),
-                new Organ(null, "heart"),
-                new Organ(null, "body"),
-                new Organ(null, "arm"),
-                new Organ(null, "leg")};
+        organs = new Organ[]{new Organ(null, "Skin"),
+                new Organ(null, "Head"),
+                new Organ(null, "Heart"),
+                new Organ(null, "Body"),
+                new Organ(null, "Arm"),
+                new Organ(null, "Leg")};
 
-        seasons = new Season[]{new Season(null , "winter"),
-                new Season(null , "spring"),
-                new Season(null , "summer"),
-                new Season(null , "autumn")};
+        seasons = new Season[]{new Season(null , "Winter"),
+                new Season(null , "Spring"),
+                new Season(null , "Summer"),
+                new Season(null , "Autumn")};
 
         steps = new Step[]{new Step(null, "Call ambulance"),
                 new Step(null, "Find water"),
@@ -33,15 +33,15 @@ public class ExampleData {
                 new Step(null, "Find bandage"),
                 new Step(null, "Use bandage")};
 
-        symptoms = new Symptom[]{new Symptom(null, "headache"),
-                new Symptom(null, "dizziness"),
-                new Symptom(null, "red skin"),
-                new Symptom(null, "red eyes")};
+        symptoms = new Symptom[]{new Symptom(null, "Headache"),
+                new Symptom(null, "Dizziness"),
+                new Symptom(null, "Red skin"),
+                new Symptom(null, "Red eyes")};
 
-        traumas = new Trauma[]{new Trauma(null, "sunburn", 10),
-                new Trauma(null, "sunstroke", 10),
-                new Trauma(null, "luxation", 5),
-                new Trauma(null, "burn", 10)};
+        traumas = new Trauma[]{new Trauma(null, "Sunburn", 10),
+                new Trauma(null, "Sunstroke", 10),
+                new Trauma(null, "Luxation", 5),
+                new Trauma(null, "Burn", 10)};
     }
 
     public Location[] getLocations() {

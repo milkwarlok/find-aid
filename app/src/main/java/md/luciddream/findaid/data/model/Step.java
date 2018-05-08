@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Step {
+public class Step implements NamedEntity{
     @PrimaryKey(autoGenerate = true)
     private Integer sp_id;
     @ColumnInfo(name = "name")
@@ -28,6 +28,7 @@ public class Step {
         this.sp_id = sp_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.IntRange;
 
 @Entity
-public class Trauma {
+public class Trauma implements NamedEntity{
     @PrimaryKey(autoGenerate = true)
     private Integer t_id;
     @ColumnInfo(name = "name")
@@ -36,6 +36,7 @@ public class Trauma {
         this.t_id = t_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

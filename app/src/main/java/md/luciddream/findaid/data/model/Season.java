@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Season {
+public class Season implements NamedEntity{
     @PrimaryKey(autoGenerate = true)
     private Integer sn_id;
     @ColumnInfo(name = "name")
@@ -29,6 +29,7 @@ public class Season {
         this.sn_id = sn_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

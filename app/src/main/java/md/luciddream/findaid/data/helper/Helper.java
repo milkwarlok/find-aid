@@ -3,7 +3,7 @@ package md.luciddream.findaid.data.helper;
 import md.luciddream.findaid.data.model.Location;
 
 import java.util.List;
-
+//todo: write helper classes for join-daos
 public interface Helper<T> {
     List<T> findAll();
 

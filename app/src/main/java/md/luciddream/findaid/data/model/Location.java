@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Location {
+public class Location implements NamedEntity{
     @PrimaryKey(autoGenerate = true)
     private Integer l_id;
     @ColumnInfo(name = "name")
@@ -28,6 +28,7 @@ public class Location {
         this.l_id = l_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

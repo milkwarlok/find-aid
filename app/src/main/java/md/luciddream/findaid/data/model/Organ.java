@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Organ {
+public class Organ implements NamedEntity{
     @PrimaryKey(autoGenerate = true)
     private Integer o_id;
     @ColumnInfo(name = "name")
@@ -29,6 +29,7 @@ public class Organ {
         this.o_id = o_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

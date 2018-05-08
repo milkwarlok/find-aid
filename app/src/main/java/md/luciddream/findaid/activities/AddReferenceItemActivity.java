@@ -16,11 +16,8 @@ import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.dao.OrganDao;
 import md.luciddream.findaid.data.dao.SeasonDao;
 import md.luciddream.findaid.data.dao.SymptomDao;
-import md.luciddream.findaid.data.helper.LocationHelper;
-import md.luciddream.findaid.data.model.Location;
-import md.luciddream.findaid.data.model.Organ;
-import md.luciddream.findaid.data.model.Season;
-import md.luciddream.findaid.data.model.Symptom;
+import md.luciddream.findaid.data.helper.*;
+import md.luciddream.findaid.data.model.*;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -28,10 +25,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class AddReferenceItemActivity extends AppCompatActivity {
-    private TextInputEditText mName;
-    private Spinner mLocation, mOrgan, mSeason, mSymptom;
-    private EditText mStep;
-    private String[] mLocationList, mOrganList, mSeasonList, mSymptomList;
+    ExecutorService executor;
+    FindAidDatabase findAidDatabase;
+
     public AddReferenceItemActivity() {
     }
 
@@ -42,10 +38,12 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        executor = Executors.newSingleThreadExecutor();
+        findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spinner = (Spinner) findViewById(R.id.item_location_spinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Spinner locationSpinner = (Spinner) findViewById(R.id.item_location_spinner);
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
@@ -54,21 +52,74 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(), "Nothing was selected" ,Toast.LENGTH_LONG).show();
+
             }
         });
+        Helper<?> locationHelper = new LocationHelper(executor, findAidDatabase);
 
+        inflateSpinner(locationSpinner, locationHelper);
+        Spinner organSpinner = (Spinner) findViewById(R.id.item_organ_spinner);
+        organSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        inflateSpinner(organSpinner, new OrganHelper(executor,findAidDatabase));
+
+        Spinner seasonSpinner = (Spinner) findViewById(R.id.item_season_spinner);
+        seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase));
+
+        Spinner symptomSpinner = (Spinner) findViewById(R.id.item_symptom_spinner);
+        symptomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase));
+    }
+
+    private void inflateSpinner(Spinner spinner, Helper helper) {
         //Creating the ArrayAdapter instance having the country list
-        LocationHelper locationHelper = new LocationHelper(Executors.newSingleThreadExecutor(), FindAidDatabase.getInstance(getApplicationContext()));
-        List<Location> all = locationHelper.findAll();
-        String[] arr = new String[all.size()];
-        for(int i = 0; i < arr.length; i++){
-            arr[i] = all.get(i).getName();
-        }
+        String[] arr = getStrings(helper);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinner.setAdapter(arrayAdapter);
+    }
+
+    private String[] getStrings(Helper helper) {
+        List<? extends NamedEntity> all = helper.findAll();
+        String[] arr = new String[all.size()];
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = all.get(i).getName();
+        }
+        return arr;
     }
 
     public void onSaveClick(View view){

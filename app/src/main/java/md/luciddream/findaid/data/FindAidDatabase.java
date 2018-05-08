@@ -58,6 +58,7 @@ public abstract class  FindAidDatabase extends RoomDatabase {
                                 database.organDao().insert(exampleData.getOrgans());
                                 database.seasonDao().insert(exampleData.getSeasons());
                                 database.stepDao().insert(exampleData.getSteps());
+                                database.symptomDao().insert(exampleData.getSymptoms());
                                 database.traumaDao().insert(exampleData.getTraumas());
                             }
                         });
