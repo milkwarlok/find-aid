@@ -12,17 +12,16 @@ import java.util.concurrent.Future;
 
 public class TraumaHelper implements Helper<Trauma>{
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private TraumaDao traumaDao;
 
-    public TraumaHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public TraumaHelper(ExecutorService executor, TraumaDao traumaDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.traumaDao = traumaDao;
     }
 
     @Override
     public List<Trauma> findAll() {
         Future<List<Trauma>> futureList = executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             return traumaDao.findAll();
         });
         List<Trauma> toReturn = new ArrayList<>();
@@ -39,7 +38,6 @@ public class TraumaHelper implements Helper<Trauma>{
     @Override
     public List<Trauma> findByIds(int[] id) {
         Future<List<Trauma>> futureList = executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             return traumaDao.findByIds(id);
         });
         List<Trauma> toReturn = new ArrayList<>();
@@ -56,7 +54,6 @@ public class TraumaHelper implements Helper<Trauma>{
     @Override
     public List<Trauma> findByName(String name) {
         Future<List<Trauma>> futureList = executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             return traumaDao.findByName(name);
         });
         List<Trauma> toReturn = new ArrayList<>();
@@ -72,7 +69,6 @@ public class TraumaHelper implements Helper<Trauma>{
 
     public List<Trauma> findFirstMostRelevant(Integer howMany){
         Future<List<Trauma>> futureList = executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             return traumaDao.findFirstMostRelevant(howMany);
         });
         List<Trauma> toReturn = new ArrayList<>();
@@ -89,7 +85,6 @@ public class TraumaHelper implements Helper<Trauma>{
     @Override
     public void insert(Trauma... items) {
         executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             traumaDao.insert(items);
         });
     }
@@ -97,7 +92,6 @@ public class TraumaHelper implements Helper<Trauma>{
     @Override
     public void delete(Trauma item) {
         executor.submit(() -> {
-            TraumaDao traumaDao = mDb.traumaDao();
             traumaDao.delete(item);
         });
     }

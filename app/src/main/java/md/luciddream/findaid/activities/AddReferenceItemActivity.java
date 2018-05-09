@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
@@ -24,9 +26,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 public class AddReferenceItemActivity extends AppCompatActivity {
     ExecutorService executor;
     FindAidDatabase findAidDatabase;
+    int idCounter = 1;
+    int lastEditTextId = R.id.item_step_edittext;
+
 
     public AddReferenceItemActivity() {
     }
@@ -47,7 +55,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -55,7 +63,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
             }
         });
-        Helper<?> locationHelper = new LocationHelper(executor, findAidDatabase);
+        Helper<?> locationHelper = new LocationHelper(executor, findAidDatabase.locationDao());
 
         inflateSpinner(locationSpinner, locationHelper);
         Spinner organSpinner = (Spinner) findViewById(R.id.item_organ_spinner);
@@ -63,7 +71,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -71,14 +79,14 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
             }
         });
-        inflateSpinner(organSpinner, new OrganHelper(executor,findAidDatabase));
+        inflateSpinner(organSpinner, new OrganHelper(executor,findAidDatabase.organDao()));
 
         Spinner seasonSpinner = (Spinner) findViewById(R.id.item_season_spinner);
         seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -86,14 +94,14 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
             }
         });
-        inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase));
+        inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase.seasonDao()));
 
         Spinner symptomSpinner = (Spinner) findViewById(R.id.item_symptom_spinner);
         symptomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -101,7 +109,34 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
             }
         });
-        inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase));
+        inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
+
+        EditText editText = (EditText) findViewById(R.id.item_step_edittext);
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                        Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_SHORT).show();
+                        EditText eTxt = (EditText) view;
+                        RelativeLayout relativeLayout = (RelativeLayout) eTxt.getParent();
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+                    params.addRule(RelativeLayout.BELOW, lastEditTextId);
+                    relativeLayout.addView(createNewEditText("Введите шаг", view, idCounter), params);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_SHORT).show();
+                    EditText eTxt = findViewById(lastEditTextId);
+                    if(eTxt.getText().length() == 0){
+                        EditText editText1 = findViewById(idCounter);
+                        RelativeLayout relativeLayout = (RelativeLayout) eTxt.getParent();
+                        relativeLayout.removeView(editText1);
+                    }
+                    else{
+                        lastEditTextId = idCounter;
+                        idCounter++;
+                    }
+                }
+            }
+        });
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
@@ -124,7 +159,17 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
     public void onSaveClick(View view){
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
+    }
 
+    private EditText createNewEditText(String text, View view, int id) {
+        //final LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        EditText editText = new EditText(view.getContext());
+        editText.setWidth(MATCH_PARENT);
+        editText.setHeight(WRAP_CONTENT);
+        editText.setHint(text);
+        editText.setId(id);
+        editText.setSingleLine(false);
+        return editText;
     }
 
 }

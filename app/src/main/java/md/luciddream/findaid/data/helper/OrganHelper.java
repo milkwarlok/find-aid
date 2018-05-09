@@ -12,17 +12,16 @@ import java.util.concurrent.Future;
 
 public class OrganHelper implements Helper<Organ>{
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private OrganDao organDao;
 
-    public OrganHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public OrganHelper(ExecutorService executor, OrganDao organDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.organDao = organDao;
     }
 
     @Override
     public List<Organ> findAll() {
         Future<List<Organ>> futureList = executor.submit(() -> {
-            OrganDao organDao = mDb.organDao();
             return organDao.findAll();
         });
         List<Organ> toReturn = new ArrayList<>();
@@ -39,7 +38,6 @@ public class OrganHelper implements Helper<Organ>{
     @Override
     public List<Organ> findByIds(int[] id) {
         Future<List<Organ>> futureList = executor.submit(() -> {
-            OrganDao organDao = mDb.organDao();
             return organDao.findByIds(id);
         });
         List<Organ> toReturn = new ArrayList<>();
@@ -56,7 +54,6 @@ public class OrganHelper implements Helper<Organ>{
     @Override
     public List<Organ> findByName(String name) {
         Future<List<Organ>> futureList = executor.submit(() -> {
-            OrganDao organDao = mDb.organDao();
             return organDao.findByName(name);
         });
         List<Organ> toReturn = new ArrayList<>();
@@ -73,7 +70,6 @@ public class OrganHelper implements Helper<Organ>{
     @Override
     public void insert(Organ... items) {
         executor.submit(() -> {
-            OrganDao organDao = mDb.organDao();
             organDao.insert(items);
         });
     }
@@ -81,7 +77,6 @@ public class OrganHelper implements Helper<Organ>{
     @Override
     public void delete(Organ item) {
         executor.submit(() -> {
-            OrganDao organDao = mDb.organDao();
             organDao.delete(item);
         });
     }

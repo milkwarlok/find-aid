@@ -12,17 +12,16 @@ import java.util.concurrent.Future;
 
 public class SeasonHelper implements Helper<Season>{
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private SeasonDao seasonDao;
 
-    public SeasonHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public SeasonHelper(ExecutorService executor, SeasonDao seasonDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.seasonDao = seasonDao;
     }
 
     @Override
     public List<Season> findAll() {
         Future<List<Season>> futureList = executor.submit(() -> {
-            SeasonDao seasonDao = mDb.seasonDao();
             return seasonDao.findAll();
         });
         List<Season> toReturn = new ArrayList<>();
@@ -39,7 +38,6 @@ public class SeasonHelper implements Helper<Season>{
     @Override
     public List<Season> findByIds(int[] id) {
         Future<List<Season>> futureList = executor.submit(() -> {
-            SeasonDao seasonDao = mDb.seasonDao();
             return seasonDao.findByIds(id);
         });
         List<Season> toReturn = new ArrayList<>();
@@ -56,7 +54,6 @@ public class SeasonHelper implements Helper<Season>{
     @Override
     public List<Season> findByName(String name) {
         Future<List<Season>> futureList = executor.submit(() -> {
-            SeasonDao seasonDao = mDb.seasonDao();
             return seasonDao.findByName(name);
         });
         List<Season> toReturn = new ArrayList<>();
@@ -73,7 +70,6 @@ public class SeasonHelper implements Helper<Season>{
     @Override
     public void insert(Season... items) {
         executor.submit(() -> {
-            SeasonDao seasonDao = mDb.seasonDao();
             seasonDao.insert(items);
         });
     }
@@ -81,7 +77,6 @@ public class SeasonHelper implements Helper<Season>{
     @Override
     public void delete(Season item) {
         executor.submit(() -> {
-            SeasonDao seasonDao = mDb.seasonDao();
             seasonDao.delete(item);
         });
     }

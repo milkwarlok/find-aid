@@ -11,19 +11,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public class LocationHelper implements Helper<Location>{
-    //todo: remake with LiveData<T>
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private LocationDao locationDao;
 
-    public LocationHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public LocationHelper(ExecutorService executor, LocationDao locationDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.locationDao = locationDao;
     }
 
     @Override
     public List<Location> findAll() {
         Future<List<Location>> futureList = executor.submit(() -> {
-            LocationDao locationDao = mDb.locationDao();
             return locationDao.findAll();
         });
         List<Location> toReturn = new ArrayList<>();
@@ -40,7 +38,6 @@ public class LocationHelper implements Helper<Location>{
     @Override
     public List<Location> findByIds(int[] id) {
         Future<List<Location>> futureList = executor.submit(() -> {
-            LocationDao locationDao = mDb.locationDao();
             return locationDao.findByIds(id);
         });
         List<Location> toReturn = new ArrayList<>();
@@ -57,7 +54,6 @@ public class LocationHelper implements Helper<Location>{
     @Override
     public List<Location> findByName(String name) {
         Future<List<Location>> futureList = executor.submit(() -> {
-            LocationDao locationDao = mDb.locationDao();
             return locationDao.findByName(name);
         });
         List<Location> toReturn = new ArrayList<>();
@@ -74,7 +70,6 @@ public class LocationHelper implements Helper<Location>{
     @Override
     public void insert(Location... items) {
         executor.submit(() -> {
-            LocationDao locationDao = mDb.locationDao();
             locationDao.insert(items);
         });
     }
@@ -82,7 +77,6 @@ public class LocationHelper implements Helper<Location>{
     @Override
     public void delete(Location item) {
         executor.submit(() -> {
-            LocationDao locationDao = mDb.locationDao();
             locationDao.delete(item);
         });
     }

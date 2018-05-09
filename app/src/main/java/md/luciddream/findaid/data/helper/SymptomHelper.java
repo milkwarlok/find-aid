@@ -12,17 +12,16 @@ import java.util.concurrent.Future;
 
 public class SymptomHelper implements Helper<Symptom>{
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private SymptomDao symptomDao;
 
-    public SymptomHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public SymptomHelper(ExecutorService executor, SymptomDao symptomDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.symptomDao = symptomDao;
     }
 
     @Override
     public List<Symptom> findAll() {
         Future<List<Symptom>> futureList = executor.submit(() -> {
-            SymptomDao symptomDao = mDb.symptomDao();
             return symptomDao.findAll();
         });
         List<Symptom> toReturn = new ArrayList<>();
@@ -39,7 +38,6 @@ public class SymptomHelper implements Helper<Symptom>{
     @Override
     public List<Symptom> findByIds(int[] id) {
         Future<List<Symptom>> futureList = executor.submit(() -> {
-            SymptomDao symptomDao = mDb.symptomDao();
             return symptomDao.findByIds(id);
         });
         List<Symptom> toReturn = new ArrayList<>();
@@ -56,7 +54,6 @@ public class SymptomHelper implements Helper<Symptom>{
     @Override
     public List<Symptom> findByName(String name) {
         Future<List<Symptom>> futureList = executor.submit(() -> {
-            SymptomDao symptomDao = mDb.symptomDao();
             return symptomDao.findByName(name);
         });
         List<Symptom> toReturn = new ArrayList<>();
@@ -73,7 +70,6 @@ public class SymptomHelper implements Helper<Symptom>{
     @Override
     public void insert(Symptom... items) {
         executor.submit(() -> {
-            SymptomDao symptomDao = mDb.symptomDao();
             symptomDao.insert(items);
         });
     }
@@ -81,7 +77,6 @@ public class SymptomHelper implements Helper<Symptom>{
     @Override
     public void delete(Symptom item) {
         executor.submit(() -> {
-            SymptomDao symptomDao = mDb.symptomDao();
             symptomDao.delete(item);
         });
     }

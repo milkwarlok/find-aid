@@ -13,6 +13,7 @@ import android.widget.TextView;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.LocationDao;
+import md.luciddream.findaid.data.helper.LocationHelper;
 import md.luciddream.findaid.data.model.Location;
 
 import java.util.List;
@@ -21,7 +22,6 @@ import java.util.concurrent.*;
 public class ReferenceActivity extends AppCompatActivity {
 
     private FindAidDatabase db;
-    private boolean b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +47,14 @@ public class ReferenceActivity extends AppCompatActivity {
 
     public void onShowClick(View view) {
         TextView textView = findViewById(R.id.refence_select_label);
-        Callable<List<Location>> task = new Callable<List<Location>>(){
-            @Override
-            public List<Location> call() throws Exception {
-                LocationDao locationDao = db.locationDao();
-                List<Location> all = locationDao.findAll();
-                return all;
-            }
-        };
-
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-        try {
-            Future<List<Location>> all = executor.submit(task);
-            executor.shutdown();
-            List<Location> locations = all.get();
+        LocationHelper locationHelper = new LocationHelper(Executors.newSingleThreadExecutor(), db.locationDao());
+            List<Location> locations = locationHelper.findAll();
             if(locations == null)
                 textView.setText("It is null");
             if(locations.size() == 0)
                 textView.setText("It is empty");
-            for(Location location: locations){
+            for(Location location: locations) {
                 textView.append(location.getName() + "\n");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 }

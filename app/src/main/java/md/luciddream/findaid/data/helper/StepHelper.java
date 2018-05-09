@@ -12,17 +12,16 @@ import java.util.concurrent.Future;
 
 public class StepHelper implements Helper<Step>{
     private ExecutorService executor;
-    private FindAidDatabase mDb;
+    private StepDao stepDao;
 
-    public StepHelper(ExecutorService executor, FindAidDatabase mDb) {
+    public StepHelper(ExecutorService executor, StepDao stepDao) {
         this.executor = executor;
-        this.mDb = mDb;
+        this.stepDao = stepDao;
     }
 
     @Override
     public List<Step> findAll() {
         Future<List<Step>> futureList = executor.submit(() -> {
-            StepDao stepDao = mDb.stepDao();
             return stepDao.findAll();
         });
         List<Step> toReturn = new ArrayList<>();
@@ -39,7 +38,6 @@ public class StepHelper implements Helper<Step>{
     @Override
     public List<Step> findByIds(int[] id) {
         Future<List<Step>> futureList = executor.submit(() -> {
-            StepDao stepDao = mDb.stepDao();
             return stepDao.findByIds(id);
         });
         List<Step> toReturn = new ArrayList<>();
@@ -56,7 +54,6 @@ public class StepHelper implements Helper<Step>{
     @Override
     public List<Step> findByName(String name) {
         Future<List<Step>> futureList = executor.submit(() -> {
-            StepDao stepDao = mDb.stepDao();
             return stepDao.findByName(name);
         });
         List<Step> toReturn = new ArrayList<>();
@@ -73,7 +70,6 @@ public class StepHelper implements Helper<Step>{
     @Override
     public void insert(Step... items) {
         executor.submit(() -> {
-            StepDao stepDao = mDb.stepDao();
             stepDao.insert(items);
         });
     }
@@ -81,7 +77,6 @@ public class StepHelper implements Helper<Step>{
     @Override
     public void delete(Step item) {
         executor.submit(() -> {
-            StepDao stepDao = mDb.stepDao();
             stepDao.delete(item);
         });
     }
