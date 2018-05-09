@@ -21,6 +21,7 @@ import md.luciddream.findaid.data.dao.SymptomDao;
 import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,6 +35,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     FindAidDatabase findAidDatabase;
     int idCounter = 1;
     int lastEditTextId = R.id.item_step_edittext;
+    List<EditText> steps;
 
 
     public AddReferenceItemActivity() {
@@ -111,32 +113,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
 
-        EditText editText = (EditText) findViewById(R.id.item_step_edittext);
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                        Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_SHORT).show();
-                        EditText eTxt = (EditText) view;
-                        RelativeLayout relativeLayout = (RelativeLayout) eTxt.getParent();
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
-                    params.addRule(RelativeLayout.BELOW, lastEditTextId);
-                    relativeLayout.addView(createNewEditText("Введите шаг", view, idCounter), params);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_SHORT).show();
-                    EditText eTxt = findViewById(lastEditTextId);
-                    if(eTxt.getText().length() == 0){
-                        EditText editText1 = findViewById(idCounter);
-                        RelativeLayout relativeLayout = (RelativeLayout) eTxt.getParent();
-                        relativeLayout.removeView(editText1);
-                    }
-                    else{
-                        lastEditTextId = idCounter;
-                        idCounter++;
-                    }
-                }
-            }
-        });
+        steps = new ArrayList<>();
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
@@ -161,15 +138,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
     }
 
-    private EditText createNewEditText(String text, View view, int id) {
-        //final LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        EditText editText = new EditText(view.getContext());
-        editText.setWidth(MATCH_PARENT);
-        editText.setHeight(WRAP_CONTENT);
-        editText.setHint(text);
-        editText.setId(id);
-        editText.setSingleLine(false);
-        return editText;
-    }
+
 
 }
