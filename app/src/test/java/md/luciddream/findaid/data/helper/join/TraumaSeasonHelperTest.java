@@ -1,10 +1,10 @@
 package md.luciddream.findaid.data.helper.join;
 
-import md.luciddream.findaid.data.dao.join.TraumaOrganDao;
-import md.luciddream.findaid.data.model.Organ;
+import md.luciddream.findaid.data.dao.join.TraumaSeasonDao;
+import md.luciddream.findaid.data.model.Season;
 import md.luciddream.findaid.data.model.Trauma;
-import md.luciddream.findaid.data.model.join.TraumaLocation;
 import md.luciddream.findaid.data.model.join.TraumaOrgan;
+import md.luciddream.findaid.data.model.join.TraumaSeason;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,105 +24,104 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TraumaOrganHelperTest {
+public class TraumaSeasonHelperTest {
 
     private ExecutorService executorService;
-    private TraumaOrganDao traumaOrganDao;
+    private TraumaSeasonDao traumaSeasonDao;
     private Future<List<Trauma>> futureFirstList;
-    private Future<List<Organ>> futureSecondList;
-    private Future<List<TraumaOrgan>> futureJoinList;
+    private Future<List<Season>> futureSecondList;
+    private Future<List<TraumaSeason>> futureJoinList;
 
     @Before
-    public void setUp() {
+    public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
-        traumaOrganDao = Mockito.mock(TraumaOrganDao.class);
+        traumaSeasonDao = Mockito.mock(TraumaSeasonDao.class);
         futureFirstList = Mockito.mock(Future.class);
         futureSecondList = Mockito.mock(Future.class);
         futureJoinList = Mockito.mock(Future.class);
     }
 
     @After
-    public void TearDown() {
+    public void TearDown(){
         executorService.shutdown();
     }
 
 
     @Test
     public void getFirstBySecondIdTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper traumaSeasonHelper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureFirstList);
         when(futureFirstList.get())
                 .thenReturn(Arrays.asList(
                         new Trauma(1, "Red skin", 10),
-                        new Trauma(2, "Headache", 4)));
-        traumaOrganHelper.getFirstBySecondId(1);
-        verify(executorService).submit(any(Callable.class));
+                        new Trauma(2,  "Headache", 4)));
+        traumaSeasonHelper.getFirstBySecondId(1);
+        verify(executorService).submit( any(Callable.class));
         verify(futureFirstList).get();
     }
 
     @Test
     public void getFirstBySecondNameTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper traumaSeasonHelper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureFirstList);
         when(futureFirstList.get())
                 .thenReturn(Arrays.asList(
                         new Trauma(1, "Red skin", 10),
-                        new Trauma(2, "Headache", 4)));
-        traumaOrganHelper.getFirstBySecondName("Skin");
-        verify(executorService).submit(any(Callable.class));
+                        new Trauma(2,  "Headache", 4)));
+        traumaSeasonHelper.getFirstBySecondName("Winter");
+        verify(executorService).submit( any(Callable.class));
         verify(futureFirstList).get();
     }
 
     @Test
     public void getSecondByFirstIdTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper traumaSeasonHelper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
         when(futureSecondList.get())
                 .thenReturn(Arrays.asList(
-                        new Organ(1, "Skin"),
-                        new Organ(2, "Head")));
-        traumaOrganHelper.getSecondByFirstId(1);
-        verify(executorService).submit(any(Callable.class));
+                        new Season(1, "Winter"),
+                        new Season(2,  "Spring")));
+        traumaSeasonHelper.getSecondByFirstId(1);
+        verify(executorService).submit( any(Callable.class));
         verify(futureSecondList).get();
     }
 
     @Test
     public void getSecondByFirstIdName() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper traumaSeasonHelper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
         when(futureSecondList.get())
                 .thenReturn(Arrays.asList(
-                        new Organ(1, "Skin"),
-                        new Organ(2, "Head")));
-        traumaOrganHelper.getSecondByFirstName("Sunburn");
-        verify(executorService).submit(any(Callable.class));
+                        new Season(1, "Winter"),
+                        new Season(2,  "Spring")));
+        traumaSeasonHelper.getSecondByFirstName("Sunburn");
+        verify(executorService).submit( any(Callable.class));
         verify(futureSecondList).get();
     }
 
     @Test
     public void findAllTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper traumaSeasonHelper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureJoinList);
         when(futureJoinList.get())
                 .thenReturn(Arrays.asList(
-                        new TraumaOrgan(1, 1),
-                        new TraumaOrgan(2, 2)));
-        traumaOrganHelper.findAll();
+                        new TraumaSeason(1, 1),
+                        new TraumaSeason(2, 2)));
+        traumaSeasonHelper.findAll();
         verify(executorService).submit(any(Callable.class));
         verify(futureJoinList).get();
     }
-
     @Test(expected = RuntimeException.class)
     public void insertTest() {
-        TraumaOrganHelper helper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper helper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
-        helper.insert(new TraumaOrgan(1, 1));
+        helper.insert(new TraumaSeason(1, 1));
     }
 
     @Test(expected = RuntimeException.class)
     public void deleteTest() {
-        TraumaOrganHelper helper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaSeasonHelper helper = new TraumaSeasonHelper(executorService, traumaSeasonDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
-        helper.delete(new TraumaOrgan(1, 1));
+        helper.delete(new TraumaSeason(1, 1));
     }
 }

@@ -1,10 +1,10 @@
 package md.luciddream.findaid.data.helper.join;
 
-import md.luciddream.findaid.data.dao.join.TraumaOrganDao;
-import md.luciddream.findaid.data.model.Organ;
+import md.luciddream.findaid.data.dao.join.TraumaStepDao;
+import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Trauma;
-import md.luciddream.findaid.data.model.join.TraumaLocation;
-import md.luciddream.findaid.data.model.join.TraumaOrgan;
+import md.luciddream.findaid.data.model.join.TraumaSeason;
+import md.luciddream.findaid.data.model.join.TraumaStep;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,18 +24,18 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TraumaOrganHelperTest {
+public class TraumaStepHelperTest {
 
     private ExecutorService executorService;
-    private TraumaOrganDao traumaOrganDao;
+    private TraumaStepDao traumaStepDao;
     private Future<List<Trauma>> futureFirstList;
-    private Future<List<Organ>> futureSecondList;
-    private Future<List<TraumaOrgan>> futureJoinList;
+    private Future<List<Step>> futureSecondList;
+    private Future<List<TraumaStep>> futureJoinList;
 
     @Before
     public void setUp() {
         executorService = Mockito.mock(ExecutorService.class);
-        traumaOrganDao = Mockito.mock(TraumaOrganDao.class);
+        traumaStepDao = Mockito.mock(TraumaStepDao.class);
         futureFirstList = Mockito.mock(Future.class);
         futureSecondList = Mockito.mock(Future.class);
         futureJoinList = Mockito.mock(Future.class);
@@ -49,80 +49,107 @@ public class TraumaOrganHelperTest {
 
     @Test
     public void getFirstBySecondIdTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureFirstList);
         when(futureFirstList.get())
                 .thenReturn(Arrays.asList(
                         new Trauma(1, "Red skin", 10),
                         new Trauma(2, "Headache", 4)));
-        traumaOrganHelper.getFirstBySecondId(1);
+        traumaStepHelper.getFirstBySecondId(1);
         verify(executorService).submit(any(Callable.class));
         verify(futureFirstList).get();
     }
 
     @Test
     public void getFirstBySecondNameTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureFirstList);
         when(futureFirstList.get())
                 .thenReturn(Arrays.asList(
                         new Trauma(1, "Red skin", 10),
                         new Trauma(2, "Headache", 4)));
-        traumaOrganHelper.getFirstBySecondName("Skin");
+        traumaStepHelper.getFirstBySecondName("Call ambulance.");
         verify(executorService).submit(any(Callable.class));
         verify(futureFirstList).get();
     }
 
     @Test
     public void getSecondByFirstIdTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
         when(futureSecondList.get())
                 .thenReturn(Arrays.asList(
-                        new Organ(1, "Skin"),
-                        new Organ(2, "Head")));
-        traumaOrganHelper.getSecondByFirstId(1);
+                        new Step(1, "Call ambulance"),
+                        new Step(2, "Find water")));
+        traumaStepHelper.getSecondByFirstId(1);
         verify(executorService).submit(any(Callable.class));
         verify(futureSecondList).get();
     }
 
     @Test
     public void getSecondByFirstIdName() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
         when(futureSecondList.get())
                 .thenReturn(Arrays.asList(
-                        new Organ(1, "Skin"),
-                        new Organ(2, "Head")));
-        traumaOrganHelper.getSecondByFirstName("Sunburn");
+                        new Step(1, "Call ambulance"),
+                        new Step(2, "Find water")));
+        traumaStepHelper.getSecondByFirstName("Sunburn");
+        verify(executorService).submit(any(Callable.class));
+        verify(futureSecondList).get();
+    }
+
+    @Test
+    public void getOrderedStepByTraumaId() throws ExecutionException, InterruptedException {
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
+        when(futureSecondList.get())
+                .thenReturn(Arrays.asList(
+                        new Step(1, "Call ambulance"),
+                        new Step(2, "Find water")));
+        traumaStepHelper.getOrderedStepByTraumaId(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureSecondList).get();
+    }
+
+    @Test
+    public void getOrderedStepByTraumaName() throws ExecutionException, InterruptedException {
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureSecondList);
+        when(futureSecondList.get())
+                .thenReturn(Arrays.asList(
+                        new Step(1, "Call ambulance"),
+                        new Step(2, "Find water")));
+        traumaStepHelper.getOrderedStepByTraumaName("Burn");
         verify(executorService).submit(any(Callable.class));
         verify(futureSecondList).get();
     }
 
     @Test
     public void findAllTest() throws ExecutionException, InterruptedException {
-        TraumaOrganHelper traumaOrganHelper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper traumaStepHelper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureJoinList);
         when(futureJoinList.get())
                 .thenReturn(Arrays.asList(
-                        new TraumaOrgan(1, 1),
-                        new TraumaOrgan(2, 2)));
-        traumaOrganHelper.findAll();
+                        new TraumaStep(1, 1),
+                        new TraumaStep(2, 2)));
+        traumaStepHelper.findAll();
         verify(executorService).submit(any(Callable.class));
         verify(futureJoinList).get();
     }
 
     @Test(expected = RuntimeException.class)
     public void insertTest() {
-        TraumaOrganHelper helper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper helper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
-        helper.insert(new TraumaOrgan(1, 1));
+        helper.insert(new TraumaStep(1, 1));
     }
 
     @Test(expected = RuntimeException.class)
     public void deleteTest() {
-        TraumaOrganHelper helper = new TraumaOrganHelper(executorService, traumaOrganDao);
+        TraumaStepHelper helper = new TraumaStepHelper(executorService, traumaStepDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
-        helper.delete(new TraumaOrgan(1, 1));
+        helper.delete(new TraumaStep(1, 1));
     }
+
 }

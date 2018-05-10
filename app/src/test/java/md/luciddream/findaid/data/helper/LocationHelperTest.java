@@ -23,15 +23,15 @@ public class LocationHelperTest {
     private ExecutorService executorService;
     private static LocationDao locationDao;
     private Future<List<Location>> futureList;
-//fixme: ExecutorService should be static, and in @AfterClass method, should call exServ.shutdown() method.
+
     @BeforeClass
     public static void createDb(){
         locationDao = Mockito.mock(LocationDao.class);
-
     }
 
     @Before
     public void setUp(){
+        executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
     }
     @After
