@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.*;
 import md.luciddream.findaid.R;
+import md.luciddream.findaid.custom.adapter.EditTextArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.dao.OrganDao;
@@ -33,13 +34,10 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class AddReferenceItemActivity extends AppCompatActivity {
     ExecutorService executor;
     FindAidDatabase findAidDatabase;
-    int idCounter = 1;
-    int lastEditTextId = R.id.item_step_edittext;
-    List<EditText> steps;
 
 
-    public AddReferenceItemActivity() {
-    }
+    ArrayList<String> list;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +111,30 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
 
-        steps = new ArrayList<>();
+        final ListView listview = (ListView) findViewById(R.id.listview);
+        list = new ArrayList<>();
+
+        adapter = new EditTextArrayAdapter(this, list);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+                view.animate().setDuration(2000).alpha(0)
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.set(position, "");
+                                adapter.notifyDataSetChanged();
+                                view.setAlpha(1);
+                            }
+                        });
+            }
+
+        });
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
@@ -138,6 +159,17 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
     }
 
+    public void onAddItemClick(View view){
+        list.add("Введите шаг....");
+        adapter.notifyDataSetChanged();
+
+    }
+    public void onRemoveItemClick(View view){
+        if(list != null && !list.isEmpty())
+            list.remove(list.size() - 1);
+        adapter.notifyDataSetChanged();
+
+    }
 
 
 }
