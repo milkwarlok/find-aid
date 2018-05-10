@@ -56,6 +56,15 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
 
             }
         });
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(values.size() != position && values.get(position).length() == 0)
+                        editText.setHint((position + 1) + ". "+ hints.get(position));
+                }
+            }
+        });
 
         return editText;
     }
