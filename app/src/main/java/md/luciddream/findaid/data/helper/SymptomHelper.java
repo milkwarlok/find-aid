@@ -21,9 +21,7 @@ public class SymptomHelper implements Helper<Symptom>{
 
     @Override
     public List<Symptom> findAll() {
-        Future<List<Symptom>> futureList = executor.submit(() -> {
-            return symptomDao.findAll();
-        });
+        Future<List<Symptom>> futureList = executor.submit(() -> symptomDao.findAll());
         List<Symptom> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -35,9 +33,7 @@ public class SymptomHelper implements Helper<Symptom>{
 
     @Override
     public List<Symptom> findByIds(int[] id) {
-        Future<List<Symptom>> futureList = executor.submit(() -> {
-            return symptomDao.findByIds(id);
-        });
+        Future<List<Symptom>> futureList = executor.submit(() -> symptomDao.findByIds(id));
         List<Symptom> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -49,9 +45,7 @@ public class SymptomHelper implements Helper<Symptom>{
 
     @Override
     public List<Symptom> findByName(String name) {
-        Future<List<Symptom>> futureList = executor.submit(() -> {
-            return symptomDao.findByName(name);
-        });
+        Future<List<Symptom>> futureList = executor.submit(() -> symptomDao.findByName(name));
         List<Symptom> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -63,15 +57,11 @@ public class SymptomHelper implements Helper<Symptom>{
 
     @Override
     public void insert(Symptom... items) {
-        executor.submit(() -> {
-            symptomDao.insert(items);
-        });
+        executor.submit(() -> symptomDao.insert(items));
     }
 
     @Override
     public void delete(Symptom item) {
-        executor.submit(() -> {
-            symptomDao.delete(item);
-        });
+        executor.submit(() -> symptomDao.delete(item));
     }
 }

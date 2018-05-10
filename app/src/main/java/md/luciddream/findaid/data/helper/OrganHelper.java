@@ -21,9 +21,7 @@ public class OrganHelper implements Helper<Organ>{
 
     @Override
     public List<Organ> findAll() {
-        Future<List<Organ>> futureList = executor.submit(() -> {
-            return organDao.findAll();
-        });
+        Future<List<Organ>> futureList = executor.submit(() -> organDao.findAll());
         List<Organ> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();

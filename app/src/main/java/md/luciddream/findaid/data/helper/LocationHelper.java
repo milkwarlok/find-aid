@@ -21,9 +21,7 @@ public class LocationHelper implements Helper<Location>{
 
     @Override
     public List<Location> findAll() {
-        Future<List<Location>> futureList = executor.submit(() -> {
-            return locationDao.findAll();
-        });
+        Future<List<Location>> futureList = executor.submit(() -> locationDao.findAll());
         List<Location> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -37,9 +35,7 @@ public class LocationHelper implements Helper<Location>{
 
     @Override
     public List<Location> findByIds(int[] id) {
-        Future<List<Location>> futureList = executor.submit(() -> {
-            return locationDao.findByIds(id);
-        });
+        Future<List<Location>> futureList = executor.submit(() -> locationDao.findByIds(id));
         List<Location> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -53,9 +49,7 @@ public class LocationHelper implements Helper<Location>{
 
     @Override
     public List<Location> findByName(String name) {
-        Future<List<Location>> futureList = executor.submit(() -> {
-            return locationDao.findByName(name);
-        });
+        Future<List<Location>> futureList = executor.submit(() -> locationDao.findByName(name));
         List<Location> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();

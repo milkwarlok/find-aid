@@ -21,9 +21,7 @@ public class SeasonHelper implements Helper<Season>{
 
     @Override
     public List<Season> findAll() {
-        Future<List<Season>> futureList = executor.submit(() -> {
-            return seasonDao.findAll();
-        });
+        Future<List<Season>> futureList = executor.submit(() ->seasonDao.findAll());
         List<Season> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -35,9 +33,7 @@ public class SeasonHelper implements Helper<Season>{
 
     @Override
     public List<Season> findByIds(int[] id) {
-        Future<List<Season>> futureList = executor.submit(() -> {
-            return seasonDao.findByIds(id);
-        });
+        Future<List<Season>> futureList = executor.submit(() -> seasonDao.findByIds(id));
         List<Season> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -49,9 +45,7 @@ public class SeasonHelper implements Helper<Season>{
 
     @Override
     public List<Season> findByName(String name) {
-        Future<List<Season>> futureList = executor.submit(() -> {
-            return seasonDao.findByName(name);
-        });
+        Future<List<Season>> futureList = executor.submit(() -> seasonDao.findByName(name));
         List<Season> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -63,15 +57,11 @@ public class SeasonHelper implements Helper<Season>{
 
     @Override
     public void insert(Season... items) {
-        executor.submit(() -> {
-            seasonDao.insert(items);
-        });
+        executor.submit(() -> seasonDao.insert(items));
     }
 
     @Override
     public void delete(Season item) {
-        executor.submit(() -> {
-            seasonDao.delete(item);
-        });
+        executor.submit(() -> seasonDao.delete(item));
     }
 }

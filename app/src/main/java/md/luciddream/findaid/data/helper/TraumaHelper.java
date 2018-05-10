@@ -21,9 +21,7 @@ public class TraumaHelper implements Helper<Trauma>{
 
     @Override
     public List<Trauma> findAll() {
-        Future<List<Trauma>> futureList = executor.submit(() -> {
-            return traumaDao.findAll();
-        });
+        Future<List<Trauma>> futureList = executor.submit(() -> traumaDao.findAll());
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -35,9 +33,7 @@ public class TraumaHelper implements Helper<Trauma>{
 
     @Override
     public List<Trauma> findByIds(int[] id) {
-        Future<List<Trauma>> futureList = executor.submit(() -> {
-            return traumaDao.findByIds(id);
-        });
+        Future<List<Trauma>> futureList = executor.submit(() -> traumaDao.findByIds(id));
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -49,9 +45,7 @@ public class TraumaHelper implements Helper<Trauma>{
 
     @Override
     public List<Trauma> findByName(String name) {
-        Future<List<Trauma>> futureList = executor.submit(() -> {
-            return traumaDao.findByName(name);
-        });
+        Future<List<Trauma>> futureList = executor.submit(() -> traumaDao.findByName(name));
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -62,9 +56,7 @@ public class TraumaHelper implements Helper<Trauma>{
     }
 
     public List<Trauma> findFirstMostRelevant(Integer howMany){
-        Future<List<Trauma>> futureList = executor.submit(() -> {
-            return traumaDao.findFirstMostRelevant(howMany);
-        });
+        Future<List<Trauma>> futureList = executor.submit(() -> traumaDao.findFirstMostRelevant(howMany));
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -76,15 +68,11 @@ public class TraumaHelper implements Helper<Trauma>{
 
     @Override
     public void insert(Trauma... items) {
-        executor.submit(() -> {
-            traumaDao.insert(items);
-        });
+        executor.submit(() -> traumaDao.insert(items));
     }
 
     @Override
     public void delete(Trauma item) {
-        executor.submit(() -> {
-            traumaDao.delete(item);
-        });
+        executor.submit(() -> traumaDao.delete(item));
     }
 }

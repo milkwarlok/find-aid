@@ -21,9 +21,7 @@ public class StepHelper implements Helper<Step>{
 
     @Override
     public List<Step> findAll() {
-        Future<List<Step>> futureList = executor.submit(() -> {
-            return stepDao.findAll();
-        });
+        Future<List<Step>> futureList = executor.submit(() -> stepDao.findAll());
         List<Step> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -35,9 +33,7 @@ public class StepHelper implements Helper<Step>{
 
     @Override
     public List<Step> findByIds(int[] id) {
-        Future<List<Step>> futureList = executor.submit(() -> {
-            return stepDao.findByIds(id);
-        });
+        Future<List<Step>> futureList = executor.submit(() -> stepDao.findByIds(id));
         List<Step> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -49,9 +45,7 @@ public class StepHelper implements Helper<Step>{
 
     @Override
     public List<Step> findByName(String name) {
-        Future<List<Step>> futureList = executor.submit(() -> {
-            return stepDao.findByName(name);
-        });
+        Future<List<Step>> futureList = executor.submit(() ->stepDao.findByName(name));
         List<Step> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
@@ -63,15 +57,11 @@ public class StepHelper implements Helper<Step>{
 
     @Override
     public void insert(Step... items) {
-        executor.submit(() -> {
-            stepDao.insert(items);
-        });
+        executor.submit(() -> stepDao.insert(items));
     }
 
     @Override
     public void delete(Step item) {
-        executor.submit(() -> {
-            stepDao.delete(item);
-        });
+        executor.submit(() -> stepDao.delete(item));
     }
 }
