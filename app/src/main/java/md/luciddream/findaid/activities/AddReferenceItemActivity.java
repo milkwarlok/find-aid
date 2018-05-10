@@ -1,24 +1,15 @@
 package md.luciddream.findaid.activities;
 
-import android.arch.persistence.room.Room;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.View;
 import android.widget.*;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.EditTextArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
-import md.luciddream.findaid.data.dao.LocationDao;
-import md.luciddream.findaid.data.dao.OrganDao;
-import md.luciddream.findaid.data.dao.SeasonDao;
-import md.luciddream.findaid.data.dao.SymptomDao;
 import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
 
@@ -27,17 +18,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class AddReferenceItemActivity extends AppCompatActivity {
     ExecutorService executor;
     FindAidDatabase findAidDatabase;
 
 
-    ArrayList<String> list;
+    ArrayList<String> hints;
+    ArrayList<String> values;
     ArrayAdapter<String> adapter;
     private TextInputEditText name;
     private Spinner locationSpinner;
@@ -122,9 +110,11 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
 
         listview = (ListView) findViewById(R.id.listview);
-        list = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
+        hints = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
+        values = new ArrayList<>(Arrays.asList(new String("")));
 
-        adapter = new EditTextArrayAdapter(this, list);
+
+        adapter = new EditTextArrayAdapter(this, hints, values);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -137,7 +127,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
                         .withEndAction(new Runnable() {
                             @Override
                             public void run() {
-                                list.set(position, "");
+                                hints.set(position, "");
                                 adapter.notifyDataSetChanged();
                                 view.setAlpha(1);
                             }
@@ -148,7 +138,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
-        //Creating the ArrayAdapter instance having the country list
+        //Creating the ArrayAdapter instance having the country hints
         String[] arr = getStrings(helper);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -172,13 +162,16 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     }
 
     public void onAddItemClick(View view){
-        list.add("Введите шаг....");
+        hints.add("Введите шаг....");
+        values.add("");
         adapter.notifyDataSetChanged();
 
     }
     public void onRemoveItemClick(View view){
-        if(list != null && !list.isEmpty())
-            list.remove(list.size() - 1);
+        if(hints != null && !hints.isEmpty() && values != null && !values.isEmpty()) {
+            hints.remove(hints.size() - 1);
+            values.remove(values.size() - 1);
+        }
         adapter.notifyDataSetChanged();
     }
 
