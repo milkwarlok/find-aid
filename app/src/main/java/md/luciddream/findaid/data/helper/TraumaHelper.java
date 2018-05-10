@@ -27,9 +27,7 @@ public class TraumaHelper implements Helper<Trauma>{
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;
@@ -43,9 +41,7 @@ public class TraumaHelper implements Helper<Trauma>{
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;
@@ -59,9 +55,7 @@ public class TraumaHelper implements Helper<Trauma>{
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;
@@ -74,9 +68,7 @@ public class TraumaHelper implements Helper<Trauma>{
         List<Trauma> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;

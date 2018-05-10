@@ -69,15 +69,11 @@ public class LocationHelper implements Helper<Location>{
 
     @Override
     public void insert(Location... items) {
-        executor.submit(() -> {
-            locationDao.insert(items);
-        });
+        executor.submit(() -> locationDao.insert(items));
     }
 
     @Override
     public void delete(Location item) {
-        executor.submit(() -> {
-            locationDao.delete(item);
-        });
+        executor.submit(() -> locationDao.delete(item));
     }
 }

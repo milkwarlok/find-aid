@@ -23,6 +23,7 @@ import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -38,6 +39,12 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
     ArrayList<String> list;
     ArrayAdapter<String> adapter;
+    private TextInputEditText name;
+    private Spinner locationSpinner;
+    private Spinner organSpinner;
+    private Spinner seasonSpinner;
+    private Spinner symptomSpinner;
+    private ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +56,10 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
 
+        name = (TextInputEditText) findViewById(R.id.item_name_textinputedittext);
+
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner locationSpinner = (Spinner) findViewById(R.id.item_location_spinner);
+        locationSpinner = (Spinner) findViewById(R.id.item_location_spinner);
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +75,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Helper<?> locationHelper = new LocationHelper(executor, findAidDatabase.locationDao());
 
         inflateSpinner(locationSpinner, locationHelper);
-        Spinner organSpinner = (Spinner) findViewById(R.id.item_organ_spinner);
+
+        organSpinner = (Spinner) findViewById(R.id.item_organ_spinner);
         organSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -81,7 +91,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(organSpinner, new OrganHelper(executor,findAidDatabase.organDao()));
 
-        Spinner seasonSpinner = (Spinner) findViewById(R.id.item_season_spinner);
+        seasonSpinner = (Spinner) findViewById(R.id.item_season_spinner);
         seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -96,7 +106,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase.seasonDao()));
 
-        Spinner symptomSpinner = (Spinner) findViewById(R.id.item_symptom_spinner);
+        symptomSpinner = (Spinner) findViewById(R.id.item_symptom_spinner);
         symptomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -111,8 +121,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
 
-        final ListView listview = (ListView) findViewById(R.id.listview);
-        list = new ArrayList<>();
+        listview = (ListView) findViewById(R.id.listview);
+        list = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
 
         adapter = new EditTextArrayAdapter(this, list);
         listview.setAdapter(adapter);
@@ -144,6 +154,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinner.setAdapter(arrayAdapter);
+        TextView textView;
     }
 
     private String[] getStrings(Helper helper) {
@@ -157,6 +168,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
     public void onSaveClick(View view){
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
+
     }
 
     public void onAddItemClick(View view){
@@ -168,7 +180,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         if(list != null && !list.isEmpty())
             list.remove(list.size() - 1);
         adapter.notifyDataSetChanged();
-
     }
 
 

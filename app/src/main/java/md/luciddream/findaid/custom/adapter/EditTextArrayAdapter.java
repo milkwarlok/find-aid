@@ -33,6 +33,7 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
         editText.setSingleLine(false);
         editText.setHint((position + 1) + ". "+ values.get(position));
 
+
         return editText;
     }
 }

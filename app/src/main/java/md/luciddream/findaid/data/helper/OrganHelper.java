@@ -27,9 +27,7 @@ public class OrganHelper implements Helper<Organ>{
         List<Organ> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;
@@ -43,9 +41,7 @@ public class OrganHelper implements Helper<Organ>{
         List<Organ> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;
@@ -59,9 +55,7 @@ public class OrganHelper implements Helper<Organ>{
         List<Organ> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return toReturn;

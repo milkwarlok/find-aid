@@ -1,6 +1,6 @@
 package md.luciddream.findaid.data.helper;
 
-import md.luciddream.findaid.data.FindAidDatabase;
+import md.luciddream.findaid.data.dao.SymptomDao;
 import md.luciddream.findaid.data.model.Symptom;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -21,17 +21,14 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class SymptomHelperTest {
     private ExecutorService executorService;
-    private static FindAidDatabase findAidDatabase;
+    private static SymptomDao symptomDao;
     private Future<List<Symptom>> futureList;
 
     @BeforeClass
     public static void createDb(){
-        findAidDatabase = Mockito.mock(FindAidDatabase.class);
+        symptomDao = Mockito.mock(SymptomDao.class);
     }
-    @AfterClass
-    public static void closeDb(){
-        findAidDatabase.close();
-    }
+
     @Before
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
@@ -43,7 +40,7 @@ public class SymptomHelperTest {
     }
     @Test
     public void findAllTest() throws ExecutionException, InterruptedException {
-        SymptomHelper symptomHelper = new SymptomHelper(executorService, findAidDatabase);
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureList);
         when(futureList.get())
                 .thenReturn(Arrays.asList(
@@ -56,7 +53,7 @@ public class SymptomHelperTest {
 
     @Test
     public void findByIdsTest() throws ExecutionException, InterruptedException {
-        SymptomHelper symptomHelper = new SymptomHelper(executorService, findAidDatabase);
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureList);
         when(futureList.get()).thenReturn(Arrays.asList(
                 new Symptom(1, "Red skin"),
@@ -68,7 +65,7 @@ public class SymptomHelperTest {
 
     @Test
     public void findByNameTest() throws ExecutionException, InterruptedException {
-        SymptomHelper symptomHelper = new SymptomHelper(executorService, findAidDatabase);
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
         when(executorService.submit(any(Callable.class))).thenReturn(futureList);
         when(futureList.get()).thenReturn(Arrays.asList(
                 new Symptom(1, "Red skin"),
@@ -80,14 +77,14 @@ public class SymptomHelperTest {
 
     @Test(expected = RuntimeException.class)
     public void insertTest(){
-        SymptomHelper symptomHelper = new SymptomHelper(executorService, findAidDatabase);
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
         symptomHelper.insert(new Symptom(null, "Red skin"));
     }
 
     @Test(expected = RuntimeException.class)
     public void deleteTest(){
-        SymptomHelper symptomHelper = new SymptomHelper(executorService, findAidDatabase);
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
         when(executorService.submit(any(Runnable.class))).thenThrow(new RuntimeException());
         symptomHelper.delete(new Symptom(1, "Red skin"));
     }

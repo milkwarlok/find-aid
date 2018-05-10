@@ -120,12 +120,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3">
-            <!--<EditText-->
-                    <!--android:id="@+id/item_step_edittext"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="@string/enter_step_str"-->
-                    <!--android:textSize="@dimen/edit_text_hint"/>-->
                 <ListView
                         android:id="@+id/listview"
                         android:layout_width="match_parent"
@@ -160,7 +154,8 @@
             android:text="@string/save_str"
             android:layout_gravity="center"
             android:onClick="onSaveClick"/>
-        </LinearLayout>
+
+</LinearLayout>
 
 
 
