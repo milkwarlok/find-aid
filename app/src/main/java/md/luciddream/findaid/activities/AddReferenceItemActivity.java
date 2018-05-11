@@ -23,17 +23,22 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     ExecutorService executor;
     FindAidDatabase findAidDatabase;
 
+    ArrayList<String> symptomHints;
+    ArrayList<String> symptomValues;
+    ArrayList<String> stepHints;
+    ArrayList<String> stepValues;
 
-    ArrayList<String> hints;
-    ArrayList<String> values;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> stepAdapter;
+    ArrayAdapter<String> symptomAdapter;
+
     private TextInputEditText name;
     private Spinner locationSpinner;
     private Spinner organSpinner;
     private Spinner seasonSpinner;
-    private Spinner symptomSpinner;
-    private ListView listview;
-
+    private ListView symptomListView;
+    private ListView stepListView;
+//todo: onStepListViewClick{ show or hide list view}
+    //todo: same for Symptoms
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,39 +99,27 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase.seasonDao()));
 
-        symptomSpinner = (Spinner) findViewById(R.id.item_symptom_spinner);
-        symptomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Something was selected: " + position ,
-                        Toast.LENGTH_SHORT).show();
-            }
+        symptomListView = (ListView) findViewById(R.id.item_symptom_listview);
+        symptomHints = new ArrayList<>(Arrays.asList(new String("Введите симптом")));
+        symptomValues = new ArrayList<>(Arrays.asList(new String("")));
+        symptomAdapter = new EditTextArrayAdapter(this, symptomHints, symptomValues, "Введите симптом");
+        symptomListView.setAdapter(symptomAdapter);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
-
-        listview = (ListView) findViewById(R.id.item_step_listview);
-        hints = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
-        values = new ArrayList<>(Arrays.asList(new String("")));
+        stepListView = (ListView) findViewById(R.id.item_step_listview);
+        stepHints = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
+        stepValues = new ArrayList<>(Arrays.asList(new String("")));
 
 
-        adapter = new EditTextArrayAdapter(this, hints, values);
-        listview.setAdapter(adapter);
+        stepAdapter = new EditTextArrayAdapter(this, stepHints, stepValues, "Введите шаг");
+        stepListView.setAdapter(stepAdapter);
 
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
-        //Creating the ArrayAdapter instance having the country hints
         String[] arr = getStrings(helper);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
         spinner.setAdapter(arrayAdapter);
-        TextView textView;
     }
 
     private String[] getStrings(Helper helper) {

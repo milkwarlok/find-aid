@@ -18,12 +18,14 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
     private Context context;
     private List<String> hints;
     private List<String> values;
+    private String hintTemplate;
 
-    public EditTextArrayAdapter(@NonNull  Context context, @NonNull List<String> hints, @NonNull List<String> values) {
+    public EditTextArrayAdapter(@NonNull  Context context, @NonNull List<String> hints, @NonNull List<String> values, @NonNull String hintTemplate) {
         super(context, -1, hints);
         this.context = context;
         this.hints = hints;
         this.values = values;
+        this.hintTemplate = hintTemplate;
     }
 
     @NonNull
@@ -68,7 +70,7 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    hints.add("Введите шаг....");
+                    hints.add(hintTemplate);
                     values.add("");
                     notifyDataSetChanged();
                 }
