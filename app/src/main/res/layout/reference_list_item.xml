@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@android:id/text1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/item_template_step_linear_layout"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:orientation="horizontal"
           android:textAppearance="?android:attr/textAppearanceListItemSmall"
           android:gravity="center_vertical"
           android:paddingStart="?android:attr/listPreferredItemPaddingStart"
           android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-          android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+          android:minHeight="?android:attr/listPreferredItemHeightSmall" >
+    <EditText
+            android:id="@+id/item_template_step_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"/>
+    <Button
+            android:id="@+id/item_template_step_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+</LinearLayout>

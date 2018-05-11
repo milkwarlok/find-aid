@@ -109,7 +109,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         });
         inflateSpinner(symptomSpinner, new SymptomHelper(executor, findAidDatabase.symptomDao()));
 
-        listview = (ListView) findViewById(R.id.listview);
+        listview = (ListView) findViewById(R.id.item_step_listview);
         hints = new ArrayList<>(Arrays.asList(new String("Введите шаг")));
         values = new ArrayList<>(Arrays.asList(new String("")));
 
@@ -117,24 +117,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         adapter = new EditTextArrayAdapter(this, hints, values);
         listview.setAdapter(adapter);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                hints.set(position, "");
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
-            }
-
-        });
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
@@ -159,20 +141,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     public void onSaveClick(View view){
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
 
-    }
-
-    public void onAddItemClick(View view){
-        hints.add("Введите шаг....");
-        values.add("");
-        adapter.notifyDataSetChanged();
-
-    }
-    public void onRemoveItemClick(View view){
-        if(hints != null && !hints.isEmpty() && values != null && !values.isEmpty()) {
-            hints.remove(hints.size() - 1);
-            values.remove(values.size() - 1);
-        }
-        adapter.notifyDataSetChanged();
     }
 
 

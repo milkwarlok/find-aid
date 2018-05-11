@@ -10,6 +10,15 @@
             tools:context="md.luciddream.findaid.activities.AddReferenceItemActivity"
             android:orientation="vertical"
             android:layout_margin="16dp">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
+
+
         <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -115,42 +124,22 @@
                     android:textSize="@dimen/basic_text"
 
                     />
-            <RelativeLayout
-                    android:id="@+id/item_step_relative_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3">
-                <ListView
-                        android:id="@+id/listview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></ListView>
 
-            </RelativeLayout>
+                <ListView
+                        android:id="@+id/item_step_listview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"></ListView>
+
 
         </LinearLayout>
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <Button
-                android:id="@+id/remove_item_button"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:onClick="onRemoveItemClick"/>
-        <Button
-                android:id="@+id/add_item_button"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:onClick="onAddItemClick"/>
+    </LinearLayout>
 
-    </RelativeLayout>
     <Button
+            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="@string/save_str"
             android:layout_gravity="center"
             android:onClick="onSaveClick"/>

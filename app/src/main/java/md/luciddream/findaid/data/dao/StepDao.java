@@ -16,4 +16,5 @@ public interface StepDao extends Insertable<Step>, Deletable<Step>{
 
     @Query("SELECT * FROM Step WHERE Step.name = :name")
     List<Step> findByName(String name);
+
 }

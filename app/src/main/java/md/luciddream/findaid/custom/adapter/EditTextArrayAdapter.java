@@ -8,10 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import md.luciddream.findaid.R;
 
 import java.util.ArrayList;
@@ -34,7 +31,9 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        EditText editText = (EditText) inflater.inflate(R.layout.reference_list_item, parent, false);
+//        EditText editText = (EditText) inflater.inflate(R.layout.reference_list_item, parent, false);
+        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.reference_list_item, parent,false);
+        EditText editText = (EditText) linearLayout.findViewById(R.id.item_template_step_edit_text);
         editText.setSingleLine(false);
         if(values != null && values.size() != 0 && !values.get(position).equals(""))
             editText.setText(values.get(position));
@@ -50,8 +49,10 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length() != 0)
                     values.set(position, s.toString());
-                else
-                    editText.setHint((position + 1) + ". "+ hints.get(position));
+                else {
+                    editText.setHint((position + 1) + ". " + hints.get(position));
+                    values.set(position, s.toString());
+                }
 
             }
 
@@ -61,6 +62,31 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
             }
         });
 
-        return editText;
+        Button button = (Button) linearLayout.findViewById(R.id.item_template_step_button);
+        if(position == 0){
+            button.setText("+");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    hints.add("Введите шаг....");
+                    values.add("");
+                    notifyDataSetChanged();
+                }
+            });
+        }
+        else{
+            button.setText("-");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(hints != null && !hints.isEmpty() && values != null && !values.isEmpty()) {
+                        hints.remove(position);
+                        values.remove(position);
+                    }
+                    notifyDataSetChanged();
+                }
+            });
+        }
+        return linearLayout;
     }
 }
