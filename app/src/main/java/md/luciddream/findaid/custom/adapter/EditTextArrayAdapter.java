@@ -48,21 +48,16 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            values.set(position, s.toString());
+                if(s.toString().length() != 0)
+                    values.set(position, s.toString());
+                else
+                    editText.setHint((position + 1) + ". "+ hints.get(position));
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-            }
-        });
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    if(values.size() != position && values.get(position).length() == 0)
-                        editText.setHint((position + 1) + ". "+ hints.get(position));
-                }
             }
         });
 
