@@ -94,45 +94,41 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <TextView
+                android:orientation="vertical">
+            <Button
                     android:id="@+id/item_symptom_textview"
                     android:text="@string/symptom_str"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/basic_text"
-
+                    android:onClick="onSymptomsShowHideClick"
                     />
+
             <ListView
                     android:id="@+id/item_symptom_listview"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"/>
+                    android:visibility="gone"/>
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <TextView
+                android:orientation="vertical">
+            <Button
                     android:id="@+id/item_step_textview"
                     android:text="@string/step_str"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/basic_text"
-
+                    android:onClick="onStepsShowHideClick"
                     />
-
                 <ListView
                         android:id="@+id/item_step_listview"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"/>
+                        android:visibility="gone"
+                        />
         </LinearLayout>
 
     </LinearLayout>
-
     <Button
             android:layout_weight="1"
             android:layout_width="wrap_content"

@@ -133,7 +133,19 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
     public void onSaveClick(View view){
         Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
+    }
 
+    public void onSymptomsShowHideClick(View view){
+        if(symptomListView.getVisibility() == View.VISIBLE)
+            symptomListView.setVisibility(View.GONE);
+        else
+            symptomListView.setVisibility(View.VISIBLE);
+    }
+    public void onStepsShowHideClick(View view){
+        if(stepListView.getVisibility() == View.VISIBLE)
+            stepListView.setVisibility(View.GONE);
+        else
+            stepListView.setVisibility(View.VISIBLE);
     }
 
 
