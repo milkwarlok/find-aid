@@ -14,5 +14,10 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="Android SQLite" uuid="a6f1af77-3915-4ff4-8908-70e3555be708">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\admin\.IntelliJIdea2018.1\system\android\databases\EMULATOR_Nexus_5X_API_19\md.luciddream.findaid\internal\database-name</jdbc-url>
+    </data-source>
   </component>
 </project>
