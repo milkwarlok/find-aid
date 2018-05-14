@@ -1,6 +1,7 @@
 package md.luciddream.findaid.data.specific;
 
 import android.arch.persistence.room.Transaction;
+import android.util.Log;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.dao.TraumaDao;
@@ -17,6 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SpecificSaver {
+    ExecutorService executorService;
     SpecificTrauma specificTrauma;
     FindAidDatabase findAidDatabase;
 
@@ -25,20 +27,20 @@ public class SpecificSaver {
 
     private TraumaLocationHelper traumaLocationHelper;
 
-    public SpecificSaver(SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
+    public SpecificSaver(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
+        this.executorService = executorService;
         this.specificTrauma = specificTrauma;
         this.findAidDatabase = findAidDatabase;
-        setUp(findAidDatabase);
+        setUp();
     }
 
-    private void setUp(FindAidDatabase findAidDatabase) {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private void setUp() {
         this.traumaHelper = new TraumaHelper(executorService,findAidDatabase.traumaDao());
         this.locationHelper = new LocationHelper(executorService, findAidDatabase.locationDao());
         this.traumaLocationHelper = new TraumaLocationHelper(executorService, findAidDatabase.traumaLocationDao());
     }
 
-    @Transaction
+//    @Transaction
     public void save(){
         saveTraumaName();
         int traumaId = getTraumaId();
@@ -74,7 +76,9 @@ public class SpecificSaver {
     }
 
     private void saveTraumaLocationByIds(int traumaId, int locationId){
-        traumaLocationHelper.insert(new TraumaLocation(traumaId, locationId));
+        Log.d("Ids: ", "traumaId: "+ traumaId);
+        Log.d("Ids: ", "locationId: "+ locationId);
+        traumaLocationHelper.insert(new TraumaLocation(locationId, traumaId));
     }
 
 

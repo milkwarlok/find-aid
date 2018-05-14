@@ -53,6 +53,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
 
@@ -180,7 +181,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         specificTrauma.setTrauma(new Trauma(null, name.getText().toString(), 0));
         specificTrauma.setLocation(new Location(null, locationSpinner.getSelectedItem().toString()));
 
-        SpecificSaver specificSaver = new SpecificSaver(specificTrauma, findAidDatabase);
+        SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
         specificSaver.save();
     }
 
