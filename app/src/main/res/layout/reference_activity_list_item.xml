@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Название"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/symptom_str"
+            android:textSize="20sp"/>
+    <ScrollView
+            android:id="@+id/reference_activity_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+</LinearLayout>

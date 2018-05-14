@@ -14,13 +14,13 @@ import md.luciddream.findaid.R;
 
 import java.util.List;
 
-public class EditTextArrayAdapter extends ArrayAdapter<String> {
+public class AddableItemArrayAdapter extends ArrayAdapter<String> {
     private Context context;
     private List<String> hints;
     private List<String> values;
     private String hintTemplate;
 
-    public EditTextArrayAdapter(@NonNull  Context context, @NonNull List<String> hints, @NonNull List<String> values, @NonNull String hintTemplate) {
+    public AddableItemArrayAdapter(@NonNull  Context context, @NonNull List<String> hints, @NonNull List<String> values, @NonNull String hintTemplate) {
         super(context, -1, hints);
         this.context = context;
         this.hints = hints;
@@ -34,7 +34,7 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        EditText editText = (EditText) inflater.inflate(R.layout.reference_list_item, parent, false);
-        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.reference_list_item, parent,false);
+        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.add_item_activity_list_item, parent,false);
         TextInputEditText editText = (TextInputEditText) linearLayout.findViewById(R.id.item_template_step_text_input_edit_text);
         editText.setSingleLine(false);
         if(values != null && values.size() != 0 && !values.get(position).equals(""))
