@@ -19,6 +19,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -180,6 +182,23 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         SpecificTrauma specificTrauma = new SpecificTrauma();
         specificTrauma.setTrauma(new Trauma(null, name.getText().toString(), 0));
         specificTrauma.setLocation(new Location(null, locationSpinner.getSelectedItem().toString()));
+        specificTrauma.setOrgan(new Organ(null, organSpinner.getSelectedItem().toString()));
+        specificTrauma.setSeason(new Season(null, seasonSpinner.getSelectedItem().toString()));
+
+        Symptom[] symptoms = new Symptom[symptomValues.size()];
+        for(int i = 0; i < symptomValues.size(); i++){
+            symptoms[i] = new Symptom(null ,symptomValues.get(i));
+        }
+        specificTrauma.setSymptoms(symptoms);
+
+        Step[] steps = new Step[stepValues.size()];
+        Map<String, Integer> stepOrder = new ConcurrentHashMap<>();
+        for(int i = 0 ; i < stepValues.size(); i++){
+            steps[i] = new Step(null, stepValues.get(i));
+            stepOrder.put(stepValues.get(i), i + 1);
+        }
+        specificTrauma.setSteps(steps);
+        specificTrauma.setStepOrder(stepOrder);
 
         SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
         specificSaver.save();

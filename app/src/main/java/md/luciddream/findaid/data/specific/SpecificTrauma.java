@@ -2,6 +2,8 @@ package md.luciddream.findaid.data.specific;
 
 import md.luciddream.findaid.data.model.*;
 
+import java.util.Map;
+
 public class SpecificTrauma {
         Location location;
         Organ organ;
@@ -9,6 +11,7 @@ public class SpecificTrauma {
         Step[] steps;
         Symptom[] symptoms;
         Trauma trauma;
+        Map<String, Integer> stepOrder;
 
     public SpecificTrauma() {
     }
@@ -68,5 +71,13 @@ public class SpecificTrauma {
 
     public void setTrauma(Trauma trauma) {
         this.trauma = trauma;
+    }
+
+    public Map<String, Integer> getStepOrder() {
+        return stepOrder;
+    }
+
+    public void setStepOrder(Map<String, Integer> stepOrder) {
+        this.stepOrder = stepOrder;
     }
 }

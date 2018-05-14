@@ -3,6 +3,7 @@ package md.luciddream.findaid.data.helper;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.StepDao;
 import md.luciddream.findaid.data.model.Step;
+import md.luciddream.findaid.data.model.Symptom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,17 @@ public class StepHelper implements Helper<Step>{
     @Override
     public List<Step> findByName(String name) {
         Future<List<Step>> futureList = executor.submit(() ->stepDao.findByName(name));
+        List<Step> toReturn = new ArrayList<>();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+    public List<Step> findByNames(String[] names){
+        Future<List<Step>> futureList = executor.submit(() -> stepDao.findByNames(names));
         List<Step> toReturn = new ArrayList<>();
         try {
             toReturn = futureList.get();
