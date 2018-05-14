@@ -57,7 +57,7 @@ public class SpecificSaver {
         this.traumaStepHelper = new TraumaStepHelper(executorService, findAidDatabase.traumaStepDao());
     }
 
-//    @Transaction
+    @Transaction
     public void save(){
         saveTraumaName();
         int traumaId = getTraumaId();
@@ -69,8 +69,8 @@ public class SpecificSaver {
         saveTraumaSeasonByIds(seasonId, traumaId);
 
         saveSymptoms();
-        int[] ids = getSymptomsIds();
-        saveTraumaSymptomsByIds(ids, traumaId);
+        int[] symptomIds = getSymptomsIds();
+        saveTraumaSymptomsByIds(symptomIds, traumaId);
 
         saveSteps();
         List<Step> steps = getSteps();
@@ -80,8 +80,8 @@ public class SpecificSaver {
 
 
     private void saveTraumaName() {
-        List<Trauma> traumaCheckList = traumaHelper.findByName(specificTrauma.getTrauma().getName());
-        if(traumaCheckList.isEmpty()){
+       // List<Trauma> traumaCheckList = traumaHelper.findByName(specificTrauma.getTrauma().getName());
+        if(!traumaHelper.exists(specificTrauma.getTrauma().getName())){
             traumaHelper.insert(specificTrauma.getTrauma());
         }
     }
@@ -147,8 +147,7 @@ public class SpecificSaver {
     private void saveSymptoms(){
         Symptom[] symptoms = specificTrauma.getSymptoms();
         for(int i = 0; i < symptoms.length; i++){
-            List<Symptom> symptomCheckList = symptomHelper.findByName(symptoms[i].getName());
-            if(symptomCheckList.isEmpty()){
+            if(!symptomHelper.exists(symptoms[i].getName())){
                 symptomHelper.insert(symptoms[i]);
             }
         }
@@ -179,8 +178,7 @@ public class SpecificSaver {
     private void saveSteps(){
         Step[] steps = specificTrauma.getSteps();
         for(int i = 0; i < steps.length; i++){
-            List<Step> stepCheckList = stepHelper.findByName(steps[i].getName());
-            if(stepCheckList.isEmpty()){
+            if(!stepHelper.exists(steps[i].getName())){
                 stepHelper.insert(steps[i]);
             }
         }

@@ -8,7 +8,7 @@ import md.luciddream.findaid.data.model.Symptom;
 import java.util.List;
 
 @Dao
-public interface StepDao extends Insertable<Step>, Deletable<Step>{
+public interface StepDao extends Insertable<Step>, Deletable<Step>, Existable{
     @Query("SELECT * FROM Step")
     List<Step> findAll();
 
@@ -20,4 +20,8 @@ public interface StepDao extends Insertable<Step>, Deletable<Step>{
 
     @Query("SELECT * FROM Step WHERE Step.name in (:names)")
     List<Step> findByNames(String[] names);
+
+    @Override
+    @Query("SELECT EXISTS(SELECT 1 FROM Step WHERE Step.name =:name)")
+    Boolean exists(String name);
 }

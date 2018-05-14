@@ -8,7 +8,7 @@ import md.luciddream.findaid.data.model.Trauma;
 import java.util.List;
 
 @Dao
-public interface TraumaDao extends Insertable<Trauma>, Deletable<Trauma>{
+public interface TraumaDao extends Insertable<Trauma>, Deletable<Trauma>, Existable{
     @Query("SELECT * FROM Trauma")
     List<Trauma> findAll();
 
@@ -20,4 +20,8 @@ public interface TraumaDao extends Insertable<Trauma>, Deletable<Trauma>{
 
     @Query("SELECT * FROM Trauma WHERE Trauma.t_id ORDER BY Trauma.relevance DESC LIMIT :howMany;")
     List<Trauma> findFirstMostRelevant(Integer howMany);
+
+    @Override
+    @Query("SELECT EXISTS(SELECT 1 FROM Trauma WHERE Trauma.name =:name)")
+    Boolean exists(String name);
 }

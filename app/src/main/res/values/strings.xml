@@ -20,4 +20,5 @@
     <string name="step_str">Шаги</string>
     <string name="enter_step_str">Введите шаг</string>
     <string name="save_str">Сохранить</string>
+    <string name="saved_str">Сохранено</string>
 </resources>

@@ -160,25 +160,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     }
 
     public void onSaveClick(View view){
-        StringBuffer text = new StringBuffer("");
-        text.append(name.getText());
-        text.append('\n');
-        text.append(locationSpinner.getSelectedItem().toString());
-        text.append('\n');
-        text.append(organSpinner.getSelectedItem().toString());
-        text.append('\n');
-        text.append(seasonSpinner.getSelectedItem().toString());
-        text.append('\n');
-        for(int i = 0; i < symptomValues.size(); i++){
-            text.append((i+1) + ". "+symptomValues.get(i));
-            text.append('\n');
-        }
-        for(int i = 0; i < stepValues.size(); i++){
-            text.append((i+1) + ". "+stepValues.get(i));
-            text.append('\n');
-        }
-        testTextView.setText(text);
-        Snackbar.make(view, text,Snackbar.LENGTH_SHORT).show();
+
         SpecificTrauma specificTrauma = new SpecificTrauma();
         specificTrauma.setTrauma(new Trauma(null, name.getText().toString(), 0));
         specificTrauma.setLocation(new Location(null, locationSpinner.getSelectedItem().toString()));
@@ -202,7 +184,11 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
         SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
         specificSaver.save();
-    }
 
+        Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
+    }
+    /*fixme:if are added 4 steps and click - "save" and then delete step, and click save - than this 4th step is still in DB...
+    fixme: can be fixed by validating input, look forward in sprint 4.
+    */
 
 }

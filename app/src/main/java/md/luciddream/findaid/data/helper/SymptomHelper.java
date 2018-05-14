@@ -65,7 +65,16 @@ public class SymptomHelper implements Helper<Symptom>{
         }
         return toReturn;
     }
-
+    public Boolean exists(String name){
+        Future<Boolean> exists = executor.submit(() -> symptomDao.exists(name));
+        Boolean toReturn = false;
+        try {
+            toReturn = exists.get();
+        } catch (InterruptedException|ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
     @Override
     public void insert(Symptom... items) {
         executor.submit(() -> symptomDao.insert(items));

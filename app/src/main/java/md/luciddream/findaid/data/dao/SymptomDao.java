@@ -7,7 +7,7 @@ import md.luciddream.findaid.data.model.Symptom;
 import java.util.List;
 
 @Dao
-public interface SymptomDao extends Insertable<Symptom>, Deletable<Symptom>{
+public interface SymptomDao extends Insertable<Symptom>, Deletable<Symptom>, Existable{
     @Query("SELECT * FROM Symptom")
     List<Symptom> findAll();
 
@@ -19,4 +19,8 @@ public interface SymptomDao extends Insertable<Symptom>, Deletable<Symptom>{
 
     @Query("SELECT * FROM Symptom WHERE Symptom.name in (:names)")
     List<Symptom> findByNames(String[] names);
+
+    @Override
+    @Query("SELECT EXISTS(SELECT 1 FROM Symptom WHERE Symptom.name =:name)")
+    Boolean exists(String name);
 }

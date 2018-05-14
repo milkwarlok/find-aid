@@ -66,6 +66,16 @@ public class StepHelper implements Helper<Step>{
         }
         return toReturn;
     }
+    public Boolean exists(String name){
+        Future<Boolean> exists = executor.submit(() -> stepDao.exists(name));
+        Boolean toReturn = false;
+        try {
+            toReturn = exists.get();
+        } catch (InterruptedException|ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
 
     @Override
     public void insert(Step... items) {
