@@ -74,6 +74,17 @@ public class StepHelperTest {
         verify(executorService).submit(any(Callable.class));
         verify(futureList).get();
     }
+    @Test
+    public void findByNamesTest() throws ExecutionException, InterruptedException {
+        StepHelper stepHelper = new StepHelper(executorService, stepDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureList);
+        when(futureList.get()).thenReturn(Arrays.asList(
+                new Step(1, "Call ambulance"),
+                new Step(2, "Find water")));
+        stepHelper.findByNames(new String[] {"Call ambulance.", "Find Water"});
+        verify(executorService).submit(any(Callable.class));
+        verify(futureList).get();
+    }
 
     @Test(expected = RuntimeException.class)
     public void insertTest(){

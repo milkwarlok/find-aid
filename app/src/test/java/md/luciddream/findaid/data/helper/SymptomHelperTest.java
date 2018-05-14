@@ -75,6 +75,17 @@ public class SymptomHelperTest {
         verify(futureList).get();
     }
 
+    @Test
+    public void findByNamesTest() throws ExecutionException, InterruptedException {
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureList);
+        when(futureList.get()).thenReturn(Arrays.asList(
+                new Symptom(1, "Red skin"),
+                new Symptom(2, "Headache")));
+        symptomHelper.findByNames(new String[]{"Red skin", "Headache"});
+        verify(executorService).submit(any(Callable.class));
+        verify(futureList).get();
+    }
     @Test(expected = RuntimeException.class)
     public void insertTest(){
         SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
