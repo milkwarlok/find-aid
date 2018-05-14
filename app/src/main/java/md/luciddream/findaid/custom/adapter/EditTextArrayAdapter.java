@@ -3,6 +3,7 @@ package md.luciddream.findaid.custom.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.*;
 import md.luciddream.findaid.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditTextArrayAdapter extends ArrayAdapter<String> {
@@ -35,7 +35,7 @@ public class EditTextArrayAdapter extends ArrayAdapter<String> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        EditText editText = (EditText) inflater.inflate(R.layout.reference_list_item, parent, false);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.reference_list_item, parent,false);
-        EditText editText = (EditText) linearLayout.findViewById(R.id.item_template_step_edit_text);
+        TextInputEditText editText = (TextInputEditText) linearLayout.findViewById(R.id.item_template_step_text_input_edit_text);
         editText.setSingleLine(false);
         if(values != null && values.size() != 0 && !values.get(position).equals(""))
             editText.setText(values.get(position));

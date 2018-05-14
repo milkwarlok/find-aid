@@ -9,11 +9,25 @@
           android:paddingStart="?android:attr/listPreferredItemPaddingStart"
           android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
           android:minHeight="?android:attr/listPreferredItemHeightSmall" >
-    <EditText
-            android:id="@+id/item_template_step_edit_text"
+
+
+
+
+
+
+
+    <android.support.design.widget.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="8"/>
+            android:layout_weight="8">
+
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/item_template_step_text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+/>
+    </android.support.design.widget.TextInputLayout>
+
     <Button
             android:id="@+id/item_template_step_button"
             android:layout_width="0dp"

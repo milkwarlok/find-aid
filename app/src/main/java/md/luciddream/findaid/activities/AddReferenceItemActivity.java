@@ -12,14 +12,23 @@ import md.luciddream.findaid.custom.adapter.EditTextArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
+import md.luciddream.findaid.data.specific.SpecificSaver;
+import md.luciddream.findaid.data.specific.SpecificTrauma;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AddReferenceItemActivity extends AppCompatActivity {
+    //test
+    private TextView testTextView;
+
+
     ExecutorService executor;
     FindAidDatabase findAidDatabase;
 
@@ -46,6 +55,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
 
@@ -113,6 +123,9 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         stepAdapter = new EditTextArrayAdapter(this, stepHints, stepValues, "Введите шаг");
         stepListView.setAdapter(stepAdapter);
 
+
+        testTextView = (TextView) findViewById(R.id.testTextView);
+
     }
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
@@ -131,21 +144,64 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         return arr;
     }
 
-    public void onSaveClick(View view){
-        Snackbar.make(view, R.string.save_str,Snackbar.LENGTH_SHORT).show();
-    }
 
     public void onSymptomsShowHideClick(View view){
         if(symptomListView.getVisibility() == View.VISIBLE)
             symptomListView.setVisibility(View.GONE);
-        else
+        else {
             symptomListView.setVisibility(View.VISIBLE);
+        }
     }
     public void onStepsShowHideClick(View view){
         if(stepListView.getVisibility() == View.VISIBLE)
             stepListView.setVisibility(View.GONE);
         else
             stepListView.setVisibility(View.VISIBLE);
+    }
+
+    public void onSaveClick(View view){
+        StringBuffer text = new StringBuffer("");
+        text.append(name.getText());
+        text.append('\n');
+        text.append(locationSpinner.getSelectedItem().toString());
+        text.append('\n');
+        text.append(organSpinner.getSelectedItem().toString());
+        text.append('\n');
+        text.append(seasonSpinner.getSelectedItem().toString());
+        text.append('\n');
+        for(int i = 0; i < symptomValues.size(); i++){
+            text.append((i+1) + ". "+symptomValues.get(i));
+            text.append('\n');
+        }
+        for(int i = 0; i < stepValues.size(); i++){
+            text.append((i+1) + ". "+stepValues.get(i));
+            text.append('\n');
+        }
+        testTextView.setText(text);
+        Snackbar.make(view, text,Snackbar.LENGTH_SHORT).show();
+        SpecificTrauma specificTrauma = new SpecificTrauma();
+        specificTrauma.setTrauma(new Trauma(null, name.getText().toString(), 0));
+        specificTrauma.setLocation(new Location(null, locationSpinner.getSelectedItem().toString()));
+        specificTrauma.setOrgan(new Organ(null, organSpinner.getSelectedItem().toString()));
+        specificTrauma.setSeason(new Season(null, seasonSpinner.getSelectedItem().toString()));
+
+        Symptom[] symptoms = new Symptom[symptomValues.size()];
+        for(int i = 0; i < symptomValues.size(); i++){
+            symptoms[i] = new Symptom(null ,symptomValues.get(i));
+        }
+        specificTrauma.setSymptoms(symptoms);
+
+        Step[] steps = new Step[stepValues.size()];
+        Map<String, Integer> stepOrder = new ConcurrentHashMap<>();
+        for(int i = 0 ; i < stepValues.size(); i++){
+            steps[i] = new Step(null, stepValues.get(i));
+            stepOrder.put(stepValues.get(i), i + 1);
+        }
+        specificTrauma.setSteps(steps);
+        specificTrauma.setStepOrder(stepOrder);
+
+        SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
+        specificSaver.save();
     }
 
 

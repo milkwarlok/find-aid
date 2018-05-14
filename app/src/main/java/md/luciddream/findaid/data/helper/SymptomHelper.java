@@ -55,6 +55,17 @@ public class SymptomHelper implements Helper<Symptom>{
         return toReturn;
     }
 
+    public List<Symptom> findByNames(String[] names){
+        Future<List<Symptom>> futureList = executor.submit(() -> symptomDao.findByNames(names));
+        List<Symptom> toReturn = new ArrayList<>();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
     @Override
     public void insert(Symptom... items) {
         executor.submit(() -> symptomDao.insert(items));

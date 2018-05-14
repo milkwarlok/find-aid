@@ -3,6 +3,7 @@ package md.luciddream.findaid.data.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 import md.luciddream.findaid.data.model.Step;
+import md.luciddream.findaid.data.model.Symptom;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface StepDao extends Insertable<Step>, Deletable<Step>{
     @Query("SELECT * FROM Step WHERE Step.name = :name")
     List<Step> findByName(String name);
 
+    @Query("SELECT * FROM Step WHERE Step.name in (:names)")
+    List<Step> findByNames(String[] names);
 }
