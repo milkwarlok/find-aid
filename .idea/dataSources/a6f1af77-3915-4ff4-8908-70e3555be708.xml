@@ -124,8 +124,6 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>l_id
 t_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="43" parent="12">
@@ -162,8 +160,6 @@ t_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>o_id
 t_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="49" parent="13">
@@ -200,8 +196,6 @@ t_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sn_id
 t_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="55" parent="14">
@@ -242,8 +236,6 @@ t_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sp_id
 t_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="62" parent="15">
@@ -280,8 +272,6 @@ t_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sm_id
 t_id</ColNames>
-      <ColumnCollations>
-</ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="68" parent="16">
