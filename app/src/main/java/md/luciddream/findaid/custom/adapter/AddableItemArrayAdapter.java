@@ -33,7 +33,6 @@ public class AddableItemArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        EditText editText = (EditText) inflater.inflate(R.layout.reference_list_item, parent, false);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.add_item_activity_list_item, parent,false);
         TextInputEditText editText = (TextInputEditText) linearLayout.findViewById(R.id.item_template_step_text_input_edit_text);
         editText.setSingleLine(false);
