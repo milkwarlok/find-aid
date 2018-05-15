@@ -1,15 +1,21 @@
 package md.luciddream.findaid.activities;
 
+import android.app.SearchManager;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.ReferenceItemArrayAdapter;
@@ -22,6 +28,7 @@ import md.luciddream.findaid.data.model.Location;
 import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
 import md.luciddream.findaid.data.model.join.TraumaSymptom;
+import md.luciddream.findaid.data.specific.SpecificTrauma;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -57,35 +64,72 @@ public class ReferenceActivity extends AppCompatActivity {
          executorService = Executors.newSingleThreadExecutor();
 
         List<Trauma> traumas = getTraumas();
-        List<String> traumaNames = getTraumaNames(traumas);
-        List<List<String>> symptomsList = getSymptomList(traumas);
-        symptomAdapter = new ReferenceItemArrayAdapter(this,traumaNames,symptomsList);
+        List<List<Symptom>> symptomsList = getSymptomList(traumas);
+        List<SpecificTrauma> specificTraumas = new ArrayList<>(traumas.size());
+        assert(traumas.size() == symptomsList.size());
+        for(int i = 0; i < traumas.size(); i++){
+            if(traumas.size() == 0) continue;
+            SpecificTrauma temp = new SpecificTrauma();
+            temp.setTrauma(traumas.get(i));
+            Symptom[] symptoms = getSymptoms(symptomsList, i);
+            temp.setSymptoms(symptoms);
+            specificTraumas.add(temp);
+        }
+        symptomAdapter = new ReferenceItemArrayAdapter(this,specificTraumas);
         symptomListView.setAdapter(symptomAdapter);
 
     }
 
+    private Symptom[] getSymptoms(List<List<Symptom>> symptomsList, int i) {
+        Symptom[] symptoms = new Symptom[symptomsList.get(i).size()];
+        for(int j = 0; j < symptoms.length; j++){
+            symptoms[j] = symptomsList.get(i).get(j);
+        }
+        return symptoms;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchMenuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchMenuItem.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                symptomAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+        return true;
+    }
     List<Trauma> getTraumas(){
         TraumaHelper traumaHelper = new TraumaHelper(executorService, db.traumaDao());
         return traumaHelper.findAll();
     }
 
-    List<String> getTraumaNames(List<Trauma> traumas){
-        List<String> toReturn = new ArrayList<>(traumas.size());
 
-        for(int i = 0; i < traumas.size(); i++){
-            toReturn.add(traumas.get(i).getName());
-        }
-        return toReturn;
-    }
-
-    List<List<String>> getSymptomList(List<Trauma> traumas){
+    List<List<Symptom>> getSymptomList(List<Trauma> traumas){
         TraumaSymptomHelper traumaSymptomHelper = new TraumaSymptomHelper(executorService, db.traumaSymptomDao());
-        List<List<String>> toReturn = new ArrayList<>(traumas.size());
+        List<List<Symptom>> toReturn = new ArrayList<>(traumas.size());
         for(int i = 0; i < traumas.size(); i++){
             List<Symptom> symptomList = traumaSymptomHelper.getSecondByFirstId(traumas.get(i).getT_id());
-            List<String> toAdd = new ArrayList<>(symptomList.size());
+            List<Symptom> toAdd = new ArrayList<>(symptomList.size());
             for(int j = 0; j < symptomList.size(); j++){
-                toAdd.add(symptomList.get(j).getName());
+                toAdd.add(symptomList.get(j));
             }
             toReturn.add(toAdd);
         }

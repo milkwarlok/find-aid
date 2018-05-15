@@ -33,14 +33,9 @@
                 android:parentActivityName=".MainActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="md.luciddream.findaid.MainActivity"/>
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable"/>
         </activity>
-
-        <service
-                android:name=".service.TraumaService"
-                android:exported="false">
-        </service>
 
         <activity
                 android:name=".activities.AddReferenceItemActivity"
@@ -51,6 +46,7 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="md.luciddream.findaid.activities.ReferenceActivity"/>
         </activity>
+
     </application>
 
 </manifest>

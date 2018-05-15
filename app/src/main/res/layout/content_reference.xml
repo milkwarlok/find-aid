@@ -3,13 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.ReferenceActivity"
     tools:showIn="@layout/activity_reference"
     android:layout_margin="16dp"
     android:id="@+id/content_reference_list_view">
-
-
 
 </ListView>
