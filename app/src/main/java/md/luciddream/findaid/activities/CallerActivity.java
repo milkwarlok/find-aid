@@ -10,7 +10,16 @@ import android.view.View;
 import md.luciddream.findaid.R;
 
 public class CallerActivity extends AppCompatActivity {
+/*todo
+First, get the LocationManager.
+Then, call LocationManager.getLastKnownPosition.
+Then create a GeoCoder and call GeoCoder.getFromLocation.
+Do this is in a separate thread!!
+This will give you a list of Address objects.
+Call Address.getCountryName and you got it.
 
+Keep in mind that the last known position can be a bit stale, so if the user just crossed the border, you may not know about it for a while.
+ */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +37,6 @@ public class CallerActivity extends AppCompatActivity {
 //        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
 }
