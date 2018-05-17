@@ -24,13 +24,22 @@
                 android:gravity="center_horizontal"
                 android:text="@string/reference_str"/>
 
-        <ImageView
+        <ImageButton
                 android:id="@+id/reference_imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/reference_str"
                 android:onClick="onReferenceClick"
-                app:srcCompat="@drawable/reference"/>
+                app:srcCompat="@drawable/ic_book_white_24dp"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="0dp"
+                android:adjustViewBounds="true"
+                android:padding="10dp"
+                android:background="@drawable/roundcorner"
+                />
     </LinearLayout>
 
     <LinearLayout
@@ -50,13 +59,23 @@
             android:gravity="center_horizontal"
             android:text="@string/caller" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/caller_imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/reference_str"
+            android:contentDescription="@string/caller_str"
             android:onClick="onCallerClick"
-            app:srcCompat="@drawable/caller" />
+            app:srcCompat="@android:drawable/stat_sys_phone_call"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/roundcorner"
+
+                />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
