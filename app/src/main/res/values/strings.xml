@@ -22,4 +22,8 @@
     <string name="save_str">Сохранить</string>
     <string name="saved_str">Сохранено</string>
     <string name="search">Поиск</string>
+    <string name="call_ambulance_str">Call ambulance</string>
+    <string name="important_str">Важно!</string>
+
+
 </resources>

@@ -10,7 +10,7 @@ import md.luciddream.findaid.activities.CallerActivity;
 import md.luciddream.findaid.activities.ReferenceActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+//todo: поменять картинки на кнопки с зеленым фоном - темой приложения.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
