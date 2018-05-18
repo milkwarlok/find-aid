@@ -24,8 +24,9 @@
     <string name="search">Поиск</string>
     <string name="call_ambulance_str">Call ambulance</string>
     <string name="important_str">Важно!</string>
-    <string name="title_activity_main2">DetailReferenceItemActivity</string>
-    <string name="title_activity_detail_reference_item">DetailReferenceItemActivity</string>
+    <string name="title_activity_detail_reference_item">Описание</string>
+    <string name="allowed_step_symptom">Можно только буквы, цифры и пробелы.</string>
+    <string name="valid_symptom_step_regex">([A-Za-zА-Яа-я1-9]{1,20} ?){1,25}</string>
 
 
 </resources>
