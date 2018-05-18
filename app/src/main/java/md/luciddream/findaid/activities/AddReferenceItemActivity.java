@@ -13,6 +13,7 @@ import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.specific.SpecificSaver;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
+import md.luciddream.findaid.validator.SpecificTraumaValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     private ListView symptomListView;
     private ListView stepListView;
 
+    private Button saveButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
+        saveButton = (Button) findViewById(R.id.save_reference_item);
 
         name = (TextInputEditText) findViewById(R.id.item_name_textinputedittext);
 
@@ -139,11 +143,28 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         specificTrauma.setSteps(steps);
         specificTrauma.setStepOrder(stepOrder);
 
+        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(specificTrauma);
+        if(!specificTraumaValidator.isValid()) {
+            switch (specificTraumaValidator.getMessage()) {
+                case IS_OK:
+                    break;
+                case INVALID_NAME:
+                    name.setError("Имя должно быть не пустым и содержать только буквы");
+                    return;
+                case INVALID_SYMPTOMS:
+                    return;
+                case INVALID_STEPS:
+                    return;
+            }
+        }
         SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
         specificSaver.save();
 
         Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
+        finish();
+
     }
+
     /*fixme:if are added 4 steps and click - "save" and then delete step, and click save - than this 4th step is still in DB...
     fixme: can be fixed by validating input, look forward in sprint 4.
     */

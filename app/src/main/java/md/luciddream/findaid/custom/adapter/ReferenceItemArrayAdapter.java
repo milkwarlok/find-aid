@@ -1,6 +1,7 @@
 package md.luciddream.findaid.custom.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import md.luciddream.findaid.R;
+import md.luciddream.findaid.activities.DetailReferenceItemActivity;
 import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
@@ -40,6 +42,7 @@ public class ReferenceItemArrayAdapter extends ArrayAdapter<SpecificTrauma> impl
         TextView heading = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_1);
         TextView subheading = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_2);
         TextView symptomListView = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_3);
+        ImageButton imageButton = linearLayout.findViewById(R.id.reference_activity_image_button);
             heading.setText(showedTraumas.get(position).getTrauma().getName());
             subheading.setText(R.string.symptom_str);
             StringBuffer contents = new StringBuffer("");
@@ -52,6 +55,17 @@ public class ReferenceItemArrayAdapter extends ArrayAdapter<SpecificTrauma> impl
                 contents.append("\n");
             }
             symptomListView.setText(contents);
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "View details", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(v.getContext(), DetailReferenceItemActivity.class);
+                    intent.putExtra("t_id", showedTraumas.get(position).getTrauma().getT_id());
+                    intent.putExtra("t_name", showedTraumas.get(position).getTrauma().getName());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
         return linearLayout;
     }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.ReferenceItemArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
@@ -116,26 +117,23 @@ public class ReferenceActivity extends AppCompatActivity {
 
         return true;
     }
-    List<Trauma> getTraumas(){
+    private List<Trauma> getTraumas(){
         TraumaHelper traumaHelper = new TraumaHelper(executorService, db.traumaDao());
         return traumaHelper.findAll();
     }
 
 
-    List<List<Symptom>> getSymptomList(List<Trauma> traumas){
+    private List<List<Symptom>> getSymptomList(List<Trauma> traumas){
         TraumaSymptomHelper traumaSymptomHelper = new TraumaSymptomHelper(executorService, db.traumaSymptomDao());
         List<List<Symptom>> toReturn = new ArrayList<>(traumas.size());
         for(int i = 0; i < traumas.size(); i++){
             List<Symptom> symptomList = traumaSymptomHelper.getSecondByFirstId(traumas.get(i).getT_id());
             List<Symptom> toAdd = new ArrayList<>(symptomList.size());
-            for(int j = 0; j < symptomList.size(); j++){
-                toAdd.add(symptomList.get(j));
-            }
+            toAdd.addAll(symptomList);
             toReturn.add(toAdd);
         }
         return toReturn;
     }
-
 
 
 }

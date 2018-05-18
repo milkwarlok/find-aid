@@ -1,24 +1,21 @@
 package md.luciddream.findaid.data;
 
-import android.util.Pair;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class ExampleData {
-    Location[] locations;
-    Organ[] organs;
-    Season[] seasons;
-    Step[] steps;
-    Symptom[] symptoms;
-    Trauma[] traumas;
-    TraumaLocation[] traumaLocations;
-    TraumaOrgan[] traumaOrgans;
-    TraumaSeason[] traumaSeasons;
-    TraumaStep[] traumaSteps;
-    TraumaSymptom[] traumaSymptoms;
+    private Location[] locations;
+    private Organ[] organs;
+    private Season[] seasons;
+    private Step[] steps;
+    private Symptom[] symptoms;
+    private Trauma[] traumas;
+    private TraumaLocation[] traumaLocations;
+    private TraumaOrgan[] traumaOrgans;
+    private TraumaSeason[] traumaSeasons;
+    private TraumaStep[] traumaSteps;
+    private TraumaSymptom[] traumaSymptoms;
 
     ExampleData() {
         locations = new Location[]{new Location(null, "Mountains"),
