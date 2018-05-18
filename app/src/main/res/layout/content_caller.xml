@@ -13,7 +13,7 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="10"
             android:layout_marginEnd="16dp"
             android:id="@+id/caller_scrollview"
             android:layout_marginTop="8dp"
@@ -37,20 +37,20 @@
         </LinearLayout>
     </ScrollView>
     <ImageButton
-            android:contentDescription="@string/call_ambulance_str"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/stat_sys_phone_call"
-            android:id="@+id/caller_imageButton"
-            android:onClick="onCallAmbulanceClick"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="0dp"
-            android:adjustViewBounds="true"
-            android:padding="20dp"
-            android:scaleType="fitCenter"
-            android:background="@drawable/custom_button"
-            />
+        android:contentDescription="@string/call_ambulance_str"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        app:srcCompat="@android:drawable/stat_sys_phone_call"
+        android:id="@+id/caller_imageButton"
+        android:onClick="onCallAmbulanceClick"
+        android:background="@drawable/roundcorner"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="true"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        />
 </LinearLayout>
