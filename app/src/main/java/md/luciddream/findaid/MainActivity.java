@@ -74,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < traumas.size(); i++){
             List<Symptom> symptomList = traumaSymptomHelper.getSecondByFirstId(traumas.get(i).getT_id());
             List<Symptom> toAdd = new ArrayList<>(symptomList.size());
-            for(int j = 0; j < symptomList.size(); j++){
-                toAdd.add(symptomList.get(j));
-            }
+            toAdd.addAll(symptomList);
             toReturn.add(toAdd);
         }
         return toReturn;

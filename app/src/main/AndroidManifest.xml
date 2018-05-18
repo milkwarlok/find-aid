@@ -36,7 +36,6 @@
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable"/>
         </activity>
-
         <activity
                 android:name=".activities.AddReferenceItemActivity"
                 android:label="@string/title_activity_add_reference_item"
@@ -46,7 +45,15 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="md.luciddream.findaid.activities.ReferenceActivity"/>
         </activity>
-
+        <activity
+                android:name=".activities.DetailReferenceItemActivity"
+                android:label="@string/title_activity_detail_reference_item"
+                android:parentActivityName=".activities.ReferenceActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="md.luciddream.findaid.activities.ReferenceActivity"/>
+        </activity>
     </application>
 
 </manifest>

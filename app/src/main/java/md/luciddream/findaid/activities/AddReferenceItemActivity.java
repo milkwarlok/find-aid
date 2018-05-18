@@ -143,6 +143,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         specificSaver.save();
 
         Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
+        finish();
+
     }
     /*fixme:if are added 4 steps and click - "save" and then delete step, and click save - than this 4th step is still in DB...
     fixme: can be fixed by validating input, look forward in sprint 4.

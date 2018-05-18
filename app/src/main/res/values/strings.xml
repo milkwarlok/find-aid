@@ -24,6 +24,8 @@
     <string name="search">Поиск</string>
     <string name="call_ambulance_str">Call ambulance</string>
     <string name="important_str">Важно!</string>
+    <string name="title_activity_main2">DetailReferenceItemActivity</string>
+    <string name="title_activity_detail_reference_item">DetailReferenceItemActivity</string>
 
 
 </resources>

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.ReferenceItemArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
@@ -133,7 +134,6 @@ public class ReferenceActivity extends AppCompatActivity {
         }
         return toReturn;
     }
-
 
 
 }
