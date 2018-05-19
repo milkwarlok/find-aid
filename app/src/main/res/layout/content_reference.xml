@@ -7,7 +7,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.ReferenceActivity"
     tools:showIn="@layout/activity_reference"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_margin="16dp"
     android:id="@+id/content_reference_list_view">
 </ListView>
