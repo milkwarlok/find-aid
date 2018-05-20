@@ -11,7 +11,7 @@ import md.luciddream.findaid.custom.adapter.AddableItemArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
-import md.luciddream.findaid.data.specific.SpecificSaver;
+import md.luciddream.findaid.data.specific.SpecificHelper;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
 import md.luciddream.findaid.validator.SpecificTraumaValidator;
 
@@ -157,8 +157,8 @@ public class AddReferenceItemActivity extends AppCompatActivity {
                     return;
             }
         }
-        SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
-        specificSaver.save();
+        SpecificHelper specificHelper = new SpecificHelper(executor, specificTrauma, findAidDatabase);
+        specificHelper.save();
 
         Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
         finish();

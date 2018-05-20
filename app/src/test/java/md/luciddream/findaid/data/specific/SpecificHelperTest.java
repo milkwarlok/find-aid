@@ -6,11 +6,11 @@ import org.mockito.Mockito;
 
 import java.util.concurrent.ExecutorService;
 
-public class SpecificSaverTest {
+public class SpecificHelperTest {
     private static ExecutorService executorService;
     private SpecificTrauma specificTrauma;
     private static FindAidDatabase findAidDatabase;
-    private SpecificSaver specificSaver;
+    private SpecificHelper specificHelper;
 
     @BeforeClass
     public static void majorSetUp(){
@@ -26,7 +26,7 @@ public class SpecificSaverTest {
     @Before
     public void minorSetUp(){
         specificTrauma = Mockito.mock(SpecificTrauma.class);
-        specificSaver = new SpecificSaver(executorService, specificTrauma, findAidDatabase);
+        specificHelper = new SpecificHelper(executorService, specificTrauma, findAidDatabase);
     }
 
     @Test

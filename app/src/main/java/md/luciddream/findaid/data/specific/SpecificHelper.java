@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class SpecificSaver {
+public class SpecificHelper {
     private ExecutorService executorService;
     private SpecificTrauma specificTrauma;
     private FindAidDatabase findAidDatabase;
@@ -35,7 +35,7 @@ public class SpecificSaver {
     private TraumaSymptomHelper traumaSymptomHelper;
     private TraumaStepHelper traumaStepHelper;
 
-    public SpecificSaver(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
+    public SpecificHelper(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
         this.executorService = executorService;
         this.specificTrauma = specificTrauma;
         this.findAidDatabase = findAidDatabase;

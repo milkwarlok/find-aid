@@ -1,12 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_detail_reference_item"
-        tools:context="md.luciddream.findaid.activities.DetailReferenceItemActivity">
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:showIn="@layout/activity_detail_reference_item"
+tools:context="md.luciddream.findaid.activities.DetailReferenceItemActivity"
+android:orientation="vertical"
+android:layout_margin="16dp">
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+            android:id="@+id/show_detail_item_name_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/edit_text_hint"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+                android:id="@+id/detail_item_location_textview"
+                android:text="@string/location_str"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/basic_text"
+                />
+        <TextView
+                android:id="@+id/detail_item_location_textview_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+                android:id="@+id/detail_item_organ_textview"
+                android:text="@string/organ_str"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/basic_text"
+
+                />
+        <TextView
+                android:id="@+id/detail_item_organ_textview_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+                android:id="@+id/detail_item_season_textview"
+                android:text="@string/season_str"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/basic_text"
+
+                />
+        <TextView
+                android:id="@+id/detail_item_season_textview_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <Button
+                android:id="@+id/detail_item_symptom_textview"
+                android:text="@string/symptom_str"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onSymptomsShowHideClick"
+                />
+
+        <ListView
+                android:id="@+id/detail_item_symptom_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <Button
+                android:id="@+id/detail_item_step_textview"
+                android:text="@string/step_str"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onStepsShowHideClick"
+                />
+        <ListView
+                android:id="@+id/detail_item_step_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
