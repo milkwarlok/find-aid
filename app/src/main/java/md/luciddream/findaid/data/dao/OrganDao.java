@@ -15,6 +15,9 @@ public interface OrganDao extends Insertable<Organ>, Deletable<Organ> {
     @Query("SELECT * FROM Organ WHERE Organ.o_id in (:id)")
     List<Organ> findByIds(int[] id);
 
+    @Query("SELECT * FROM Organ WHERE Organ.o_id  = :id")
+    Organ findById(int id);
+
     @Query("SELECT * FROM Organ WHERE Organ.name = :name")
     List<Organ> findByName(String name);
 }

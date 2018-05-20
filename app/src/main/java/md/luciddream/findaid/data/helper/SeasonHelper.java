@@ -42,6 +42,19 @@ public class SeasonHelper implements Helper<Season>{
         }
         return toReturn;
     }
+    public Season findById(int id) {
+        Future<Season> futureList = executor.submit(() -> seasonDao.findById(id));
+        Season toReturn = new Season();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
 
     @Override
     public List<Season> findByName(String name) {

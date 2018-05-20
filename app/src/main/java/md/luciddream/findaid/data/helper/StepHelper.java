@@ -44,6 +44,20 @@ public class StepHelper implements Helper<Step>{
         return toReturn;
     }
 
+    public Step findById(int id) {
+        Future<Step> futureList = executor.submit(() -> stepDao.findById(id));
+        Step toReturn = new Step();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+
     @Override
     public List<Step> findByName(String name) {
         Future<List<Step>> futureList = executor.submit(() ->stepDao.findByName(name));

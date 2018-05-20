@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import md.luciddream.findaid.data.model.Location;
 import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Symptom;
 
@@ -14,6 +15,9 @@ public interface StepDao extends Insertable<Step>, Deletable<Step>, Existable{
 
     @Query("SELECT * FROM Step WHERE Step.sp_id in (:id)")
     List<Step> findByIds(int[] id);
+
+    @Query("SELECT * FROM Step WHERE Step.sp_id  = :id")
+    Step findById(int id);
 
     @Query("SELECT * FROM Step WHERE Step.name = :name")
     List<Step> findByName(String name);

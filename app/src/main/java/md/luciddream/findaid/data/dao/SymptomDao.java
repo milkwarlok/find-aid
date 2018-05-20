@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import md.luciddream.findaid.data.model.Location;
 import md.luciddream.findaid.data.model.Symptom;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public interface SymptomDao extends Insertable<Symptom>, Deletable<Symptom>, Exi
 
     @Query("SELECT * FROM Symptom WHERE Symptom.sm_id in (:id)")
     List<Symptom> findByIds(int[] id);
+
+    @Query("SELECT * FROM Symptom WHERE Symptom.sm_id  = :id")
+    Symptom findById(int id);
 
     @Query("SELECT * FROM Symptom WHERE Symptom.name = :name")
     List<Symptom> findByName(String name);

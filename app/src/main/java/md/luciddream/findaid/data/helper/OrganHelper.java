@@ -45,6 +45,20 @@ public class OrganHelper implements Helper<Organ>{
         return toReturn;
     }
 
+    public Organ findById(int id) {
+        Future<Organ> futureList = executor.submit(() -> organDao.findById(id));
+        Organ toReturn = new Organ();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+
     @Override
     public List<Organ> findByName(String name) {
         Future<List<Organ>> futureList = executor.submit(() -> {

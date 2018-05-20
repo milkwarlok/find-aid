@@ -43,6 +43,19 @@ public class TraumaHelper implements Helper<Trauma>{
         return toReturn;
     }
 
+    public Trauma findById(int id) {
+        Future<Trauma> futureList = executor.submit(() -> traumaDao.findById(id));
+        Trauma toReturn = new Trauma();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
     @Override
     public List<Trauma> findByName(String name) {
         Future<List<Trauma>> futureList = executor.submit(() -> traumaDao.findByName(name));

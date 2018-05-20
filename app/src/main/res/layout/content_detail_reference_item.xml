@@ -13,7 +13,7 @@ android:layout_margin="16dp">
 
 
     <TextView
-            android:id="@+id/show_detail_item_name_"
+            android:id="@+id/show_detail_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/edit_text_hint"/>

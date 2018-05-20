@@ -1,6 +1,5 @@
 package md.luciddream.findaid.data.helper;
 
-import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.dao.LocationDao;
 import md.luciddream.findaid.data.model.Location;
 
@@ -37,6 +36,19 @@ public class LocationHelper implements Helper<Location>{
     public List<Location> findByIds(int[] id) {
         Future<List<Location>> futureList = executor.submit(() -> locationDao.findByIds(id));
         List<Location> toReturn = new ArrayList<>();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+    public Location findById(int id) {
+        Future<Location> futureList = executor.submit(() -> locationDao.findById(id));
+        Location toReturn = new Location();
         try {
             toReturn = futureList.get();
         } catch (InterruptedException e) {

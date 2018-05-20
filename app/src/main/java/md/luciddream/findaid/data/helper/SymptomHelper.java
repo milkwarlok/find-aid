@@ -43,6 +43,20 @@ public class SymptomHelper implements Helper<Symptom>{
         return toReturn;
     }
 
+    public Symptom findById(int id) {
+        Future<Symptom> futureList = executor.submit(() -> symptomDao.findById(id));
+        Symptom toReturn = new Symptom();
+        try {
+            toReturn = futureList.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+
     @Override
     public List<Symptom> findByName(String name) {
         Future<List<Symptom>> futureList = executor.submit(() -> symptomDao.findByName(name));
