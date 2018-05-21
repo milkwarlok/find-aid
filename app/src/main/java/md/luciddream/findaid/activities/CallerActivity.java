@@ -23,7 +23,6 @@ Call Address.getCountryName and you got it.
 
 Keep in mind that the last known position can be a bit stale, so if the user just crossed the border, you may not know about it for a while.
  */
-private ScrollView scrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ private ScrollView scrollView;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        scrollView = (ScrollView) findViewById(R.id.caller_scrollview);
     }
 
     public void onCallAmbulanceClick(View view){

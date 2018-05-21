@@ -23,6 +23,7 @@ public class SeasonHelperTest {
     private ExecutorService executorService;
     private static SeasonDao seasonDao;
     private Future<List<Season>> futureList;
+    private Future<Season> futureItem;
 
     @BeforeClass
     public static void createDb(){
@@ -33,6 +34,7 @@ public class SeasonHelperTest {
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
+        futureItem = Mockito.mock(Future.class);
     }
     @After
     public void tearDown(){
@@ -62,6 +64,16 @@ public class SeasonHelperTest {
         verify(executorService).submit(any(Callable.class));
         verify(futureList).get();
     }
+    @Test
+    public void findByIdTest() throws ExecutionException, InterruptedException {
+        SeasonHelper seasonHelper = new SeasonHelper(executorService, seasonDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureItem);
+        when(futureItem.get()).thenReturn(new Season(1, "Winter"));
+        seasonHelper.findById(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureItem).get();
+    }
+
 
     @Test
     public void findByNameTest() throws ExecutionException, InterruptedException {

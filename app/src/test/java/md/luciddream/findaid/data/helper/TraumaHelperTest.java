@@ -1,6 +1,7 @@
 package md.luciddream.findaid.data.helper;
 
 import md.luciddream.findaid.data.dao.TraumaDao;
+import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ public class TraumaHelperTest {
     private ExecutorService executorService;
     private static TraumaDao traumaDao;
     private Future<List<Trauma>> futureList;
+    private Future<Trauma> futureItem;
 
     @BeforeClass
     public static void createDb(){
@@ -33,6 +35,7 @@ public class TraumaHelperTest {
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
+        futureItem = Mockito.mock(Future.class);
     }
     @After
     public void tearDown(){
@@ -61,6 +64,17 @@ public class TraumaHelperTest {
         traumaHelper.findByIds(new int[]{1, 2});
         verify(executorService).submit(any(Callable.class));
         verify(futureList).get();
+    }
+
+
+    @Test
+    public void findByIdTest() throws ExecutionException, InterruptedException {
+        TraumaHelper traumaHelper = new TraumaHelper(executorService, traumaDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureItem);
+        when(futureItem.get()).thenReturn(new Trauma(1, "Headache", 1));
+        traumaHelper.findById(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureItem).get();
     }
 
     @Test

@@ -23,6 +23,7 @@ public class StepHelperTest {
     private ExecutorService executorService;
     private static StepDao stepDao;
     private Future<List<Step>> futureList;
+    private Future<Step> futureItem;
 
     @BeforeClass
     public static void createDb(){
@@ -33,6 +34,7 @@ public class StepHelperTest {
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
+        futureItem = Mockito.mock(Future.class);
     }
     @After
     public void tearDown(){
@@ -62,7 +64,15 @@ public class StepHelperTest {
         verify(executorService).submit(any(Callable.class));
         verify(futureList).get();
     }
-
+    @Test
+    public void findByIdTest() throws ExecutionException, InterruptedException {
+        StepHelper stepHelper = new StepHelper(executorService, stepDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureItem);
+        when(futureItem.get()).thenReturn(new Step(1, "Call ambulance"));
+        stepHelper.findById(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureItem).get();
+    }
     @Test
     public void findByNameTest() throws ExecutionException, InterruptedException {
         StepHelper stepHelper = new StepHelper(executorService, stepDao);

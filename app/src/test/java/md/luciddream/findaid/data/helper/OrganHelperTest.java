@@ -23,6 +23,7 @@ public class OrganHelperTest {
     private ExecutorService executorService;
     private static OrganDao organDao;
     private Future<List<Organ>> futureList;
+    private Future<Organ> futureItem;
 
     @BeforeClass
     public static void createDb(){
@@ -33,6 +34,7 @@ public class OrganHelperTest {
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
+        futureItem = Mockito.mock(Future.class);
     }
     @After
     public void tearDown(){
@@ -61,6 +63,16 @@ public class OrganHelperTest {
         organHelper.findByIds(new int[]{1, 2});
         verify(executorService).submit(any(Callable.class));
         verify(futureList).get();
+    }
+
+    @Test
+    public void findByIdTest() throws ExecutionException, InterruptedException {
+        OrganHelper organHelper = new OrganHelper(executorService, organDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureItem);
+        when(futureItem.get()).thenReturn(new Organ(1, "Skin"));
+        organHelper.findById(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureItem).get();
     }
 
     @Test

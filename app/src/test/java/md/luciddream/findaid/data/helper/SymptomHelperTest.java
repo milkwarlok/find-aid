@@ -23,6 +23,7 @@ public class SymptomHelperTest {
     private ExecutorService executorService;
     private static SymptomDao symptomDao;
     private Future<List<Symptom>> futureList;
+    private Future<Symptom> futureItem;
 
     @BeforeClass
     public static void createDb(){
@@ -33,6 +34,7 @@ public class SymptomHelperTest {
     public void setUp(){
         executorService = Mockito.mock(ExecutorService.class);
         futureList = Mockito.mock(Future.class);
+        futureItem = Mockito.mock(Future.class);
     }
     @After
     public void tearDown(){
@@ -63,6 +65,15 @@ public class SymptomHelperTest {
         verify(futureList).get();
     }
 
+    @Test
+    public void findByIdTest() throws ExecutionException, InterruptedException {
+        SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
+        when(executorService.submit(any(Callable.class))).thenReturn(futureItem);
+        when(futureItem.get()).thenReturn(new Symptom(1, "Headache"));
+        symptomHelper.findById(1);
+        verify(executorService).submit(any(Callable.class));
+        verify(futureItem).get();
+    }
     @Test
     public void findByNameTest() throws ExecutionException, InterruptedException {
         SymptomHelper symptomHelper = new SymptomHelper(executorService, symptomDao);
