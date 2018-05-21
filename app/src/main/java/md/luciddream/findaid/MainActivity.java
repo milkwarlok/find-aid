@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         symptomListView = findViewById(R.id.main_activity_list_view);
         executorService = Executors.newSingleThreadExecutor();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         List<Trauma> traumas = getTraumas();
         List<List<Symptom>> symptomsList = getSymptomList(traumas);
         List<SpecificTrauma> specificTraumas = new ArrayList<>(traumas.size());

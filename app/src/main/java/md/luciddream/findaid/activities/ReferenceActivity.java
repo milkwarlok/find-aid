@@ -64,6 +64,13 @@ public class ReferenceActivity extends AppCompatActivity {
          symptomListView = findViewById(R.id.content_reference_list_view);
          executorService = Executors.newSingleThreadExecutor();
 
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         List<Trauma> traumas = getTraumas();
         List<List<Symptom>> symptomsList = getSymptomList(traumas);
         List<SpecificTrauma> specificTraumas = new ArrayList<>(traumas.size());
@@ -78,7 +85,6 @@ public class ReferenceActivity extends AppCompatActivity {
         }
         symptomAdapter = new ReferenceItemArrayAdapter(this,specificTraumas);
         symptomListView.setAdapter(symptomAdapter);
-
     }
 
     private Symptom[] getSymptoms(List<List<Symptom>> symptomsList, int i) {
