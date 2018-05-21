@@ -10,10 +10,8 @@ public class SpecificDeleter extends SpecificHelper {
     }
 
     public void delete(){
-        if(!traumaHelper.exists(specificTrauma.getTrauma().getName()));
-        else{
+        if(traumaHelper.exists(specificTrauma.getTrauma().getName()))
             if(specificTrauma.getTrauma().getT_id() == null || specificTrauma.getTrauma().getT_id() == 0) throw new RuntimeException("Must specify trauma_id before deleting.");
             traumaHelper.delete(specificTrauma.trauma);
         }
-    }
 }
