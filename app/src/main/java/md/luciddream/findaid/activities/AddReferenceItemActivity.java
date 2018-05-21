@@ -91,7 +91,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
     private void inflateSpinner(Spinner spinner, Helper helper) {
         String[] arr = getStrings(helper);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, arr);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
     }
@@ -157,7 +157,7 @@ public class AddReferenceItemActivity extends AppCompatActivity {
                     return;
             }
         }
-        SpecificSaver specificSaver = new SpecificSaver(executor, specificTrauma, findAidDatabase);
+        SpecificSaver specificSaver = new SpecificSaver(executor, findAidDatabase, specificTrauma);
         specificSaver.save();
 
         Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();

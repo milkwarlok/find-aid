@@ -4,23 +4,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import md.luciddream.findaid.R;
+import md.luciddream.findaid.custom.adapter.AddableItemArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.helper.Helper;
 import md.luciddream.findaid.data.helper.LocationHelper;
-import md.luciddream.findaid.data.model.NamedEntity;
+import md.luciddream.findaid.data.helper.OrganHelper;
+import md.luciddream.findaid.data.helper.SeasonHelper;
+import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
 import md.luciddream.findaid.data.specific.SpecificTraumaInflater;
+import md.luciddream.findaid.data.specific.SpecificUpdater;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,12 +36,19 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
     private ExecutorService executor;
     private FindAidDatabase findAidDatabase;
 
+    private ArrayList<String> symptomHints;
+    private ArrayList<String> symptomValues;
+    private ArrayList<String> stepHints;
+    private ArrayList<String> stepValues;
+
     private SpecificTrauma originalSpecificTrauma;
     private SpecificTrauma changedSpecificTrauma;
     private Intent parentIntent;
 
     private TextView name;
-    private Spinner locationSpinner;
+    private Spinner locationSpinner, organSpinner, seasonSpinner;
+    private ListView symptomListView, stepListView;
+
 
 
     @Override
@@ -66,19 +80,46 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         name.setText(changedSpecificTrauma.getTrauma().getName());
 
         locationSpinner = (Spinner) findViewById(R.id.update_item_location_spinner);
-        Helper<?> locationHelper = new LocationHelper(executor, findAidDatabase.locationDao());
+        inflateSpinner(locationSpinner, new LocationHelper(executor, findAidDatabase.locationDao()),changedSpecificTrauma.getLocation().getName());
 
-        inflateSpinner(locationSpinner, locationHelper);
-//        locationSpinner.selected
+        organSpinner = (Spinner) findViewById(R.id.update_item_organ_spinner);
+        inflateSpinner(organSpinner, new OrganHelper(executor,findAidDatabase.organDao()),changedSpecificTrauma.getOrgan().getName());
 
+        seasonSpinner = (Spinner) findViewById(R.id.update_item_season_spinner);
+        inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase.seasonDao()),changedSpecificTrauma.getSeason().getName());
+
+        Symptom[] symptoms = changedSpecificTrauma.getSymptoms();
+        symptomHints = new ArrayList<>(symptoms.length);
+        symptomValues = new ArrayList<>(symptoms.length);
+        for(int i = 0; i < symptoms.length; i++){
+            symptomHints.add("Введите симптом");
+            symptomValues.add(symptoms[i].getName());
+        }
+        ArrayAdapter symptomAdapter = new AddableItemArrayAdapter(this, symptomHints, symptomValues, "Введите симптом");
+
+        symptomListView = (ListView) findViewById(R.id.update_item_symptom_listview);
+        symptomListView.setAdapter(symptomAdapter);
+
+
+        Step[] steps = changedSpecificTrauma.getSteps();
+        stepHints = new ArrayList<>(steps.length);
+        stepValues = new ArrayList<>(steps.length);
+        for(int i = 0; i < steps.length; i++){
+            stepHints.add("Введите симптом");
+            stepValues.add(steps[i].getName());
+        }
+        ArrayAdapter stepAdapter = new AddableItemArrayAdapter(this, stepHints, stepValues, "Введите симптом");
+
+        stepListView = (ListView) findViewById(R.id.update_item_step_listview);
+        stepListView.setAdapter(stepAdapter);
     }
 
-    private void inflateSpinner(Spinner spinner, Helper helper) {
+    private void inflateSpinner(Spinner spinner, Helper helper, String defaultItem) {
         String[] arr = getStrings(helper);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, arr);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, arr);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        int defaultPosition = arrayAdapter.getPosition(changedSpecificTrauma.getLocation().getName());
+        int defaultPosition = arrayAdapter.getPosition(defaultItem);
         spinner.setSelection(defaultPosition);
     }
 
@@ -107,14 +148,50 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void onSymptomsShowHideClick(View view){
-        Snackbar.make(view, "onSymptomsShowHideClick was clicked.", Snackbar.LENGTH_SHORT).show();
+        if(symptomListView.getVisibility() == View.VISIBLE)
+            symptomListView.setVisibility(View.GONE);
+        else {
+            symptomListView.setVisibility(View.VISIBLE);
+        }
     }
     public void onStepsShowHideClick(View view){
-        Snackbar.make(view, "onStepsShowHideClick was clicked.", Snackbar.LENGTH_SHORT).show();
+        if(stepListView.getVisibility() == View.VISIBLE)
+            stepListView.setVisibility(View.GONE);
+        else
+            stepListView.setVisibility(View.VISIBLE);
     }
 
     public void onSaveClick(View view){
-        Snackbar.make(view, "OnSaveClick was clicked.", Snackbar.LENGTH_SHORT).show();
+        String locationSpinnerValue = locationSpinner.getSelectedItem().toString();
+        changedSpecificTrauma.setLocation(new Location(null, locationSpinnerValue));
+
+        String organSpinnerValue = organSpinner.getSelectedItem().toString();
+        changedSpecificTrauma.setOrgan(new Organ(null, organSpinnerValue));
+
+        String seasonSpinnerValue = seasonSpinner.getSelectedItem().toString();
+        changedSpecificTrauma.setSeason(new Season(null, seasonSpinnerValue));
+
+        Symptom[] symptoms = new Symptom[symptomValues.size()];
+        for(int i = 0; i < symptomValues.size(); i++){
+            symptoms[i] = new Symptom(null, symptomValues.get(i));
+        }
+        changedSpecificTrauma.setSymptoms(symptoms);
+
+        Step[] steps = new Step[stepValues.size()];
+        Map<String, Integer> stepOrder = new ConcurrentHashMap<>();
+        for(int i = 0 ; i < stepValues.size(); i++){
+            steps[i] = new Step(null, stepValues.get(i));
+            stepOrder.put(stepValues.get(i), i + 1);
+        }
+        changedSpecificTrauma.setSteps(steps);
+        changedSpecificTrauma.setStepOrder(stepOrder);
+
+        SpecificUpdater updater = new SpecificUpdater(executor, findAidDatabase, changedSpecificTrauma);
+        updater.update();
+
+        Snackbar.make(view, "OnSaveClick was clicked." + changedSpecificTrauma.getLocation().getName() +
+                changedSpecificTrauma.getOrgan().getName(), Snackbar.LENGTH_SHORT).show();
     }
 }

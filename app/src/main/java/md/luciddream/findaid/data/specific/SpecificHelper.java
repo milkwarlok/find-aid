@@ -24,13 +24,13 @@ public abstract class SpecificHelper {
     protected TraumaSymptomHelper traumaSymptomHelper;
     protected TraumaStepHelper traumaStepHelper;
 
-    public SpecificHelper(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
+    SpecificHelper(ExecutorService executorService, FindAidDatabase findAidDatabase, SpecificTrauma specificTrauma) {
         this.executorService = executorService;
         this.specificTrauma = specificTrauma;
         this.findAidDatabase = findAidDatabase;
         setUp();
     }
-    public SpecificHelper(ExecutorService executorService, FindAidDatabase findAidDatabase) {
+    SpecificHelper(ExecutorService executorService, FindAidDatabase findAidDatabase) {
         this.executorService = executorService;
         this.findAidDatabase = findAidDatabase;
         setUp();

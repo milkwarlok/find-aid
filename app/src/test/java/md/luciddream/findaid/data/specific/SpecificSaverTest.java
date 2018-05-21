@@ -26,7 +26,7 @@ public class SpecificSaverTest {
     @Before
     public void minorSetUp(){
         specificTrauma = Mockito.mock(SpecificTrauma.class);
-        specificSaver = new SpecificSaver(executorService, specificTrauma, findAidDatabase);
+        specificSaver = new SpecificSaver(executorService, findAidDatabase, specificTrauma);
     }
 
     @Test

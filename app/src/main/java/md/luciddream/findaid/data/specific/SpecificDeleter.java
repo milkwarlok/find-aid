@@ -5,8 +5,8 @@ import md.luciddream.findaid.data.FindAidDatabase;
 import java.util.concurrent.ExecutorService;
 
 public class SpecificDeleter extends SpecificHelper {
-    public SpecificDeleter(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
-        super(executorService, specificTrauma, findAidDatabase);
+    public SpecificDeleter(ExecutorService executorService, FindAidDatabase findAidDatabase, SpecificTrauma specificTrauma) {
+        super(executorService, findAidDatabase, specificTrauma);
     }
 
     public void delete(){
