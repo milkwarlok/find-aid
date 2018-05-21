@@ -102,7 +102,12 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(getApplicationContext(), "Update clicked.", Toast.LENGTH_SHORT).show();
-                return false;
+                Intent intent = new Intent(getApplicationContext(), UpdateReferenceItemActivity.class);
+                intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
+                intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
+                startActivity(intent);
+                finish();
+                return true;
             }
         });
 
@@ -116,7 +121,7 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
                 specificDeleter.delete();
                 finish();
                 Toast.makeText(getApplicationContext(), "Delete clicked.", Toast.LENGTH_SHORT).show();
-                return false;
+                return true;
             }
         });
         return true;
