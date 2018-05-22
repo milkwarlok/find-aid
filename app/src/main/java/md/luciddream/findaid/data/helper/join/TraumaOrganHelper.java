@@ -85,6 +85,9 @@ public class TraumaOrganHelper implements JoinHelper<Trauma, Organ, TraumaOrgan>
         return toReturn;
     }
 
+    public void updateSecondByFirstId(int firstId, int secondId){
+        executor.submit(()-> traumaOrganDao.updateSecondByFirstId(firstId, secondId));
+    }
 
     @Override
     public void insert(TraumaOrgan... items) {

@@ -54,6 +54,15 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="md.luciddream.findaid.activities.ReferenceActivity"/>
         </activity>
+        <activity
+                android:name=".activities.UpdateReferenceItemActivity"
+                android:label="@string/title_activity_update_reference_item"
+                android:parentActivityName=".activities.DetailReferenceItemActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="md.luciddream.findaid.activities.DetailReferenceItemActivity"/>
+        </activity>
     </application>
 
 </manifest>

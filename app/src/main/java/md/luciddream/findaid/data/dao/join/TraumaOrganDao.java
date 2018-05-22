@@ -33,6 +33,9 @@ public interface TraumaOrganDao extends Insertable<TraumaOrgan>, Deletable<Traum
             "SELECT Trauma.t_id FROM Trauma WHERE Trauma.name = :traumaName))")
     List<Organ> getOrganByTraumaName(String traumaName);
 
+    @Query("UPDATE Trauma_Organ SET o_id = :secondId WHERE t_id = :firstId;")
+    void updateSecondByFirstId(int firstId, int secondId);
+
     @Query("SELECT * FROM Trauma_Organ")
     List<TraumaOrgan> findAll();
 }

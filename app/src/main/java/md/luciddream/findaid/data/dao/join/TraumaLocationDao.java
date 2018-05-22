@@ -34,5 +34,8 @@ public interface TraumaLocationDao extends Insertable<TraumaLocation>, Deletable
     @Query("SELECT * FROM Trauma_Location")
     List<TraumaLocation> findAll();
 
+    @Query("UPDATE Trauma_Location SET l_id = :secondId WHERE t_id = :firstId;")
+    void updateSecondByFirstId(int firstId, int secondId);
+
 }
 

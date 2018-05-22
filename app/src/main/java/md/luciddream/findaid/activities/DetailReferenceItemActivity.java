@@ -2,7 +2,6 @@ package md.luciddream.findaid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +24,6 @@ import md.luciddream.findaid.data.specific.SpecificTrauma;
 import md.luciddream.findaid.data.specific.SpecificTraumaInflater;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -102,7 +100,12 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(getApplicationContext(), "Update clicked.", Toast.LENGTH_SHORT).show();
-                return false;
+                Intent intent = new Intent(getApplicationContext(), UpdateReferenceItemActivity.class);
+                intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
+                intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
+                startActivity(intent);
+                finish();
+                return true;
             }
         });
 
@@ -112,11 +115,11 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
                 SpecificTrauma specificTrauma = new SpecificTrauma();
                 specificTrauma.setTrauma(new Trauma(parentIntent.getIntExtra("t_id", 0),
                         parentIntent.getStringExtra("t_name"), 1));
-                SpecificDeleter specificDeleter = new SpecificDeleter(executor, specificTrauma,findAidDatabase);
+                SpecificDeleter specificDeleter = new SpecificDeleter(executor, findAidDatabase, specificTrauma);
                 specificDeleter.delete();
                 finish();
                 Toast.makeText(getApplicationContext(), "Delete clicked.", Toast.LENGTH_SHORT).show();
-                return false;
+                return true;
             }
         });
         return true;

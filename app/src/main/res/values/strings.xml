@@ -27,6 +27,8 @@
     <string name="title_activity_detail_reference_item">Описание</string>
     <string name="allowed_step_symptom">Можно только буквы, цифры и пробелы.</string>
     <string name="valid_symptom_step_regex">([A-Za-zА-Яа-я1-9]{1,20} ?){1,25}</string>
+    <string name="title_activity_update_reference_item">Обновить</string>
+    <string name="update_str">Обновить</string>
 
 
 </resources>

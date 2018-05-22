@@ -13,8 +13,8 @@ import java.util.concurrent.ExecutorService;
 
 public class SpecificSaver extends SpecificHelper {
 
-    public SpecificSaver(ExecutorService executorService, SpecificTrauma specificTrauma, FindAidDatabase findAidDatabase) {
-        super(executorService, specificTrauma, findAidDatabase);
+    public SpecificSaver(ExecutorService executorService, FindAidDatabase findAidDatabase, SpecificTrauma specificTrauma) {
+        super(executorService, findAidDatabase, specificTrauma);
     }
 
     @Transaction
