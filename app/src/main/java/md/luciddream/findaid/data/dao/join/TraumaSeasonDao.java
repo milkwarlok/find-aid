@@ -31,6 +31,9 @@ public interface TraumaSeasonDao extends Insertable<TraumaSeason>, Deletable<Tra
             "SELECT Trauma.t_id FROM Trauma WHERE Trauma.name = :traumaName))")
     List<Season> getSeasonByTraumaName(String traumaName);
 
+    @Query("UPDATE Trauma_Season SET sn_id = :secondId WHERE t_id = :firstId;")
+    void updateSecondByFirstId(int firstId, int secondId);
+
     @Query("SELECT * FROM Trauma_Season")
     List<TraumaSeason> findAll();
 }

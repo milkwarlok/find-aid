@@ -85,7 +85,9 @@ public class TraumaLocationHelper implements JoinHelper<Trauma, Location, Trauma
         return toReturn;
     }
 
-
+    public void updateSecondByFirstId(int firstId, int secondId){
+        executor.submit(()-> traumaLocationDao.updateSecondByFirstId(firstId, secondId));
+    }
     @Override
     public void insert(TraumaLocation... items) {
         executor.submit(() -> traumaLocationDao.insert(items));

@@ -139,14 +139,18 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
 //                NavUtils.navigateUpFromSameTask(this);
-                Intent intent = new Intent(this, DetailReferenceItemActivity.class);
-                intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
-                intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
-                startActivity(intent);
-                finish();
+                startParentActivity();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startParentActivity() {
+        Intent intent = new Intent(this, DetailReferenceItemActivity.class);
+        intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
+        intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
+        startActivity(intent);
+        finish();
     }
 
     public void onSymptomsShowHideClick(View view){
@@ -193,5 +197,7 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
 
         Snackbar.make(view, "OnSaveClick was clicked." + changedSpecificTrauma.getLocation().getName() +
                 changedSpecificTrauma.getOrgan().getName(), Snackbar.LENGTH_SHORT).show();
+        finish();
+        startParentActivity();
     }
 }

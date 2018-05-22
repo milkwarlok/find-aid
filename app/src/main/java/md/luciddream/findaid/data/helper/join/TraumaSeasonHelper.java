@@ -85,6 +85,9 @@ public class TraumaSeasonHelper implements JoinHelper<Trauma, Season, TraumaSeas
         return toReturn;
     }
 
+    public void updateSecondByFirstId(int firstId, int secondId){
+        executor.submit(()-> traumaSeasonDao.updateSecondByFirstId(firstId, secondId));
+    }
 
     @Override
     public void insert(TraumaSeason... items) {
