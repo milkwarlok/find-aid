@@ -44,13 +44,13 @@ public class SpecificTraumaInflater extends SpecificHelper{
             symptomArray[i] = symptomList.get(i);
         }
         specificTrauma.setSymptoms(symptomArray);
-        List<Step> stepList = traumaStepHelper.getSecondByFirstId(traumaId);
+        List<Step> stepList = traumaStepHelper.getOrderedStepByTraumaId(traumaId);
         Step[] stepArray = new Step[stepList.size()];
         for(int i = 0; i < stepList.size(); i++){
             stepArray[i] = stepList.get(i);
         }
         specificTrauma.setSteps(stepArray);
-
+        specificTrauma.setStepOrder(null);
         return specificTrauma;
     }
 

@@ -2,11 +2,13 @@ package md.luciddream.findaid.data.dao.join;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 import md.luciddream.findaid.data.dao.Deletable;
 import md.luciddream.findaid.data.dao.Insertable;
 import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Trauma;
 import md.luciddream.findaid.data.model.join.TraumaStep;
+import md.luciddream.findaid.data.model.join.TraumaSymptom;
 
 import java.util.List;
 
@@ -41,5 +43,8 @@ public interface TraumaStepDao extends Insertable<TraumaStep>, Deletable<TraumaS
 
     @Query("SELECT * FROM Trauma_Step")
     List<TraumaStep> findAll();
+
+    @Update
+    public void update(TraumaStep item);
 
 }

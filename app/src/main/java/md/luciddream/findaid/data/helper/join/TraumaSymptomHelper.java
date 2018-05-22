@@ -96,6 +96,10 @@ public class TraumaSymptomHelper implements JoinHelper<Trauma, Symptom, TraumaSy
         executor.submit(() -> traumaSymptomDao.delete(item));
     }
 
+    public void delete(int t_id, int sm_id){
+        executor.submit(() -> traumaSymptomDao.delete(t_id, sm_id));
+    }
+
 }
 
 

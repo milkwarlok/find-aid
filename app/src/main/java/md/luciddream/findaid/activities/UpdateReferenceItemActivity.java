@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,7 @@ import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
 import md.luciddream.findaid.data.specific.SpecificTraumaInflater;
 import md.luciddream.findaid.data.specific.SpecificUpdater;
+import md.luciddream.findaid.validator.SpecificTraumaValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,6 +194,13 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         changedSpecificTrauma.setSteps(steps);
         changedSpecificTrauma.setStepOrder(stepOrder);
 
+        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(changedSpecificTrauma);
+        if(!specificTraumaValidator.isValid()) {
+           return;
+        }
+        for(int i = 0; i < stepOrder.size(); i++){
+            Log.d("MAP_VALUES", stepValues.get(i) + ": " +stepOrder.get(stepValues.get(i)));
+        }
         SpecificUpdater updater = new SpecificUpdater(executor, findAidDatabase, changedSpecificTrauma);
         updater.update();
 

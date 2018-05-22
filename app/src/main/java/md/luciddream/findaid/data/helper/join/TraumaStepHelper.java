@@ -2,11 +2,13 @@ package md.luciddream.findaid.data.helper.join;
 
 
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 import md.luciddream.findaid.data.dao.StepDao;
 import md.luciddream.findaid.data.dao.join.TraumaStepDao;
 import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Trauma;
 import md.luciddream.findaid.data.model.join.TraumaStep;
+import md.luciddream.findaid.data.model.join.TraumaSymptom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +74,7 @@ public class TraumaStepHelper implements JoinHelper<Trauma, Step, TraumaStep> {
         return toReturn;
     }
 
-    List<Step> getOrderedStepByTraumaId(int traumaId){
+    public List<Step> getOrderedStepByTraumaId(int traumaId){
         Future<List<Step>> futureList = executor.submit(() -> traumaStepDao.getOrderedStepByTraumaId(traumaId));
         List<Step> toReturn = new ArrayList<>();
         try {
@@ -84,7 +86,7 @@ public class TraumaStepHelper implements JoinHelper<Trauma, Step, TraumaStep> {
     }
 
 
-    List<Step> getOrderedStepByTraumaName(String traumaName){
+    public List<Step> getOrderedStepByTraumaName(String traumaName){
         Future<List<Step>> futureList = executor.submit(() -> traumaStepDao.getOrderedStepByTraumaName(traumaName));
         List<Step> toReturn = new ArrayList<>();
         try {
@@ -110,7 +112,9 @@ public class TraumaStepHelper implements JoinHelper<Trauma, Step, TraumaStep> {
         return toReturn;
     }
 
-
+    public void update(TraumaStep item){
+        executor.submit(() -> traumaStepDao.update(item));
+    }
     @Override
     public void insert(TraumaStep... items) {
         executor.submit(() -> traumaStepDao.insert(items));

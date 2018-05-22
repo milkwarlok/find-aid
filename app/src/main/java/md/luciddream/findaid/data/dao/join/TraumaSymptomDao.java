@@ -2,6 +2,7 @@ package md.luciddream.findaid.data.dao.join;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 import md.luciddream.findaid.data.dao.Deletable;
 import md.luciddream.findaid.data.dao.Insertable;
 import md.luciddream.findaid.data.model.Symptom;
@@ -33,4 +34,10 @@ public interface TraumaSymptomDao extends Insertable<TraumaSymptom>, Deletable<T
 
     @Query("SELECT * FROM Trauma_Symptom")
     List<TraumaSymptom> findAll();
+
+    @Query("DELETE FROM Trauma_Symptom WHERE  t_id = :t_id AND sm_id = :sm_id;")
+    void delete(int t_id, int sm_id);
+
+
+
 }
