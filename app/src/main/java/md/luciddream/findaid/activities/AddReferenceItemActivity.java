@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.*;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.AddableItemArrayAdapter;
+import md.luciddream.findaid.custom.exception.TraumaAlreadyExistsException;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.helper.*;
 import md.luciddream.findaid.data.model.*;
@@ -156,15 +157,13 @@ public class AddReferenceItemActivity extends AppCompatActivity {
             }
         }
         SpecificSaver specificSaver = new SpecificSaver(executor, findAidDatabase, specificTrauma);
-        specificSaver.save();
 
-        Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
+        try{
+            specificSaver.save();
+            Toast.makeText(view.getContext(), R.string.saved_str, Toast.LENGTH_SHORT).show();
+        }catch (TraumaAlreadyExistsException e){
+            Toast.makeText(view.getContext(), R.string.trauma_already_exists_exception, Toast.LENGTH_SHORT).show();
+        }
         finish();
-
     }
-
-    /*fixme:if are added 4 steps and click - "save" and then delete step, and click save - than this 4th step is still in DB...
-    fixme: can be fixed by validating input, look forward in sprint 4.
-    */
-
 }

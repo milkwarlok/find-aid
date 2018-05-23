@@ -3,6 +3,7 @@ package md.luciddream.findaid.data.specific;
 import android.arch.persistence.room.Transaction;
 import android.util.Log;
 import junit.framework.Assert;
+import md.luciddream.findaid.custom.exception.TraumaAlreadyExistsException;
 import md.luciddream.findaid.data.FindAidDatabase;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
@@ -20,7 +21,7 @@ public class SpecificSaver extends SpecificHelper {
     @Transaction
     public void save(){
         if(traumaHelper.exists(specificTrauma.getTrauma().getName())){
-            return;
+            throw new TraumaAlreadyExistsException();
         }
         saveTraumaName();
         int traumaId = getTraumaId();

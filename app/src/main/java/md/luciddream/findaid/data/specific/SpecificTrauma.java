@@ -5,13 +5,13 @@ import md.luciddream.findaid.data.model.*;
 import java.util.Map;
 
 public class SpecificTrauma {
-        private Location location;
-        private Organ organ;
-        private Season season;
-        private Step[] steps;
-        private Symptom[] symptoms;
-        private Trauma trauma;
-        private Map<String, Integer> stepOrder;
+         Location location;
+         Organ organ;
+         Season season;
+         Step[] steps;
+         Symptom[] symptoms;
+         Trauma trauma;
+         Map<String, Integer> stepOrder;
 
     public SpecificTrauma() {
     }

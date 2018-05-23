@@ -18,14 +18,25 @@ public class Trauma implements NamedEntity{
     @ColumnInfo(name = "relevance")
     private Integer relevance;
 
-    public Trauma() {
-    }
+    @ColumnInfo(name = "user_added")
+    private Boolean userAdded;
+
+    public Trauma() { }
 
     @Ignore
     public Trauma(Integer t_id, String name, Integer relevance) {
         this.t_id = t_id;
         this.name = name;
         this.relevance = relevance;
+        userAdded = true;
+    }
+
+    @Ignore
+    public Trauma(Integer t_id, String name, Integer relevance, Boolean userAdded) {
+        this.t_id = t_id;
+        this.name = name;
+        this.relevance = relevance;
+        this.userAdded = userAdded;
     }
 
     public Integer getT_id() {
@@ -44,6 +55,7 @@ public class Trauma implements NamedEntity{
     public void setName(String name) {
         this.name = name;
     }
+
     public Integer getRelevance() {
         return relevance;
     }
@@ -52,4 +64,11 @@ public class Trauma implements NamedEntity{
         this.relevance = relevance;
     }
 
+    public Boolean getUserAdded() {
+        return userAdded;
+    }
+
+    public void setUserAdded(Boolean userAdded) {
+        this.userAdded = userAdded;
+    }
 }

@@ -22,10 +22,11 @@
     <string name="title_activity_update_reference_item">Update</string>
     <string name="update_str">Update</string>
     <string name="trauma_name_regex">([A-Za-zА-Яа-я]{1,20} ?){1,5}</string>
-    <string name="symptom_hint_str">Введите симптом</string>
-    <string name="step_hint_str">Введите шаг</string>
-    <string name="trauma_name_invalid_message">Имя должно быть не пустым и содержать только буквы</string>
+    <string name="symptom_hint_str">Enter symptom</string>
+    <string name="step_hint_str">Enter step</string>
+    <string name="trauma_name_invalid_message">Name should be not empty and contain only letters</string>
     <string name="updated_str">Updated</string>
+    <string name="trauma_already_exists_exception">Trauma already exists. You may want to update it.</string>
 
 
 </resources>

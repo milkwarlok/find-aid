@@ -23,7 +23,10 @@
     <string name="update_str">Обновить</string>
     <string name="trauma_name_regex">([A-Za-zА-Яа-я]{1,20} ?){1,5}</string>
     <string name="symptom_hint_str">Введите симптом</string>
+    <string name="step_hint_str">Введите шаг</string>
+    <string name="trauma_name_invalid_message">Имя должно быть не пустым и содержать только буквы</string>
     <string name="updated_str">Updated</string>
+    <string name="trauma_already_exists_exception">Травма уже существует. Возможно, ее нужно обновить.</string>
 
 
 </resources>

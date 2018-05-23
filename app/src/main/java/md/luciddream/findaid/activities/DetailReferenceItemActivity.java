@@ -92,34 +92,38 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.update_delete_menu, menu);
-        MenuItem updateOption = menu.findItem(R.id.update_menu_item);
-        MenuItem deleteOption = menu.findItem(R.id.delete_menu_item);
-        updateOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(getApplicationContext(), UpdateReferenceItemActivity.class);
-                intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
-                intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
-                startActivity(intent);
-                finish();
-                return true;
-            }
-        });
 
-        deleteOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                SpecificTrauma specificTrauma = new SpecificTrauma();
-                specificTrauma.setTrauma(new Trauma(parentIntent.getIntExtra("t_id", 0),
-                        parentIntent.getStringExtra("t_name"), 1));
-                SpecificDeleter specificDeleter = new SpecificDeleter(executor, findAidDatabase, specificTrauma);
-                specificDeleter.delete();
-                finish();
-                return true;
-            }
-        });
+        if(specificTrauma.getTrauma().getUserAdded()) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.update_delete_menu, menu);
+            MenuItem updateOption = menu.findItem(R.id.update_menu_item);
+            MenuItem deleteOption = menu.findItem(R.id.delete_menu_item);
+            updateOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Intent intent = new Intent(getApplicationContext(), UpdateReferenceItemActivity.class);
+                    intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
+                    intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+            });
+
+            deleteOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    SpecificTrauma specificTrauma = new SpecificTrauma();
+                    specificTrauma.setTrauma(new Trauma(parentIntent.getIntExtra("t_id", 0),
+                            parentIntent.getStringExtra("t_name"), 1));
+                    SpecificDeleter specificDeleter = new SpecificDeleter(executor, findAidDatabase, specificTrauma);
+                    specificDeleter.delete();
+                    finish();
+                    return true;
+                }
+            });
+            return true;
+        }
         return true;
     }
     public void onSymptomsShowHideClick(View view){

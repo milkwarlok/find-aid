@@ -49,10 +49,10 @@ public class ExampleData {
                 new Symptom(null, "Sharp ache in limb or joint"),
                 new Symptom(null, "Nausea")};
 
-        traumas = new Trauma[]{new Trauma(null, "Sunburn", 10),
-                new Trauma(null, "Sunstroke", 10),
-                new Trauma(null, "Luxation", 5),
-                new Trauma(null, "Burn", 10)};
+        traumas = new Trauma[]{new Trauma(null, "Sunburn", 10, false),
+                new Trauma(null, "Sunstroke", 10, false),
+                new Trauma(null, "Luxation", 5, false),
+                new Trauma(null, "Burn", 10, false)};
         traumaLocations = new TraumaLocation[]{
                 new TraumaLocation(3, 1),
                 new TraumaLocation(4, 2),
