@@ -56,7 +56,6 @@ public class SpecificTraumaInflater extends SpecificHelper{
 
     private SpecificTrauma inflateByName() {
         throw new UnsupportedOperationException();
-//      return null;
     }
 
 }
