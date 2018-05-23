@@ -27,6 +27,46 @@
     <string name="trauma_name_invalid_message">Имя должно быть не пустым и содержать только буквы</string>
     <string name="updated_str">Updated</string>
     <string name="trauma_already_exists_exception">Травма уже существует. Возможно, ее нужно обновить.</string>
+    <string name="database_name">find-aid-database-ru</string>
 
+    <string name="location_mountains">Горы</string>
+    <string name="location_seashore">Морской берег</string>
+    <string name="location_sea">Море</string>
+    <string name="location_urban">Город</string>
+    <string name="location_village">Село</string>
+    <string name="location_countryside">Сельская местность</string>
+    <string name="location_desert">Пустныня</string>
+    <string name="location_river">Река</string>
+    <string name="location_jungle">Джунгли</string>
+    <string name="location_forest">Лес</string>
+    <string name="location_poll">Бассейн</string>
+    <string name="location_home">Дом</string>
+    <string name="location_fitness">Фитнес клуб</string>
+    <string name="location_school">Школа</string>
+    <string name="location_university">Университет</string>
+    <string name="location_kindergarten">Детский сад</string>
+    <string name="location_any">Любая</string>
+
+    <string name="organ_skin">Кожа</string>
+    <string name="organ_head">Голова</string>
+    <string name="organ_heart">Сердце</string>
+    <string name="organ_body">Тело</string>
+    <string name="organ_arm">Руки</string>
+    <string name="organ_leg">Ноги</string>
+    <string name="organ_brain">Мозг</string>
+    <string name="organ_kidneys">Почки</string>
+    <string name="organ_lungs">Легкие</string>
+    <string name="organ_stomach">Желудок</string>
+    <string name="organ_ear">Ухо</string>
+    <string name="organ_iris">Радужная оболочка</string>
+    <string name="organ_nose">Нос</string>
+    <string name="organ_tongue">Язык</string>
+    <string name="organ_elbow">Локоть</string>
+    <string name="organ_finger">Палец руки</string>
+    <string name="organ_wrist">Запястье</string>
+    <string name="organ_foot">Стопа</string>
+    <string name="organ_toe">Палец ноги</string>
+    <string name="organ_hip">Бедро</string>
+    <string name="organ_any">Любой</string>
 
 </resources>

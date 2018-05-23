@@ -27,6 +27,47 @@
     <string name="trauma_name_invalid_message">Name should be not empty and contain only letters</string>
     <string name="updated_str">Updated</string>
     <string name="trauma_already_exists_exception">Trauma already exists. You may want to update it.</string>
+    <string name="database_name">find-aid-database</string>
+
+    <string name="location_mountains">Mountains</string>
+    <string name="location_seashore">Seashore</string>
+    <string name="location_sea">Sea</string>
+    <string name="location_urban">Urban</string>
+    <string name="location_village">Village</string>
+    <string name="location_countryside">Countryside</string>
+    <string name="location_desert">Desert</string>
+    <string name="location_river">River</string>
+    <string name="location_jungle">Jungle</string>
+    <string name="location_forest">Forest</string>
+    <string name="location_poll">Pool</string>
+    <string name="location_home">Home</string>
+    <string name="location_fitness">Fitness club</string>
+    <string name="location_school">School</string>
+    <string name="location_university">University</string>
+    <string name="location_kindergarten">Kindergarten</string>
+    <string name="location_any">Any location</string>
+
+    <string name="organ_skin">Skin</string>
+    <string name="organ_head">Head</string>
+    <string name="organ_heart">Heart</string>
+    <string name="organ_body">Body</string>
+    <string name="organ_arm">Arm</string>
+    <string name="organ_leg">Leg</string>
+    <string name="organ_brain">Brain</string>
+    <string name="organ_kidneys">Kidneys</string>
+    <string name="organ_lungs">Lungs</string>
+    <string name="organ_stomach">Stomach</string>
+    <string name="organ_ear">Ear</string>
+    <string name="organ_iris">Iris</string>
+    <string name="organ_nose">Nose</string>
+    <string name="organ_tongue">Tongue</string>
+    <string name="organ_elbow">Elbow</string>
+    <string name="organ_finger">Finger</string>
+    <string name="organ_wrist">Wrist</string>
+    <string name="organ_foot">Foot</string>
+    <string name="organ_toe">Toe</string>
+    <string name="organ_hip">Hip</string>
+    <string name="organ_any">Any</string>
 
 
 </resources>

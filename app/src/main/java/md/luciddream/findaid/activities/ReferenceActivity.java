@@ -71,6 +71,7 @@ public class ReferenceActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         List<Trauma> traumas = getTraumas();
         List<List<Symptom>> symptomsList = getSymptomList(traumas);
         List<SpecificTrauma> specificTraumas = new ArrayList<>(traumas.size());

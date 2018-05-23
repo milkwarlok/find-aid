@@ -1,5 +1,7 @@
 package md.luciddream.findaid.data;
 
+import android.content.Context;
+import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
 
@@ -16,19 +18,53 @@ public class ExampleData {
     private TraumaSeason[] traumaSeasons;
     private TraumaStep[] traumaSteps;
     private TraumaSymptom[] traumaSymptoms;
+    private Context context;
 
-    ExampleData() {
-        locations = new Location[]{new Location(null, "Mountains"),
-                new Location(null, "Seashore"),
-                new Location(null, "Sea"),
-                new Location(null, "Urban")};
+    ExampleData(Context newContext) {
+        context = newContext;
+        locations = new Location[]{
+                new Location(null, context.getString(R.string.location_any)),
+                new Location(null, context.getString(R.string.location_mountains)),
+                new Location(null, context.getString(R.string.location_seashore)),
+                new Location(null, context.getString(R.string.location_sea)),
+                new Location(null, context.getString(R.string.location_urban)),
+                new Location(null, context.getString(R.string.location_village)),
+                new Location(null, context.getString(R.string.location_countryside)),
+                new Location(null, context.getString(R.string.location_desert)),
+                new Location(null, context.getString(R.string.location_river)),
+                new Location(null, context.getString(R.string.location_jungle)),
+                new Location(null, context.getString(R.string.location_forest)),
+                new Location(null, context.getString(R.string.location_poll)),
+                new Location(null, context.getString(R.string.location_home)),
+                new Location(null, context.getString(R.string.location_fitness)),
+                new Location(null, context.getString(R.string.location_school)),
+                new Location(null, context.getString(R.string.location_university)),
+                new Location(null, context.getString(R.string.location_kindergarten))
+        };
 
-        organs = new Organ[]{new Organ(null, "Skin"),
-                new Organ(null, "Head"),
-                new Organ(null, "Heart"),
-                new Organ(null, "Body"),
-                new Organ(null, "Arm"),
-                new Organ(null, "Leg")};
+        organs = new Organ[]{
+                new Organ(null, context.getString(R.string.organ_any)),
+                new Organ(null, context.getString(R.string.organ_skin)),
+                new Organ(null, context.getString(R.string.organ_head)),
+                new Organ(null, context.getString(R.string.organ_heart)),
+                new Organ(null, context.getString(R.string.organ_body)),
+                new Organ(null, context.getString(R.string.organ_arm)),
+                new Organ(null, context.getString(R.string.organ_leg)),
+                new Organ(null, context.getString(R.string.organ_brain)),
+                new Organ(null, context.getString(R.string.organ_kidneys)),
+                new Organ(null, context.getString(R.string.organ_lungs)),
+                new Organ(null, context.getString(R.string.organ_stomach)),
+                new Organ(null, context.getString(R.string.organ_ear)),
+                new Organ(null, context.getString(R.string.organ_iris)),
+                new Organ(null, context.getString(R.string.organ_nose)),
+                new Organ(null, context.getString(R.string.organ_tongue)),
+                new Organ(null, context.getString(R.string.organ_elbow)),
+                new Organ(null, context.getString(R.string.organ_finger)),
+                new Organ(null, context.getString(R.string.organ_wrist)),
+                new Organ(null, context.getString(R.string.organ_foot)),
+                new Organ(null, context.getString(R.string.organ_toe)),
+                new Organ(null, context.getString(R.string.organ_hip))
+        };
 
         seasons = new Season[]{new Season(null, "Winter"),
                 new Season(null, "Spring"),

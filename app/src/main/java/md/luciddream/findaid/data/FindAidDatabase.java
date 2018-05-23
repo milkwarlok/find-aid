@@ -7,6 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Pair;
+import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.dao.*;
 import md.luciddream.findaid.data.dao.join.*;
 import md.luciddream.findaid.data.model.*;
@@ -47,15 +48,15 @@ public abstract class  FindAidDatabase extends RoomDatabase {
     private static FindAidDatabase buildDatabase(final Context context) {
         return Room.databaseBuilder(context,
                 FindAidDatabase.class,
-                "database-name")
+                context.getString(R.string.database_name))
                 .addCallback(new Callback() {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
+                        Executors.newSingleThreadExecutor().execute(new Runnable() {
                             @Override
                             public void run() {
-                                ExampleData exampleData = new ExampleData();
+                                ExampleData exampleData = new ExampleData(context);
                                 FindAidDatabase database = getInstance(context);
                                 database.locationDao().insert(exampleData.getLocations());
                                 database.organDao().insert(exampleData.getOrgans());
