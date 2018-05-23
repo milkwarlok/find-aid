@@ -44,7 +44,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
     private ListView symptomListView;
     private ListView stepListView;
 
-    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,6 @@ public class AddReferenceItemActivity extends AppCompatActivity {
 
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(getApplicationContext());
-        saveButton = (Button) findViewById(R.id.save_reference_item);
 
         name = (TextInputEditText) findViewById(R.id.item_name_textinputedittext);
 
@@ -75,17 +73,17 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         inflateSpinner(seasonSpinner, new SeasonHelper(executor, findAidDatabase.seasonDao()));
 
         symptomListView = (ListView) findViewById(R.id.item_symptom_listview);
-        symptomHints = new ArrayList<>(Arrays.asList("Введите симптом"));
+        symptomHints = new ArrayList<>(Arrays.asList(getString(R.string.symptom_hint_str)));
         symptomValues = new ArrayList<>(Arrays.asList(""));
-        symptomAdapter = new AddableItemArrayAdapter(this, symptomHints, symptomValues, "Введите симптом");
+        symptomAdapter = new AddableItemArrayAdapter(this, symptomHints, symptomValues, getString(R.string.symptom_hint_str));
         symptomListView.setAdapter(symptomAdapter);
 
         stepListView = (ListView) findViewById(R.id.item_step_listview);
-        stepHints = new ArrayList<>(Arrays.asList("Введите шаг"));
+        stepHints = new ArrayList<>(Arrays.asList(getString(R.string.step_hint_str)));
         stepValues = new ArrayList<>(Arrays.asList(""));
 
 
-        stepAdapter = new AddableItemArrayAdapter(this, stepHints, stepValues, "Введите шаг");
+        stepAdapter = new AddableItemArrayAdapter(this, stepHints, stepValues, getString(R.string.step_hint_str));
         stepListView.setAdapter(stepAdapter);
     }
 
@@ -143,13 +141,13 @@ public class AddReferenceItemActivity extends AppCompatActivity {
         specificTrauma.setSteps(steps);
         specificTrauma.setStepOrder(stepOrder);
 
-        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(specificTrauma);
+        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(specificTrauma, this);
         if(!specificTraumaValidator.isValid()) {
             switch (specificTraumaValidator.getMessage()) {
                 case IS_OK:
                     break;
                 case INVALID_NAME:
-                    name.setError("Имя должно быть не пустым и содержать только буквы");
+                    name.setError(getString(R.string.trauma_name_invalid_message));
                     return;
                 case INVALID_SYMPTOMS:
                     return;

@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/add_item_name_str"
                 android:textSize="@dimen/edit_text_hint"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:inputType="textCapSentences|textAutoCorrect"/>
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout

@@ -9,10 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.custom.adapter.AddableItemArrayAdapter;
 import md.luciddream.findaid.data.FindAidDatabase;
@@ -59,17 +56,9 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_reference_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         parentIntent = getIntent();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, parentIntent.getStringExtra("t_name"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         executor = Executors.newSingleThreadExecutor();
         findAidDatabase = FindAidDatabase.getInstance(this);
 
@@ -94,10 +83,10 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         symptomHints = new ArrayList<>(symptoms.length);
         symptomValues = new ArrayList<>(symptoms.length);
         for(int i = 0; i < symptoms.length; i++){
-            symptomHints.add("Введите симптом");
+            symptomHints.add(getString(R.string.symptom_hint_str));
             symptomValues.add(symptoms[i].getName());
         }
-        ArrayAdapter symptomAdapter = new AddableItemArrayAdapter(this, symptomHints, symptomValues, "Введите симптом");
+        ArrayAdapter symptomAdapter = new AddableItemArrayAdapter(this, symptomHints, symptomValues, getString(R.string.symptom_hint_str));
 
         symptomListView = (ListView) findViewById(R.id.update_item_symptom_listview);
         symptomListView.setAdapter(symptomAdapter);
@@ -107,10 +96,10 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         stepHints = new ArrayList<>(steps.length);
         stepValues = new ArrayList<>(steps.length);
         for(int i = 0; i < steps.length; i++){
-            stepHints.add("Введите симптом");
+            stepHints.add(getString(R.string.step_hint_str));
             stepValues.add(steps[i].getName());
         }
-        ArrayAdapter stepAdapter = new AddableItemArrayAdapter(this, stepHints, stepValues, "Введите симптом");
+        ArrayAdapter stepAdapter = new AddableItemArrayAdapter(this, stepHints, stepValues, getString(R.string.step_hint_str));
 
         stepListView = (ListView) findViewById(R.id.update_item_step_listview);
         stepListView.setAdapter(stepAdapter);
@@ -138,9 +127,7 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
-//                NavUtils.navigateUpFromSameTask(this);
                 startParentActivity();
                 return true;
         }
@@ -194,7 +181,7 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         changedSpecificTrauma.setSteps(steps);
         changedSpecificTrauma.setStepOrder(stepOrder);
 
-        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(changedSpecificTrauma);
+        SpecificTraumaValidator specificTraumaValidator = new SpecificTraumaValidator(changedSpecificTrauma, this);
         if(!specificTraumaValidator.isValid()) {
            return;
         }
@@ -204,8 +191,7 @@ public class UpdateReferenceItemActivity extends AppCompatActivity {
         SpecificUpdater updater = new SpecificUpdater(executor, findAidDatabase, changedSpecificTrauma);
         updater.update();
 
-        Snackbar.make(view, "OnSaveClick was clicked." + changedSpecificTrauma.getLocation().getName() +
-                changedSpecificTrauma.getOrgan().getName(), Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.updated_str, Toast.LENGTH_SHORT).show();
         finish();
         startParentActivity();
     }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="content_caller_text">
-        <b>Соберите</b> нужную информацию до звонка. Этим вы ускорите время вызова Скорой помощи\n
-        <b>Адрес.</b> Улица, дом, корпус, подъезд, этаж, номер квартиры, код подъезда или домофон (этим вы ускорите прибытие бригады к пострадавшему).
-        Точный адрес, с ориентирами, как можно проехать, если машина не сможет подъехать к самому месту ЧС, то где и кто будет встречать.
-        Если трудно найти, то где вы их встречаете. Обязательно послать человека встречать специалистов.\n
-        <b>Количество пострадавших.</b>\n
-        <b>Пол.</b>\n
-        <b>Возраст.</b> Примерно: подросток, около 12 и т. п.\n
-        <b>Что случилось.</b> Кратко: ДТП, без сознания и т. п.\n
-        <b>Кто вызвал</b> — прохожий, родственник, сосед и т. п.\n
-        Оставьте свой номер телефона. У бригады могут быть уточнения по мере выдвижения к вам. Это особенно важно, если вы где-нибудь на автостраде или в месте, вам незнакомом.\n
-        <i>Трубку вешать только после того, как повесит диспетчер.</i></string>
+        <b>Gather</b> information that is needed before calling. This will help ambulance come faster.\n
+        <b>Address.</b> Street, district, floor, block, apartment, intercom code.
+        Exact address with reference points, is the road/way blocked, who will meet ambulance.
+        If you cannot meet ambulance, than ask someone to meet it.\n
+        <b>Number of injured.</b>\n
+        <b>Sex.</b>\n
+        <b>Age.</b> Approximately e.g.: teenager, about 12 years old etc.\n
+        <b>What happened.</b> Briefly: Car-crash, unconscious people etc.\n
+        <b>Who called ambulance</b> — passer-by, relative, neighbour и т. п.\n
+        Leave you phone number. Ambulance may have questions to you as the closer to the place. It is extremely important if one has bad knowledge of current location\n
+        <i>Hang up only after ambulance dispatcher hung up.</i></string>
 </resources>

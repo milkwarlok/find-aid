@@ -8,21 +8,21 @@ import java.util.concurrent.ExecutorService;
 
 public abstract class SpecificHelper {
     protected ExecutorService executorService;
-    protected SpecificTrauma specificTrauma;
-    protected FindAidDatabase findAidDatabase;
+    SpecificTrauma specificTrauma;
+    FindAidDatabase findAidDatabase;
 
-    protected TraumaHelper traumaHelper;
-    protected LocationHelper locationHelper;
-    protected OrganHelper organHelper;
-    protected SeasonHelper seasonHelper;
-    protected SymptomHelper symptomHelper;
-    protected StepHelper stepHelper;
+    TraumaHelper traumaHelper;
+    LocationHelper locationHelper;
+    OrganHelper organHelper;
+    SeasonHelper seasonHelper;
+    SymptomHelper symptomHelper;
+    StepHelper stepHelper;
 
-    protected TraumaLocationHelper traumaLocationHelper;
-    protected TraumaOrganHelper traumaOrganHelper;
-    protected TraumaSeasonHelper traumaSeasonHelper;
-    protected TraumaSymptomHelper traumaSymptomHelper;
-    protected TraumaStepHelper traumaStepHelper;
+    TraumaLocationHelper traumaLocationHelper;
+    TraumaOrganHelper traumaOrganHelper;
+    TraumaSeasonHelper traumaSeasonHelper;
+    TraumaSymptomHelper traumaSymptomHelper;
+    TraumaStepHelper traumaStepHelper;
 
     SpecificHelper(ExecutorService executorService, FindAidDatabase findAidDatabase, SpecificTrauma specificTrauma) {
         this.executorService = executorService;

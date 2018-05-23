@@ -99,7 +99,6 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
         updateOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getApplicationContext(), "Update clicked.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), UpdateReferenceItemActivity.class);
                 intent.putExtra("t_id", parentIntent.getIntExtra("t_id", 0));
                 intent.putExtra("t_name", parentIntent.getStringExtra("t_name"));
@@ -118,7 +117,6 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
                 SpecificDeleter specificDeleter = new SpecificDeleter(executor, findAidDatabase, specificTrauma);
                 specificDeleter.delete();
                 finish();
-                Toast.makeText(getApplicationContext(), "Delete clicked.", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -136,10 +134,6 @@ public class DetailReferenceItemActivity extends AppCompatActivity {
             stepListView.setVisibility(View.GONE);
         else
             stepListView.setVisibility(View.VISIBLE);
-    }
-
-    public void onSaveClick(View view){
-        Snackbar.make(view, "OnSaveClick was clicked.", Snackbar.LENGTH_SHORT).show();
     }
 
 }

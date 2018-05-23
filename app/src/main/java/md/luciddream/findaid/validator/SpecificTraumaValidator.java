@@ -1,5 +1,7 @@
 package md.luciddream.findaid.validator;
 
+import android.content.Context;
+import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.model.Step;
 import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
@@ -8,10 +10,11 @@ import md.luciddream.findaid.data.specific.SpecificTrauma;
 public class SpecificTraumaValidator {
     private SpecificTrauma specificTrauma;
     private ValidityMessages message;
-
-    public SpecificTraumaValidator(SpecificTrauma specificTrauma) {
+    Context context;
+    public SpecificTraumaValidator(SpecificTrauma specificTrauma, Context context) {
         this.specificTrauma = specificTrauma;
         message = ValidityMessages.IS_OK;
+        this.context = context;
     }
 
     public boolean isValid(){
@@ -36,7 +39,7 @@ public class SpecificTraumaValidator {
     }
 
     private boolean isTraumaValid(Trauma trauma){
-        boolean isNameValid = trauma.getName().matches("([A-Za-zА-Яа-я]{1,20} ?){1,5}");
+        boolean isNameValid = trauma.getName().matches(context.getString(R.string.trauma_name_regex));
         return isNameValid ;
     }
 
@@ -48,7 +51,7 @@ public class SpecificTraumaValidator {
     }
 
     private boolean isStepValid(Step step) {
-        boolean isNameValid = step.getName().matches("([A-Za-zА-Яа-я1-9]{1,20} ?){1,25}");
+        boolean isNameValid = step.getName().matches(context.getResources().getString(R.string.valid_symptom_step_regex));
         return isNameValid;
     }
 
@@ -61,7 +64,7 @@ public class SpecificTraumaValidator {
     }
 
     private boolean isSymptomValid(Symptom symptom) {
-        boolean isNameValid = symptom.getName().matches("([A-Za-zА-Яа-я1-9]{1,20} ?){1,25}");
+        boolean isNameValid = symptom.getName().matches(context.getResources().getString(R.string.valid_symptom_step_regex));
         return isNameValid;
     }
 

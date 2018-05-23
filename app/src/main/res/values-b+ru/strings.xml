@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">FindAid</string>
+    <string name="reference_str">Справочник</string>
+    <string name="caller_str">Вызов</string>
+
+    <string name="caller">Вызов</string>
+    <string name="title_activity_add_reference_item">Добавить описание</string>
+    <string name="add_item_name_str">Название</string>
+    <string name="location_str">Местность</string>
+    <string name="organ_str">Орган</string>
+    <string name="season_str">Время года</string>
+    <string name="symptom_str">Симптопы</string>
+    <string name="step_str">Шаги</string>
+    <string name="save_str">Сохранить</string>
+    <string name="saved_str">Сохранено</string>
+    <string name="search">Поиск</string>
+    <string name="call_ambulance_str">Call ambulance</string>
+    <string name="important_str">Важно!</string>
+    <string name="title_activity_detail_reference_item">Описание</string>
+    <string name="allowed_step_symptom">Можно только буквы, цифры и пробелы.</string>
+    <string name="valid_symptom_step_regex">([A-Za-zА-Яа-я1-9]{1,20} ?){1,50}</string>
+    <string name="title_activity_update_reference_item">Обновить</string>
+    <string name="update_str">Обновить</string>
+    <string name="trauma_name_regex">([A-Za-zА-Яа-я]{1,20} ?){1,5}</string>
+    <string name="symptom_hint_str">Введите симптом</string>
+    <string name="updated_str">Updated</string>
+
+
+</resources>

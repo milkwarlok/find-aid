@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 public class SpecificTraumaInflater extends SpecificHelper{
-    Integer traumaId;
-    String traumaName;
+    private Integer traumaId;
+    private String traumaName;
     public SpecificTraumaInflater(ExecutorService executorService, FindAidDatabase findAidDatabase, Integer traumaId, String traumaName) {
         super(executorService, findAidDatabase);
         this.traumaId = traumaId;
