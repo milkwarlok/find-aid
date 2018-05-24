@@ -67,6 +67,18 @@
     <string name="organ_foot">Стопа</string>
     <string name="organ_toe">Палец ноги</string>
     <string name="organ_hip">Бедро</string>
+    <string name="organ_belly">Живот</string>
+    <string name="organ_back">Спина</string>
     <string name="organ_any">Любой</string>
+
+    <string name="season_any">Любое</string>
+    <string name="season_winter">Зима</string>
+    <string name="season_spring">Весна</string>
+    <string name="season_summer">Лето</string>
+    <string name="season_autumn">Осень</string>
+    <string name="season_winter_spring">Зима-Весна</string>
+    <string name="season_spring_summer">Весна-Лето</string>
+    <string name="season_summer_autumn">Лето-Осень</string>
+    <string name="season_autumn_winter">Осень-Зима</string>
 
 </resources>

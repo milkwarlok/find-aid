@@ -67,7 +67,20 @@
     <string name="organ_foot">Foot</string>
     <string name="organ_toe">Toe</string>
     <string name="organ_hip">Hip</string>
+    <string name="organ_belly">Belly</string>
+    <string name="organ_back">Back</string>
     <string name="organ_any">Any</string>
+
+    <string name="season_any">Any</string>
+    <string name="season_winter">Winter</string>
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_autumn">Autumn</string>
+    <string name="season_winter_spring">Winter-Spring</string>
+    <string name="season_spring_summer">Spring-Summer</string>
+    <string name="season_summer_autumn">Summer-Autumn</string>
+    <string name="season_autumn_winter">Autumn-Winter</string>
+
 
 
 </resources>

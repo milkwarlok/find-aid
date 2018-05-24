@@ -6,15 +6,13 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Pair;
 import md.luciddream.findaid.R;
 import md.luciddream.findaid.data.dao.*;
 import md.luciddream.findaid.data.dao.join.*;
 import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
 
-import javax.inject.Inject;
-import java.util.List;
+import java.util.HashMap;
 import java.util.concurrent.Executors;
 
 
@@ -37,13 +35,13 @@ public abstract class  FindAidDatabase extends RoomDatabase {
     public abstract TraumaStepDao traumaStepDao();
     public abstract TraumaSymptomDao traumaSymptomDao();
 
-    private static FindAidDatabase INSTANCE;
+    private static HashMap<String, FindAidDatabase> INSTANCE = new HashMap<>();
 
     public synchronized static FindAidDatabase getInstance(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = buildDatabase(context);
+        if(INSTANCE.get(context.getString(R.string.database_name)) == null){
+            INSTANCE.put(context.getString(R.string.database_name), buildDatabase(context));
         }
-        return INSTANCE;
+        return INSTANCE.get(context.getString(R.string.database_name));
     }
     private static FindAidDatabase buildDatabase(final Context context) {
         return Room.databaseBuilder(context,
@@ -56,19 +54,19 @@ public abstract class  FindAidDatabase extends RoomDatabase {
                         Executors.newSingleThreadExecutor().execute(new Runnable() {
                             @Override
                             public void run() {
-                                ExampleData exampleData = new ExampleData(context);
+                                InitialData initialData = new InitialData(context);
                                 FindAidDatabase database = getInstance(context);
-                                database.locationDao().insert(exampleData.getLocations());
-                                database.organDao().insert(exampleData.getOrgans());
-                                database.seasonDao().insert(exampleData.getSeasons());
-                                database.stepDao().insert(exampleData.getSteps());
-                                database.symptomDao().insert(exampleData.getSymptoms());
-                                database.traumaDao().insert(exampleData.getTraumas());
-                                database.traumaLocationDao().insert(exampleData.getTraumaLocations());
-                                database.traumaOrganDao().insert(exampleData.getTraumaOrgans());
-                                database.traumaSeasonDao().insert(exampleData.getTraumaSeasons());
-                                database.traumaStepDao().insert(exampleData.getTraumaSteps());
-                                database.traumaSymptomDao().insert(exampleData.getTraumaSymptoms());
+                                database.locationDao().insert(initialData.getLocations());
+                                database.organDao().insert(initialData.getOrgans());
+                                database.seasonDao().insert(initialData.getSeasons());
+                                database.stepDao().insert(initialData.getSteps());
+                                database.symptomDao().insert(initialData.getSymptoms());
+                                database.traumaDao().insert(initialData.getTraumas());
+                                database.traumaLocationDao().insert(initialData.getTraumaLocations());
+                                database.traumaOrganDao().insert(initialData.getTraumaOrgans());
+                                database.traumaSeasonDao().insert(initialData.getTraumaSeasons());
+                                database.traumaStepDao().insert(initialData.getTraumaSteps());
+                                database.traumaSymptomDao().insert(initialData.getTraumaSymptoms());
                             }
                         });
                     }

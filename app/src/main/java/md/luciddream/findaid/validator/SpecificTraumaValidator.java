@@ -7,6 +7,9 @@ import md.luciddream.findaid.data.model.Symptom;
 import md.luciddream.findaid.data.model.Trauma;
 import md.luciddream.findaid.data.specific.SpecificTrauma;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SpecificTraumaValidator {
     private SpecificTrauma specificTrauma;
     private ValidityMessages message;
@@ -47,6 +50,13 @@ public class SpecificTraumaValidator {
         for(int i = 0; i < steps.length; i++){
             if(!isStepValid(steps[i])) return false;
         }
+//        Set<Step> stepSet = new HashSet<>();
+//        for(int i = 0; i < steps.length; i++){
+//            int sizeBefore = stepSet.size();
+//            stepSet.add(steps[i]);
+//            int sizeAfter = stepSet.size();
+//            if(sizeAfter == sizeBefore) return false;
+//        }
         return true;
     }
 

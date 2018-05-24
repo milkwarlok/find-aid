@@ -155,7 +155,6 @@ public class SpecificSaver extends SpecificHelper {
             stepStrings[i] = steps[i].getName();
         }
         List<Step> stepList = stepHelper.findByNames(stepStrings);
-        Assert.assertEquals(stepList.size(), ids.length);
         return stepList;
     }
 

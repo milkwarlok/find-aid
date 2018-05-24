@@ -6,7 +6,7 @@ import md.luciddream.findaid.data.model.*;
 import md.luciddream.findaid.data.model.join.*;
 
 
-public class ExampleData {
+public class InitialData {
     private Location[] locations;
     private Organ[] organs;
     private Season[] seasons;
@@ -20,7 +20,7 @@ public class ExampleData {
     private TraumaSymptom[] traumaSymptoms;
     private Context context;
 
-    ExampleData(Context newContext) {
+    InitialData(Context newContext) {
         context = newContext;
         locations = new Location[]{
                 new Location(null, context.getString(R.string.location_any)),
@@ -63,13 +63,22 @@ public class ExampleData {
                 new Organ(null, context.getString(R.string.organ_wrist)),
                 new Organ(null, context.getString(R.string.organ_foot)),
                 new Organ(null, context.getString(R.string.organ_toe)),
-                new Organ(null, context.getString(R.string.organ_hip))
+                new Organ(null, context.getString(R.string.organ_hip)),
+                new Organ(null, context.getString(R.string.organ_belly)),
+                new Organ(null, context.getString(R.string.organ_back))
         };
 
-        seasons = new Season[]{new Season(null, "Winter"),
-                new Season(null, "Spring"),
-                new Season(null, "Summer"),
-                new Season(null, "Autumn")};
+        seasons = new Season[]{
+                new Season(null, context.getString(R.string.season_any)),
+                new Season(null, context.getString(R.string.season_winter)),
+                new Season(null, context.getString(R.string.season_spring)),
+                new Season(null, context.getString(R.string.season_summer)),
+                new Season(null, context.getString(R.string.season_autumn)),
+                new Season(null, context.getString(R.string.season_winter_spring)),
+                new Season(null, context.getString(R.string.season_spring_summer)),
+                new Season(null, context.getString(R.string.season_summer_autumn)),
+                new Season(null, context.getString(R.string.season_autumn_winter))
+        };
 
         steps = new Step[]{new Step(null, "Call ambulance"),
                 new Step(null, "Find water"),
@@ -85,27 +94,32 @@ public class ExampleData {
                 new Symptom(null, "Sharp ache in limb or joint"),
                 new Symptom(null, "Nausea")};
 
+        //head injuries:
         traumas = new Trauma[]{new Trauma(null, "Sunburn", 10, false),
                 new Trauma(null, "Sunstroke", 10, false),
                 new Trauma(null, "Luxation", 5, false),
-                new Trauma(null, "Burn", 10, false)};
+                new Trauma(null, "Burn", 10, false),
+                new Trauma(null, "Bruise", 0, false),
+                new Trauma(null, "Stroke", 0, false),
+                new Trauma(null, "Heart attack", 0, false)
+        };
         traumaLocations = new TraumaLocation[]{
-                new TraumaLocation(3, 1),
-                new TraumaLocation(4, 2),
-                new TraumaLocation(1, 3),
-                new TraumaLocation(2, 4)
+                new TraumaLocation(4, 1),
+                new TraumaLocation(5, 2),
+                new TraumaLocation(2, 3),
+                new TraumaLocation(3, 4)
         };
         traumaOrgans = new TraumaOrgan[]{
-                new TraumaOrgan(1, 1),
-                new TraumaOrgan(2, 2),
-                new TraumaOrgan(4, 3),
-                new TraumaOrgan(1, 4)
+                new TraumaOrgan(2, 1),
+                new TraumaOrgan(3, 2),
+                new TraumaOrgan(5, 3),
+                new TraumaOrgan(2, 4)
         };
         traumaSeasons = new TraumaSeason[]{
-                new TraumaSeason(3, 1),
-                new TraumaSeason(3, 2),
-                new TraumaSeason(1, 3),
-                new TraumaSeason(3, 4)
+                new TraumaSeason(4, 1),
+                new TraumaSeason(4, 2),
+                new TraumaSeason(2, 3),
+                new TraumaSeason(4, 4)
         };
         traumaSteps = new TraumaStep[]{
                 new TraumaStep(1, 1, 1),
