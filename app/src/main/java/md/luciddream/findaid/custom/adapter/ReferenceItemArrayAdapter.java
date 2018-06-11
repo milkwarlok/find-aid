@@ -42,7 +42,6 @@ public class ReferenceItemArrayAdapter extends ArrayAdapter<SpecificTrauma> impl
         TextView heading = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_1);
         TextView subheading = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_2);
         TextView symptomListView = linearLayout.findViewById(R.id.reference_activity_list_item_text_view_3);
-        //ImageButton imageButton = linearLayout.findViewById(R.id.reference_activity_image_button);
             heading.setText(showedTraumas.get(position).getTrauma().getName());
             subheading.setText(R.string.symptom_str);
             StringBuffer contents = new StringBuffer("");

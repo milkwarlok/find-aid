@@ -44,7 +44,7 @@
         app:srcCompat="@android:drawable/stat_sys_phone_call"
         android:id="@+id/caller_imageButton"
         android:onClick="onCallAmbulanceClick"
-        android:background="@drawable/roundcorner"
+        android:background="@drawable/custom_button"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="5dp"

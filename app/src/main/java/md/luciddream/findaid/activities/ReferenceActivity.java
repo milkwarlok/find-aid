@@ -63,9 +63,6 @@ public class ReferenceActivity extends AppCompatActivity {
          db = FindAidDatabase.getInstance(getApplicationContext());
          symptomListView = findViewById(R.id.content_reference_list_view);
          executorService = Executors.newSingleThreadExecutor();
-
-
-
     }
 
     @Override
