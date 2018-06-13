@@ -2,4 +2,18 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="edit_text_hint">18sp</dimen>
     <dimen name="basic_text">16sp</dimen>
+
+    <dimen name="trauma_name_textsize">20sp</dimen>
+    <dimen name="trauma_location_textsize">16sp</dimen>
+    <dimen name="trauma_location_spinner_textsize">16sp</dimen>
+    <dimen name="trauma_organ_textsize">16sp</dimen>
+    <dimen name="trauma_organ_spinner_textsize">16sp</dimen>
+    <dimen name="trauma_season_textsize">16sp</dimen>
+    <dimen name="trauma_season_spinner_textsize">16sp</dimen>
+    <dimen name="trauma_symptom_textsize">16sp</dimen>
+    <dimen name="trauma_symptom_listitem_textsize">16sp</dimen>
+    <dimen name="trauma_step_textsize">16sp</dimen>
+    <dimen name="trauma_step_listitem_textsize">16sp</dimen>
+
+
 </resources>

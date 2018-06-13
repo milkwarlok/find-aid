@@ -81,4 +81,23 @@
     <string name="season_summer_autumn">Лето-Осень</string>
     <string name="season_autumn_winter">Осень-Зима</string>
 
+    <string name="step_call_ambulance">Вызвать скорую</string>
+    <string name="step_find_water">Найти воду</string>
+    <string name="step_give_water">Дать воду</string>
+    <string name="step_find_bandage">Найти повязку</string>
+    <string name="step_use_bandage">Использовать повязку</string>
+    <string name="step_psn_to_shade">Отвести человека в тень</string>
+
+    <string name="symptom_headache">Головная боль</string>
+    <string name="symptom_dizziness">Головокружение</string>
+    <string name="symptom_red_skin">Покраснение кожи</string>
+    <string name="symptom_red_eyes">Покраснение глаз</string>
+    <string name="symptom_ache_joint">Острая боль в конечности или суставе</string>
+    <string name="symptom_nausea">Тошнота</string>
+
+    <string name="trauma_sunburn">Солнечный ожог</string>
+    <string name="trauma_sunstroke">Солнечный удар</string>
+    <string name="trauma_luxation">Вывих</string>
+    <string name="trauma_burn">Бытовой ожог</string>
+
 </resources>

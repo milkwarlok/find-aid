@@ -8,6 +8,7 @@
             android:id="@+id/detail_adapter_item_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/trauma_symptom_listitem_textsize"
             />
 
 </LinearLayout>

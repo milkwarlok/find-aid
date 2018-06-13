@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_item_name_str"
-                android:textSize="@dimen/edit_text_hint"
+                android:textSize="@dimen/trauma_name_textsize"
                 android:maxLength="50"
                 android:inputType="textCapSentences|textAutoCorrect"/>
         </android.support.design.widget.TextInputLayout>
@@ -43,7 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/basic_text"
+                    android:textSize="@dimen/trauma_location_textsize"
                     />
             <Spinner
                     android:id="@+id/item_location_spinner"
@@ -63,8 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/basic_text"
-
+                    android:textSize="@dimen/trauma_organ_textsize"
                     />
             <Spinner
                     android:id="@+id/item_organ_spinner"
@@ -83,8 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/basic_text"
-
+                    android:textSize="@dimen/trauma_season_textsize"
                     />
             <Spinner
                     android:id="@+id/item_season_spinner"
@@ -98,6 +96,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             <Button
+                    android:background="@drawable/roundcorner"
+                    android:textColor="@android:color/white"
                     android:id="@+id/item_symptom_textview"
                     android:text="@string/symptom_str"
                     android:layout_width="match_parent"
@@ -111,11 +111,16 @@
                     android:layout_height="wrap_content"
                     android:visibility="visible"/>
         </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             <Button
+                    android:background="@drawable/roundcorner"
+                    android:textColor="@android:color/white"
                     android:id="@+id/item_step_textview"
                     android:text="@string/step_str"
                     android:layout_width="match_parent"
@@ -133,6 +138,8 @@
     </LinearLayout>
 
     <Button
+            android:background="@drawable/roundcorner"
+            android:textColor="@android:color/white"
             android:id="@+id/save_reference_item"
             android:layout_weight="1"
             android:layout_width="wrap_content"

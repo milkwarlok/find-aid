@@ -58,7 +58,6 @@ public class ReferenceItemArrayAdapter extends ArrayAdapter<SpecificTrauma> impl
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "View details", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), DetailReferenceItemActivity.class);
                     intent.putExtra("t_id", showedTraumas.get(position).getTrauma().getT_id());
                     intent.putExtra("t_name", showedTraumas.get(position).getTrauma().getName());

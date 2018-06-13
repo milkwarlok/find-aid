@@ -29,8 +29,9 @@
                     android:text="@string/important_str"
                     android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/trauma_name_textsize"/>
         <TextView
+                android:textSize="@dimen/basic_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/content_caller_text"/>

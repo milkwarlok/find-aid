@@ -2,6 +2,7 @@
 <resources>
     <string name="content_caller_text">
         <b>Gather</b> information that is needed before calling. This will help ambulance come faster.\n
+        <hr/>
         <b>Address.</b> Street, district, floor, block, apartment, intercom code.
         Exact address with reference points, is the road/way blocked, who will meet ambulance.
         If you cannot meet ambulance, than ask someone to meet it.\n

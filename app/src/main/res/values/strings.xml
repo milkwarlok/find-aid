@@ -81,6 +81,24 @@
     <string name="season_summer_autumn">Summer-Autumn</string>
     <string name="season_autumn_winter">Autumn-Winter</string>
 
+    <string name="step_call_ambulance">Call ambulance</string>
+    <string name="step_find_water">Find water</string>
+    <string name="step_give_water">Give water</string>
+    <string name="step_find_bandage">Find bandage</string>
+    <string name="step_use_bandage">Use bandage</string>
+    <string name="step_psn_to_shade">Get the person to the shade</string>
+
+    <string name="symptom_headache">Headache</string>
+    <string name="symptom_dizziness">Dizziness</string>
+    <string name="symptom_red_skin">Red skin</string>
+    <string name="symptom_red_eyes">Red eyes</string>
+    <string name="symptom_ache_joint">Sharp ache in limb or joint</string>
+    <string name="symptom_nausea">Nausea</string>
+
+    <string name="trauma_sunburn">Sunburn</string>
+    <string name="trauma_sunstroke">Sunstroke</string>
+    <string name="trauma_luxation">Luxation</string>
+    <string name="trauma_burn">Burn</string>
 
 
 </resources>

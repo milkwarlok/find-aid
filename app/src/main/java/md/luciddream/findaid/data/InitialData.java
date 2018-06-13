@@ -80,28 +80,25 @@ public class InitialData {
                 new Season(null, context.getString(R.string.season_autumn_winter))
         };
 
-        steps = new Step[]{new Step(null, "Call ambulance"),
-                new Step(null, "Find water"),
-                new Step(null, "Give water"),
-                new Step(null, "Find bandage"),
-                new Step(null, "Use bandage"),
-                new Step(null, "The the person to the shade")};
+        steps = new Step[]{new Step(null, context.getString(R.string.step_call_ambulance)),
+                new Step(null, context.getString(R.string.step_find_water)),
+                new Step(null, context.getString(R.string.step_give_water)),
+                new Step(null, context.getString(R.string.step_find_bandage)),
+                new Step(null, context.getString(R.string.step_use_bandage)),
+                new Step(null, context.getString(R.string.step_psn_to_shade))};
 
-        symptoms = new Symptom[]{new Symptom(null, "Headache"),
-                new Symptom(null, "Dizziness"),
-                new Symptom(null, "Red skin"),
-                new Symptom(null, "Red eyes"),
-                new Symptom(null, "Sharp ache in limb or joint"),
-                new Symptom(null, "Nausea")};
+        symptoms = new Symptom[]{new Symptom(null, context.getString(R.string.symptom_headache)),
+                new Symptom(null, context.getString(R.string.symptom_dizziness)),
+                new Symptom(null, context.getString(R.string.symptom_red_skin)),
+                new Symptom(null, context.getString(R.string.symptom_red_eyes)),
+                new Symptom(null, context.getString(R.string.symptom_ache_joint)),
+                new Symptom(null, context.getString(R.string.symptom_nausea))};
 
         //head injuries:
-        traumas = new Trauma[]{new Trauma(null, "Sunburn", 10, false),
-                new Trauma(null, "Sunstroke", 10, false),
-                new Trauma(null, "Luxation", 5, false),
-                new Trauma(null, "Burn", 10, false),
-                new Trauma(null, "Bruise", 0, false),
-                new Trauma(null, "Stroke", 0, false),
-                new Trauma(null, "Heart attack", 0, false)
+        traumas = new Trauma[]{new Trauma(null, context.getString(R.string.trauma_sunburn), 10, false),
+                new Trauma(null, context.getString(R.string.trauma_sunstroke), 10, false),
+                new Trauma(null, context.getString(R.string.trauma_luxation), 5, false),
+                new Trauma(null, context.getString(R.string.trauma_burn), 10, false),
         };
         traumaLocations = new TraumaLocation[]{
                 new TraumaLocation(4, 1),

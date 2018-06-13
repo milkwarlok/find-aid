@@ -83,6 +83,8 @@ android:layout_margin="16dp">
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <Button
+                android:background="@drawable/roundcorner"
+                android:textColor="@android:color/white"
                 android:id="@+id/detail_item_symptom_textview"
                 android:text="@string/symptom_str"
                 android:layout_width="match_parent"
@@ -96,11 +98,16 @@ android:layout_margin="16dp">
                 android:layout_height="wrap_content"
                 android:visibility="visible"/>
     </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"/>
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <Button
+                android:background="@drawable/roundcorner"
+                android:textColor="@android:color/white"
                 android:id="@+id/detail_item_step_textview"
                 android:text="@string/step_str"
                 android:layout_width="match_parent"
