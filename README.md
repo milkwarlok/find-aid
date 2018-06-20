@@ -2,8 +2,7 @@
 
 ## Description
 
-"Find Aid" app is designed as a part of the thesis work for Moldova State University.
-The app is going to be a simple traumapedia.
+"Find Aid" app is designed as a part of the thesis work for [Moldova State University][3].
 
 ## Initialisation
 >Using Android Studio IDE.
@@ -18,13 +17,8 @@ git clone https://github.com/<account_name>/find-aid.git
 ```
 6. Open Android Studio and import the project.
 
-## Statistics
-
-
-
-## Reference
-
 [1]:https://developer.android.com/studio/index.html
 [2]:https://git-scm.com/download/
+[3]:http://usm.md/
 
 
