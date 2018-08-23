@@ -9,7 +9,7 @@
 1. [Install Android Studio][1]
 >Gradle is preinstalled as a part of Android Studio Project.
 2. [Install git][2]
-3. Open a directory, where want to place the project.
+3. Open a directory, where one wants to place the project.
 4. Open git in the directory.
 5. Type:
 ```bash
